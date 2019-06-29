@@ -3,6 +3,7 @@ package domain;
 public class Frame {
     public static final int MAX_BALL_THROW_COUNT = 2;
     public static final int MINIMUM_BALL_THROW_COUNT = 0;
+    public static final int ADD_CURRENT_BALL_THROWING = 1;
 
     private Score score;
     private int ballThrowCount;
@@ -13,7 +14,7 @@ public class Frame {
     }
 
     public boolean canSkipThisFrame() {
-        ScoreGroup scoreGroup = ScoreGroup.findByScore(this.ballThrowCount, this.score);
+        ScoreGroup scoreGroup = ScoreGroup.findByScore(this.ballThrowCount + ADD_CURRENT_BALL_THROWING, this.score);
 
         return !ScoreGroup.ELSE.equals(scoreGroup);
     }
