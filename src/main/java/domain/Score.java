@@ -55,6 +55,12 @@ public class Score {
         return this.score == (int)score;
     }
 
+    public String getDisplayScore(int ballThrowCount) {
+        ScoreGroup scoreGroup = ScoreGroup.findByScore(ballThrowCount, this);
+
+        return scoreGroup.getDisplay();
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(score);
