@@ -12,29 +12,29 @@ public enum ScoreGroup {
     SPARE(2, 10, "/"),
     GUTTER(2, 0, "-"),
     MISS(2, 0, ""),
-    ELSE(0, 0, "");
+    ELSE(0, 0, "|");
 
     ScoreGroup(int frameCount, int addedScore, String display) {
-        this.frameCount = frameCount;
+        this.ballThrowCount = frameCount;
         this.addedScore = addedScore;
         this.display = display;
     }
 
-    private int frameCount;
+    private int ballThrowCount;
     private int addedScore;
     private String display;
 
-    public static ScoreGroup findByScore(int ballThrowCount, Score score) {
+    public static ScoreGroup findByScore(BallThrowCount ballThrowCount, Score score) {
         return Arrays.stream(ScoreGroup.values())
                 .filter(e -> score.equals(e.addedScore))
-                .filter(e -> e.frameCount == ballThrowCount)
+                .filter(e -> ballThrowCount.equals(e.ballThrowCount))
                 .findFirst()
                 .orElse(ELSE);
     }
 
 
-    public int getFrameCount() {
-        return frameCount;
+    public int getBallThrowCount() {
+        return ballThrowCount;
     }
 
     public int getAddedScore() {

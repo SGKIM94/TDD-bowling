@@ -55,10 +55,18 @@ public class Score {
         return this.score == (int)score;
     }
 
-    public String getDisplayScore(int ballThrowCount) {
+    public String getDisplayScore(BallThrowCount ballThrowCount) {
         ScoreGroup scoreGroup = ScoreGroup.findByScore(ballThrowCount, this);
 
+        if (isScoreGroupElse(scoreGroup)) {
+             return this.score + scoreGroup.getDisplay();
+        }
+
         return scoreGroup.getDisplay();
+    }
+
+    private boolean isScoreGroupElse(ScoreGroup scoreGroup) {
+        return scoreGroup.equals(ScoreGroup.ELSE);
     }
 
     @Override
