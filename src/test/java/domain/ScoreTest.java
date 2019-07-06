@@ -37,7 +37,7 @@ public class ScoreTest {
         Score score = new Score(10);
         int ballThrowCount = 1;
 
-        assertThat(score.getDisplayScore(ballThrowCount)).isEqualTo("X");
+        assertThat(score.getDisplayScore(new BallThrowCount(ballThrowCount))).isEqualTo("X");
     }
 
     @Test
@@ -45,6 +45,6 @@ public class ScoreTest {
         Score score = new Score(10);
         int ballThrowCount = 2;
 
-        assertThat(score.getDisplayScore(ballThrowCount)).isEqualTo("/");
+        assertThat(score.getDisplayScore(new BallThrowCount(ballThrowCount))).isEqualTo("/");
     }
 }

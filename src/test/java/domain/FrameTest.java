@@ -11,7 +11,7 @@ public class FrameTest {
         Score score = new Score(10);
         int ballThrowCount = 1;
 
-        Frame frame = new Frame(score, ballThrowCount);
+        Frame frame = new Frame(score, new BallThrowCount(ballThrowCount));
 
         assertThat(frame.canSkipThisFrame()).isEqualTo(true);
     }
@@ -20,7 +20,7 @@ public class FrameTest {
     public void 볼던지는_횟수가_옳바른_값이_아니면_예외를_처리한다() {
         Score score = new Score(10);
 
-        Frame frame = new Frame(score, 3);
+        Frame frame = new Frame(score, new BallThrowCount(3));
 
         frame.checkBallThrowCount();
     }

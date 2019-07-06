@@ -11,7 +11,7 @@ public class ScoreGroupTest {
         Score score = new Score(10);
         int frameCount = 1;
 
-        ScoreGroup scoreGroup = ScoreGroup.findByScore(frameCount, score);
+        ScoreGroup scoreGroup = ScoreGroup.findByScore(new BallThrowCount(frameCount), score);
         assertThat(scoreGroup).isEqualTo(ScoreGroup.STRIKE);
     }
 
