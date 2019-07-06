@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BawlingGame {
-    public static final int START_ROUND = 0;
+    private static final int START_ROUND = 0;
+    private static final int FIRST_BALL_THROW_COUNT = 1;
+    private static final int BEFORE_FIRST_BALL_THROWING = 0;
+    private static final int BEFORE_FRAME = 1;
 
+    //TODO : 일급 콜렉션으로 Frames 만들어주는 것 필요
     private final List<Frame> frames;
     private final Round round;
 
@@ -18,21 +22,29 @@ public class BawlingGame {
         return score == maxScore;
     }
 
-    // 점수가 입력 되었을 때 그 점수가 프레임에서 처음 던진 경우에는 정상적으로 점수를 입력받는다.
-    public int setFramesScore(Score score) {
-        Frame beforeFrame = this.frames.get(this.frames.size() - 1);
-        this.frames.add(new Frame(score, beforeFrame.getBallThrowCount()));
+    public Frame setFramesScore(Score score) {
+        if (isFirstThrowing()) {
+            Frame frame = new Frame(score, new BallThrowCount(FIRST_BALL_THROW_COUNT));
+            this.frames.add(frame);
 
-        return this.frames.size();
-    }
-
-    public Round checkFrameStepOverNext() {
-        Frame currentFrame = this.frames.get(this.round.getRound());
-
-        if (currentFrame.canSkipThisFrame()) {
-            return new Round(this.round.getRound());
+            return frame;
         }
 
-        return this.round;
+        Frame frame = new Frame(score, getBeforeFrame().getBallThrowCount());
+        this.frames.add(frame);
+
+        return frame;
+    }
+
+    public Frame getBeforeFrame() {
+        return this.frames.get(this.frames.size() - BEFORE_FRAME);
+    }
+
+    private boolean isFirstThrowing() {
+        return this.frames.size() == BEFORE_FIRST_BALL_THROWING;
+    }
+
+    public boolean checkFrameStepOverNext() {
+        return this.frames.get(this.round.getRound()).canSkipThisFrame();
     }
 }
