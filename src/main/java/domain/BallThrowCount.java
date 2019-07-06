@@ -19,4 +19,12 @@ public class BallThrowCount {
 
         return this.ballThrowCount == (int)ballThrowCount;
     }
+
+    public boolean isBigger(int maxBallThrowCount) {
+        return this.ballThrowCount > maxBallThrowCount;
+    }
+
+    public boolean isSmaller(int minimumBallThrowCount) {
+        return this.ballThrowCount < minimumBallThrowCount;
+    }
 }
