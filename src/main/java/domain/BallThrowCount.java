@@ -1,6 +1,7 @@
 package domain;
 
 public class BallThrowCount {
+    public static final int NEXT_STEP = 1;
     private int ballThrowCount;
 
     public BallThrowCount(int ballThrowCount) {
@@ -26,5 +27,9 @@ public class BallThrowCount {
 
     public boolean isSmaller(int minimumBallThrowCount) {
         return this.ballThrowCount < minimumBallThrowCount;
+    }
+
+    public int getNextBallCount() {
+        return this.ballThrowCount + NEXT_STEP;
     }
 }
