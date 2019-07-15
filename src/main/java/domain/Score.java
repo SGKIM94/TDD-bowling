@@ -59,7 +59,7 @@ public class Score {
         ScoreGroup scoreGroup = ScoreGroup.findByScore(ballThrowCount, this);
 
         if (isScoreGroupElse(scoreGroup)) {
-             return this.score + scoreGroup.getDisplay();
+            return this.score + scoreGroup.getDisplay();
         }
 
         return scoreGroup.getDisplay();
@@ -67,6 +67,10 @@ public class Score {
 
     private boolean isScoreGroupElse(ScoreGroup scoreGroup) {
         return scoreGroup.equals(ScoreGroup.ELSE);
+    }
+
+    public Score sumScores(Score anotherScore) {
+        return new Score(this.score + anotherScore.score);
     }
 
     @Override
