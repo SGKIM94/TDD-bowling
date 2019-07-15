@@ -1,20 +1,16 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BawlingGame {
+    //TODO : ENUM 으로 만들어주는 것 필요
     private static final int START_ROUND = 0;
     private static final int FIRST_BALL_THROW_COUNT = 1;
     private static final int BEFORE_FIRST_BALL_THROWING = 0;
-    private static final int BEFORE_FRAME = 1;
 
-    //TODO : 일급 콜렉션으로 Frames 만들어주는 것 필요
-    private final List<Frame> frames;
+    private final Frames frames;
     private final Round round;
 
     public BawlingGame() {
-        this.frames = new ArrayList<>();
+        this.frames = new Frames();
         this.round = new Round(START_ROUND);
     }
 
@@ -30,18 +26,22 @@ public class BawlingGame {
             return frame;
         }
 
-        Frame frame = new Frame(score, getBeforeFrame().getBallThrowCount());
+        Frame beforeFrame = this.frames.getBeforeFrame();
+        Frame frame = new Frame(score, new BallThrowCount(beforeFrame.getNextBallCount()));
+
+        if (!frame.canSkipThisFrame()) {
+            this.frames.add(new Frame(score.sumScores(beforeFrame.getScore()), beforeFrame.getBallThrowCount()));
+
+            return frame;
+        }
+
         this.frames.add(frame);
 
         return frame;
     }
 
-    public Frame getBeforeFrame() {
-        return this.frames.get(this.frames.size() - BEFORE_FRAME);
-    }
-
     private boolean isFirstThrowing() {
-        return this.frames.size() == BEFORE_FIRST_BALL_THROWING;
+        return this.frames.getFramesSize() == BEFORE_FIRST_BALL_THROWING;
     }
 
     public boolean checkFrameStepOverNext() {
