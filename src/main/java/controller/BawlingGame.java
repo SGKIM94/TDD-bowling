@@ -17,30 +17,20 @@ public class BawlingGame {
 
         BallingFrame.printEmptyFrames(10);
 
-        String inputFirstScore = "10";
-        Score firstScore = new Score(inputFirstScore);
-
         BallThrowCount ballThrowCount = new BallThrowCount(1);
+        domain.BawlingGame bawlingGame = new domain.BawlingGame();
 
-        System.out.println("1프레임 투구 : " + inputFirstScore);
+        Score firstScore = new Score(10);
+        bawlingGame.setFramesScore(firstScore);
+        makeFramesFormat(new Score(10), player, ballThrowCount, "1");
 
-        ScoreDisplays scoreDisplays = new ScoreDisplays();
-        scoreDisplays.add(firstScore.getDisplayScore(ballThrowCount));
+        Score secondScore = new Score(8);
+        bawlingGame.setFramesScore(secondScore);
+        makeFramesFormat(new Score(8), player, ballThrowCount, "2");
 
-        BallingFrame.printNameFrame();
-        NameFrame.printNameFrame(player);
-        BallingFrame.printFrames(10, scoreDisplays);
-
-        String inputSecondScore = "8";
-        Score secondScore = new Score(inputSecondScore);
-
-        System.out.println("2프레임 투구 : " + inputSecondScore);
-        scoreDisplays.add(secondScore.getDisplayScore(ballThrowCount));
-
-        //
-        BallingFrame.printNameFrame();
-        NameFrame.printNameFrame(player);
-        BallingFrame.printFrames(10, scoreDisplays);
+        Score thirdScore = new Score(2);
+        bawlingGame.setFramesScore(thirdScore);
+        makeFramesFormat(thirdScore, player, ballThrowCount, "3");
 
         //TODO : ballThrowCount List<Integer> 로 일급 콜렉션으로 만들기
         //TODO : 프레임을 넘어가지 못했을 때 출력 값을 한 프레임 안에 출력할 수 있도록 하기 (example : 8 / X)
@@ -53,6 +43,16 @@ public class BawlingGame {
         // 일급콜렉션화 시켜서 하면 될듯
         // 람다와 스트림화 시키기
 
+    }
 
+    private static void makeFramesFormat(Score score, Player player, BallThrowCount ballThrowCount, String turnNumber) {
+        System.out.println(turnNumber + "프레임 투구 : " + score);
+
+        ScoreDisplays scoreDisplays = new ScoreDisplays();
+        scoreDisplays.add(score.getDisplayScore(ballThrowCount));
+
+        BallingFrame.printNameFrame();
+        NameFrame.printNameFrame(player);
+        BallingFrame.printFrames(10, scoreDisplays);
     }
 }
