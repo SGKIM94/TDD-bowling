@@ -29,13 +29,4 @@ public class BawlingGameTest {
 
         assertThat(bawlingGame.checkFrameStepOverNext()).isEqualTo(true);
     }
-
-    @Test
-    public void 이전의_프레임을_가져오는지_테스트() {
-        Score score = new Score(SCORE);
-
-        Frame frame = bawlingGame.setFramesScore(score);
-
-        assertThat(bawlingGame.getBeforeFrame()).isEqualTo(frame);
-    }
 }

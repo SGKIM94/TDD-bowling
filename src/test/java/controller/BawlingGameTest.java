@@ -2,9 +2,9 @@ package controller;
 
 import org.junit.Test;
 
-public class BallingGameTest {
+public class BawlingGameTest {
     @Test
     public void mainTest() {
-        BallingGame.main();
+        BawlingGame.main();
     }
 }

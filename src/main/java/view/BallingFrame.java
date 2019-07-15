@@ -1,6 +1,6 @@
 package view;
 
-import java.util.List;
+import domain.ScoreDisplays;
 
 public class BallingFrame {
     public static void printNameFrame() {
@@ -11,14 +11,15 @@ public class BallingFrame {
         makeEmptyFrameFormat(emptyFrameCount);
     }
 
-    public static void printFrames(int frameCount, List<String> scoreDisplays) {
-        for (String scoreDisplay : scoreDisplays) {
-            makeFrameWhenExistScoreDisplay(scoreDisplay);
+    public static void printFrames(int frameTotalCount, ScoreDisplays scoreDisplays) {
+        int scoreDisplaysSize = scoreDisplays.displaysSize();
+        for (int i = 0; i < scoreDisplaysSize; i++) {
+            makeFrameWhenExistScoreDisplay(scoreDisplays.get(i));
         }
 
-        int scoreDisplaySize = scoreDisplays.size();
-        int remainFrameCount = frameCount - scoreDisplaySize;
-        for (int i = scoreDisplaySize; i < remainFrameCount; i++) {
+        // 점수의 경계를 구분해주는 별도의 boolean이 필요할 듯
+        int remainFrameCount = frameTotalCount - scoreDisplaysSize;
+        for (int i = scoreDisplaysSize; i < remainFrameCount; i++) {
             printEmptyFrame();
         }
 
