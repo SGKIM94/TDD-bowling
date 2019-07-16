@@ -1,9 +1,6 @@
 package controller;
 
-import domain.BallThrowCount;
-import domain.Player;
-import domain.Score;
-import domain.ScoreDisplays;
+import domain.*;
 import view.BallingFrame;
 import view.NameFrame;
 
@@ -20,16 +17,21 @@ public class BawlingGame {
         BallThrowCount ballThrowCount = new BallThrowCount(1);
         domain.BawlingGame bawlingGame = new domain.BawlingGame();
 
+        Scores scores = new Scores();
+
         Score firstScore = new Score(10);
-        bawlingGame.setFramesScore(firstScore);
-        makeFramesFormat(new Score(10), player, ballThrowCount, "1");
+        scores.add(firstScore);
+        bawlingGame.setFramesScore(scores);
+        makeFramesFormat(firstScore, player, ballThrowCount, "1");
 
         Score secondScore = new Score(8);
-        bawlingGame.setFramesScore(secondScore);
-        makeFramesFormat(new Score(8), player, ballThrowCount, "2");
+        scores.add(secondScore);
+        bawlingGame.setFramesScore(scores);
+        makeFramesFormat(secondScore, player, ballThrowCount, "2");
 
         Score thirdScore = new Score(2);
-        bawlingGame.setFramesScore(thirdScore);
+        bawlingGame.setFramesScore(scores);
+        scores.add(thirdScore);
         makeFramesFormat(thirdScore, player, ballThrowCount, "3");
 
         //TODO : ballThrowCount List<Integer> 로 일급 콜렉션으로 만들기
