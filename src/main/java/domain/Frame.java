@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Collections;
+
 public class Frame {
     public static final int MAX_BALL_THROW_COUNT = 2;
     public static final int MINIMUM_BALL_THROW_COUNT = 0;
@@ -16,18 +18,31 @@ public class Frame {
     // 구별해서 출력이나 점수를 계산하면 될 듯
     // Display 가 어디에 있는게 맞을지 고민해 볼 필요가 있을 듯
 
-    private Score score;
+    private Scores scores;
     private BallThrowCount ballThrowCount;
 
     public Frame(Score score, BallThrowCount ballThrowCount) {
-        this.score = score;
+        this.scores = new Scores(Collections.singletonList(score));
+        this.ballThrowCount = ballThrowCount;
+    }
+
+    public Frame(Scores scores, BallThrowCount ballThrowCount) {
+        this.scores = scores;
         this.ballThrowCount = ballThrowCount;
     }
 
     //TODO : 넘어갈 수 있는지 없는지 체크해서 넘어 간다면 다음 프레임에 점수를 저장하고
     // 넘어갈 수 없다면 한 프레임에 저장한다
     public boolean canSkipThisFrame() {
-        ScoreGroup scoreGroup = ScoreGroup.findByScore(this.ballThrowCount, this.score);
+        ScoreGroup scoreGroup;
+
+        if (this.ballThrowCount.isFirstBallThrowing()) {
+            scoreGroup = ScoreGroup.findByScore(this.ballThrowCount, this.scores.getFirstScore());
+
+            return !ScoreGroup.ELSE.equals(scoreGroup);
+        }
+
+        scoreGroup = ScoreGroup.findByScore(this.ballThrowCount, this.scores.getSecondScore());
 
         return !ScoreGroup.ELSE.equals(scoreGroup);
     }
@@ -46,7 +61,15 @@ public class Frame {
         return this.ballThrowCount.getNextBallCount();
     }
 
-    public Score getScore() {
-        return this.score;
+    public Score getFirstScore() {
+        return this.scores.getFirstScore();
+    }
+
+    public Score getSecondScore() {
+        return this.scores.getSecondScore();
+    }
+
+    public boolean isSecondBallThrowing() {
+        return this.ballThrowCount.isSecondBallThrowing();
     }
 }
