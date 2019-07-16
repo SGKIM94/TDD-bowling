@@ -2,6 +2,8 @@ package domain;
 
 import org.junit.Test;
 
+import java.util.Collections;
+
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class FramesTest {
@@ -27,7 +29,8 @@ public class FramesTest {
         final BawlingGame bawlingGame = new BawlingGame();
         Frames frames = new Frames();
 
-        Frame frame = bawlingGame.setFramesScore(new Score(SCORE));
+        Scores scores = new Scores(Collections.singletonList(new Score(SCORE)));
+        Frame frame = bawlingGame.setFramesScore(scores);
         frames.add(frame);
 
         assertThat(frames.getBeforeFrame()).isEqualTo(frame);
