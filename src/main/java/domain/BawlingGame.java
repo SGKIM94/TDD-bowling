@@ -18,19 +18,24 @@ public class BawlingGame {
         return score == maxScore;
     }
 
-    public Frame setFramesScore(Score score) {
-        if (isFirstThrowing()) {
-            Frame frame = new Frame(score, new BallThrowCount(FIRST_BALL_THROW_COUNT));
+    public Frame setFramesScore(Scores scores) {
+        Score firstScore = scores.getFirstScore();
+
+        if (this.round.isFirstRound()) {
+            Frame frame = new Frame(firstScore, new BallThrowCount(FIRST_BALL_THROW_COUNT));
+
             this.frames.add(frame);
+            this.round.addRound();
 
             return frame;
         }
 
         Frame beforeFrame = this.frames.getBeforeFrame();
-        Frame frame = new Frame(score, new BallThrowCount(beforeFrame.getNextBallCount()));
+        Frame frame = new Frame(scores, new BallThrowCount(beforeFrame.getNextBallCount()));
+
 
         if (!frame.canSkipThisFrame()) {
-            this.frames.add(new Frame(score.sumScores(beforeFrame.getScore()), beforeFrame.getBallThrowCount()));
+            this.frames.add(new Frame(firstScore.sumScores(beforeFrame.getFirstScore()), beforeFrame.getBallThrowCount()));
 
             return frame;
         }
@@ -47,4 +52,6 @@ public class BawlingGame {
     public boolean checkFrameStepOverNext() {
         return this.frames.get(this.round.getRound()).canSkipThisFrame();
     }
+
+
 }
