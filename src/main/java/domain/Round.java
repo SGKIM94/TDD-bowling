@@ -3,7 +3,7 @@ package domain;
 public class Round {
     public static final int MINIMUM_ROUND = 0;
     public static final int MAX_ROUND = 10;
-    public static final int FIRST_ROUND = 1;
+    public static final int FIRST_ROUND = 0;
     public static final int NEXT_ROUND = 1;
     private final int round;
 

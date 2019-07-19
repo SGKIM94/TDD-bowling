@@ -2,15 +2,13 @@ package domain;
 
 import org.junit.Test;
 
-import java.util.Collections;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BawlingGameTest {
     public static final int SCORE = 10;
     public static final int MAX_SCORE = 10;
     final BawlingGame bawlingGame = new BawlingGame();
-    final Scores scores = new Scores(Collections.singletonList(new Score(SCORE)));
+    final Scores scores = new Scores(new Score(SCORE));
 
     @Test
     public void 한_프레임의_최대점수와_점수가_일치하는지_테스트() {
@@ -29,5 +27,10 @@ public class BawlingGameTest {
         bawlingGame.setFramesScore(scores);
 
         assertThat(bawlingGame.checkFrameStepOverNext()).isEqualTo(true);
+    }
+
+    @Test
+    public void 라운드를_추가한다() {
+        assertThat(bawlingGame.addRound()).isEqualTo(1);
     }
 }
