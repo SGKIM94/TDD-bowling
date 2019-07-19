@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Scores {
@@ -10,7 +11,11 @@ public class Scores {
         this.scores = new ArrayList<>();
     }
 
-    public Scores(List<Score> score) {
+    public Scores(Score score) {
+        this.scores = new ArrayList<>(Collections.singletonList(score));
+    }
+
+    public Scores(ArrayList<Score> score) {
         this.scores = score;
     }
 
@@ -23,6 +28,6 @@ public class Scores {
     }
 
     public boolean add(Score score) {
-        return this.scores.add(score);
+        return scores.add(score);
     }
 }
