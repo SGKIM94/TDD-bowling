@@ -30,6 +30,7 @@ public class BawlingGame {
             return frame;
         }
 
+
         Frame beforeFrame = this.frames.getBeforeFrame();
         Frame frame = new Frame(scores, new BallThrowCount(beforeFrame.getNextBallCount()));
 
@@ -41,7 +42,7 @@ public class BawlingGame {
         }
 
         this.frames.add(frame);
-
+        addRound();
         return frame;
     }
 
@@ -53,5 +54,7 @@ public class BawlingGame {
         return this.frames.get(this.round.getRound()).canSkipThisFrame();
     }
 
-
+    public int addRound() {
+        return this.round.addRound();
+    }
 }
