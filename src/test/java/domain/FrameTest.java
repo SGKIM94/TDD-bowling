@@ -2,6 +2,10 @@ package domain;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class FrameTest {
@@ -28,5 +32,14 @@ public class FrameTest {
         Frame frame = new Frame(score, new BallThrowCount(2));
 
         assertThat(frame.isSecondBallThrowing()).isEqualTo(true);
+    }
+
+    @Test
+    public void 출력_형태를_만든다() {
+        Score firstScore = new Score(4);
+        Frame frame = new Frame(firstScore, new BallThrowCount(0));
+        Score secondScore = new Score(2);
+
+        assertThat(frame.makeScoreDisplayForm(secondScore)).isEqualTo("4|2");
     }
 }

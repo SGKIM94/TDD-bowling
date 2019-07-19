@@ -1,28 +1,14 @@
 package domain;
 
-import java.util.Collections;
-
 public class Frame {
     public static final int MAX_BALL_THROW_COUNT = 2;
     public static final int MINIMUM_BALL_THROW_COUNT = 0;
-
-    //TODO : 프레임에 점수가 여러개 가지고 있어야 하는가?
-    // 아니면 한개의 점수로 더 해진 값을 가지고 있어야 하는가?
-    // 2번째 볼을 던진 경우는 어떻게 처리해야 될까?
-    // 2번째 볼에 대해서는 더해주는 형태로 처리해서 display를 정해주면 딜듯
-    // 한 Frame 을 기준으로 2번 볼을 던졌을 때
-    // score 를 sum 을 해줌으로써 하나밖에 저장이 되어있지 않으면
-    // 출력할 때 이전의 점수를 출력할 수 없음
-    // 2개를 가지고 있어야 1번째와 2번재의 점수를 출력할 수 있음.
-    // 2개를 가지고 있는 frame 과 1개이면서 점수가 10 점인 것과 그렇지 않은 frame 을
-    // 구별해서 출력이나 점수를 계산하면 될 듯
-    // Display 가 어디에 있는게 맞을지 고민해 볼 필요가 있을 듯
 
     private Scores scores;
     private BallThrowCount ballThrowCount;
 
     public Frame(Score score, BallThrowCount ballThrowCount) {
-        this.scores = new Scores(Collections.singletonList(score));
+        this.scores = new Scores(score);
         this.ballThrowCount = ballThrowCount;
     }
 
@@ -65,11 +51,18 @@ public class Frame {
         return this.scores.getFirstScore();
     }
 
-    public Score getSecondScore() {
-        return this.scores.getSecondScore();
-    }
-
     public boolean isSecondBallThrowing() {
         return this.ballThrowCount.isSecondBallThrowing();
+    }
+
+    public String makeScoreDisplayForm(Score score) {
+        this.scores.add(score);
+
+        if (canSkipThisFrame()) {
+            return score.getDisplayScore(new BallThrowCount(this.ballThrowCount.getNextBallCount()));
+        }
+
+        String beforeScoreDisplay = this.scores.getFirstScore().getDisplayScore(this.ballThrowCount);
+        return beforeScoreDisplay + score.getScore();
     }
 }
