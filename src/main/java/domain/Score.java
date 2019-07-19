@@ -42,19 +42,6 @@ public class Score {
         return this.score == STRIKE_SCORE;
     }
 
-    @Override
-    public boolean equals(Object score) {
-        if (this == score) {
-            return true;
-        }
-
-        if (score == null) {
-            return false;
-        }
-
-        return this.score == (int)score;
-    }
-
     public String getDisplayScore(BallThrowCount ballThrowCount) {
         ScoreGroup scoreGroup = ScoreGroup.findByScore(ballThrowCount, this);
 
@@ -71,6 +58,23 @@ public class Score {
 
     public Score sumScores(Score anotherScore) {
         return new Score(this.score + anotherScore.score);
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    @Override
+    public boolean equals(Object score) {
+        if (this == score) {
+            return true;
+        }
+
+        if (score == null) {
+            return false;
+        }
+
+        return this.score == (int)score;
     }
 
     @Override
