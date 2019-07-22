@@ -27,4 +27,38 @@ public class Frames {
     public Frame getBeforeFrame() {
         return this.frames.get(getFramesSize() - BEFORE_FRAME);
     }
+
+    public String makeScoreDisplayForm(Score score) {
+        int beforeFrameIndex = getFramesSize() - 1;
+
+        if (this.frames.get(beforeFrameIndex).getBallThrowCount().equals(new BallThrowCount(1))
+                && score.isStrike()) {
+            BallThrowCount ballThrowCount = new BallThrowCount(1);
+            this.frames.add(new Frame(score, ballThrowCount, score.getDisplayScore(ballThrowCount)));
+        }
+
+        if (this.frames.get(beforeFrameIndex).getBallThrowCount().equals(new BallThrowCount(2))
+            && score.sumScores(this.frames.get(beforeFrameIndex).getFirstScore()).isSmallerThanStrike()) {
+
+            String beforeScoreDisplay = this.frames.get(beforeFrameIndex).getFirstScore().getDisplayScore(new BallThrowCount(1));
+            return beforeScoreDisplay + score.getScore();
+        }
+
+        if (this.frames.get(beforeFrameIndex).getBallThrowCount().equals(new BallThrowCount(2))
+                && score.sumScores(this.frames.get(beforeFrameIndex).getFirstScore()).isStrike()) {
+
+            String beforeScoreDisplay = this.frames.get(beforeFrameIndex).getFirstScore().getDisplayScore(new BallThrowCount(2));
+            return beforeScoreDisplay + score.getScore();
+        }
+
+        if (this.frames.get(beforeFrameIndex).getBallThrowCount().equals(new BallThrowCount(2))
+                && score.sumScores(this.frames.get(beforeFrameIndex).getFirstScore()).isZero()) {
+
+            String beforeScoreDisplay = this.frames.get(beforeFrameIndex).getFirstScore().getDisplayScore(new BallThrowCount(2));
+            return beforeScoreDisplay + score.getScore();
+        }
+
+        throw new IllegalArgumentException("잘못된 점수 입력입니다.");
+    }
 }
+
