@@ -30,6 +30,8 @@ public class BawlingGame {
         bawlingGame.setFramesScore(scores);
         makeFramesFormat(secondScore, player, ballThrowCount, "2");
 
+        // 만약 점수 조건을 성사하지 않는다면 이전 프레임을 가져와서 추가해주면됨
+
         Score thirdScore = new Score(2);
         bawlingGame.setFramesScore(scores);
         scores.add(thirdScore);
