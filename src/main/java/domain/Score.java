@@ -6,6 +6,7 @@ public class Score {
     public static final int MINIMUM_SCORE = 0;
     public static final int MAX_SCORE = 10;
     public static final int STRIKE_SCORE = 10;
+    public static final int ZERO_SCORE = 0;
     private int score;
 
     public Score(int score) {
@@ -64,6 +65,9 @@ public class Score {
         return this.score;
     }
 
+    public boolean isSmallerThanStrike() {
+        return this.score < STRIKE_SCORE;
+    }
     @Override
     public boolean equals(Object score) {
         if (this == score) {
@@ -80,5 +84,9 @@ public class Score {
     @Override
     public int hashCode() {
         return Objects.hash(score);
+    }
+
+    public boolean isZero() {
+        return this.score == ZERO_SCORE;
     }
 }
