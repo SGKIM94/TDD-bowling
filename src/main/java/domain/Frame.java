@@ -6,6 +6,13 @@ public class Frame {
 
     private Scores scores;
     private BallThrowCount ballThrowCount;
+    private String scoreDisplay;
+
+    public Frame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
+        this.scores = new Scores(score);
+        this.ballThrowCount = ballThrowCount;
+        this.scoreDisplay = scoreDisplay;
+    }
 
     public Frame(Score score, BallThrowCount ballThrowCount) {
         this.scores = new Scores(score);
@@ -53,16 +60,5 @@ public class Frame {
 
     public boolean isSecondBallThrowing() {
         return this.ballThrowCount.isSecondBallThrowing();
-    }
-
-    public String makeScoreDisplayForm(Score score) {
-        this.scores.add(score);
-
-        if (canSkipThisFrame()) {
-            return score.getDisplayScore(new BallThrowCount(this.ballThrowCount.getNextBallCount()));
-        }
-
-        String beforeScoreDisplay = this.scores.getFirstScore().getDisplayScore(this.ballThrowCount);
-        return beforeScoreDisplay + score.getScore();
     }
 }
