@@ -1,9 +1,9 @@
 package domain;
 
 public class BallThrowCount {
-    public static final int NEXT_STEP = 1;
-    public static final int FIRST_BALL_THROWING = 1;
-    public static final int SECOND_BALL_THROWING = 2;
+    private static final int NEXT_STEP = 1;
+    private static final int FIRST_BALL_THROWING = 1;
+    private static final int SECOND_BALL_THROWING = 2;
     private int ballThrowCount;
 
     public BallThrowCount(int ballThrowCount) {

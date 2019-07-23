@@ -1,8 +1,8 @@
 package domain;
 
 public class Frame {
-    public static final int MAX_BALL_THROW_COUNT = 2;
-    public static final int MINIMUM_BALL_THROW_COUNT = 0;
+    private static final int MAX_BALL_THROW_COUNT = 2;
+    private static final int MINIMUM_BALL_THROW_COUNT = 0;
 
     private Scores scores;
     private BallThrowCount ballThrowCount;
