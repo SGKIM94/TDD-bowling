@@ -1,7 +1,7 @@
 package domain;
 
 public class Player {
-    public static final int MINIMUM_PLAYER_LENGTH = 3;
+    private static final int MINIMUM_PLAYER_LENGTH = 3;
     private String player;
 
     public Player(String player) {

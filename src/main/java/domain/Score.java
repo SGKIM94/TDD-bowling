@@ -3,10 +3,10 @@ package domain;
 import java.util.Objects;
 
 public class Score {
-    public static final int MINIMUM_SCORE = 0;
-    public static final int MAX_SCORE = 10;
-    public static final int STRIKE_SCORE = 10;
-    public static final int ZERO_SCORE = 0;
+    private static final int MINIMUM_SCORE = 0;
+    private static final int MAX_SCORE = 10;
+    private static final int STRIKE_SCORE = 10;
+    private static final int ZERO_SCORE = 0;
     private int score;
 
     public Score(int score) {
