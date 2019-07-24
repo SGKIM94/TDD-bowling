@@ -33,13 +33,4 @@ public class FrameTest {
 
         assertThat(frame.isSecondBallThrowing()).isEqualTo(true);
     }
-
-    @Test
-    public void 출력_형태를_만든다() {
-        Score firstScore = new Score(4);
-        Frame frame = new Frame(firstScore, new BallThrowCount(0));
-        Score secondScore = new Score(2);
-
-        assertThat(frame.makeScoreDisplayForm(secondScore)).isEqualTo("4|2");
-    }
 }

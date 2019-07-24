@@ -61,4 +61,5 @@ public class Frame {
     public boolean isSecondBallThrowing() {
         return this.ballThrowCount.isSecondBallThrowing();
     }
+
 }

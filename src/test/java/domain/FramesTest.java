@@ -33,4 +33,13 @@ public class FramesTest {
 
         assertThat(frames.getBeforeFrame()).isEqualTo(frame);
     }
+
+    @Test
+    public void 조건에_따른_프레임들의_출력_형태를_만든다() {
+        Score firstScore = new Score(4);
+        Frame frame = new Frame(firstScore, new BallThrowCount(0));
+        Score secondScore = new Score(2);
+
+        assertThat(frames.makeScoreDisplayForm(secondScore)).isEqualTo("4|2");
+    }
 }
