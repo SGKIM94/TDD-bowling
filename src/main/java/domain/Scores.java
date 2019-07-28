@@ -15,10 +15,6 @@ public class Scores {
         this.scores = new ArrayList<>(Collections.singletonList(score));
     }
 
-    public Scores(ArrayList<Score> score) {
-        this.scores = score;
-    }
-
     public Score getFirstScore() {
         return this.scores.get(0);
     }
