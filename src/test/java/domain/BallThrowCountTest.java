@@ -5,8 +5,8 @@ import org.junit.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BallThrowCountTest {
-    public static final int MINIMUM_BALL_THROW_COUNT = 0;
-    public static final int MAX_BALL_THROW_COUNT = 2;
+    private static final int MINIMUM_BALL_THROW_COUNT = 0;
+    private static final int MAX_BALL_THROW_COUNT = 2;
     final BallThrowCount ballThrowCount = new BallThrowCount(1);
 
     @Test

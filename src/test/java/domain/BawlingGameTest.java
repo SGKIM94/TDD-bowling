@@ -5,8 +5,8 @@ import org.junit.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BawlingGameTest {
-    public static final int SCORE = 10;
-    public static final int MAX_SCORE = 10;
+    private static final int SCORE = 10;
+    private static final int MAX_SCORE = 10;
     final BawlingGame bawlingGame = new BawlingGame();
     final Scores scores = new Scores(new Score(SCORE));
 

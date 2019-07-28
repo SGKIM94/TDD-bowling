@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class FrameTest {
-    final Score score = new Score(10);
+    private final Score score = new Score(10);
 
     @Test
     public void 볼을_떤진_횟수와_점수를_계산한다() {

@@ -6,7 +6,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class FramesTest {
     private static final int SCORE = 10;
-    final Frames frames = new Frames();
+    private final Frames frames = new Frames();
 
     @Test
     public void add_정상적으로_이뤄지는가() {
