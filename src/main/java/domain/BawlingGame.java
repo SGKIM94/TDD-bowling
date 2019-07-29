@@ -14,7 +14,7 @@ public class BawlingGame {
         this.round = new Round(START_ROUND);
     }
 
-    public boolean isEqualMaxValue(int score, int maxScore) {
+    boolean isEqualMaxValue(int score, int maxScore) {
         return score == maxScore;
     }
 
@@ -46,15 +46,11 @@ public class BawlingGame {
         return frame;
     }
 
-    private boolean isFirstThrowing() {
-        return this.frames.getFramesSize() == BEFORE_FIRST_BALL_THROWING;
-    }
-
-    public boolean checkFrameStepOverNext() {
+    boolean checkFrameStepOverNext() {
         return this.frames.get(this.round.getRound()).canSkipThisFrame();
     }
 
-    public int addRound() {
+    int addRound() {
         return this.round.addRound();
     }
 }
