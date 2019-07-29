@@ -11,19 +11,19 @@ public class Scores {
         this.scores = new ArrayList<>();
     }
 
-    public Scores(Score score) {
+    Scores(Score score) {
         this.scores = new ArrayList<>(Collections.singletonList(score));
     }
 
-    public Score getFirstScore() {
+    Score getFirstScore() {
         return this.scores.get(0);
     }
 
-    public Score getSecondScore() {
+    Score getSecondScore() {
         return this.scores.get(1);
     }
 
-    public boolean add(Score score) {
-        return scores.add(score);
+    public void add(Score score) {
+        this.scores.add(score);
     }
 }

@@ -10,7 +10,7 @@ public class ScoreDisplays {
         this.scoreDisplays = new ArrayList<>();
     }
 
-    public ScoreDisplays(List<String> scoreDisplays) {
+    ScoreDisplays(List<String> scoreDisplays) {
         this.scoreDisplays = scoreDisplays;
     }
 
