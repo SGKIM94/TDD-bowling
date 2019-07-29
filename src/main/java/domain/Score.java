@@ -18,7 +18,7 @@ public class Score {
         this(Integer.parseInt(score));
     }
 
-    public void inputScore() {
+    private void inputScore() {
         checkScoreIsNull();
         checkScore();
     }
@@ -29,7 +29,7 @@ public class Score {
         }
     }
 
-    public void checkScore() {
+    void checkScore() {
         checkScoreIsWrong();
     }
 
@@ -39,7 +39,7 @@ public class Score {
         }
     }
 
-    public boolean isStrike() {
+    boolean isStrike() {
         return this.score == STRIKE_SCORE;
     }
 
@@ -57,7 +57,7 @@ public class Score {
         return scoreGroup.equals(ScoreGroup.ELSE);
     }
 
-    public Score sumScores(Score anotherScore) {
+    Score sumScores(Score anotherScore) {
         return new Score(this.score + anotherScore.score);
     }
 
@@ -65,9 +65,10 @@ public class Score {
         return this.score;
     }
 
-    public boolean isSmallerThanStrike() {
+    boolean isSmallerThanStrike() {
         return this.score < STRIKE_SCORE;
     }
+
     @Override
     public boolean equals(Object score) {
         if (this == score) {
@@ -86,7 +87,7 @@ public class Score {
         return Objects.hash(score);
     }
 
-    public boolean isZero() {
+    boolean isZero() {
         return this.score == ZERO_SCORE;
     }
 }

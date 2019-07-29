@@ -1,13 +1,13 @@
 package domain;
 
 public class Round {
-    public static final int MINIMUM_ROUND = 0;
-    public static final int MAX_ROUND = 10;
-    public static final int FIRST_ROUND = 0;
-    public static final int NEXT_ROUND = 1;
+    private static final int MINIMUM_ROUND = 0;
+    private static final int MAX_ROUND = 10;
+    private static final int FIRST_ROUND = 0;
+    private static final int NEXT_ROUND = 1;
     private final int round;
 
-    public Round(int round) {
+    Round(int round) {
         checkRound(round);
         this.round = round;
     }
@@ -26,11 +26,11 @@ public class Round {
         return round > MAX_ROUND;
     }
 
-    public int getRound() {
+    int getRound() {
         return this.round;
     }
 
-    public boolean isFirstRound() {
+    boolean isFirstRound() {
         return this.round == FIRST_ROUND;
     }
 
