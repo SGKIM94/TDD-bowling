@@ -8,18 +8,18 @@ public class Frame {
     private BallThrowCount ballThrowCount;
     private String scoreDisplay;
 
-    public Frame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
+    Frame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
         this.scores = new Scores(score);
         this.ballThrowCount = ballThrowCount;
         this.scoreDisplay = scoreDisplay;
     }
 
-    public Frame(Score score, BallThrowCount ballThrowCount) {
+    Frame(Score score, BallThrowCount ballThrowCount) {
         this.scores = new Scores(score);
         this.ballThrowCount = ballThrowCount;
     }
 
-    public Frame(Scores scores, BallThrowCount ballThrowCount) {
+    Frame(Scores scores, BallThrowCount ballThrowCount) {
         this.scores = scores;
         this.ballThrowCount = ballThrowCount;
     }
@@ -40,25 +40,25 @@ public class Frame {
         return !ScoreGroup.ELSE.equals(scoreGroup);
     }
 
-    public void checkBallThrowCount() {
+    void checkBallThrowCount() {
         if (this.ballThrowCount.isBigger(MAX_BALL_THROW_COUNT) || this.ballThrowCount.isSmaller(MINIMUM_BALL_THROW_COUNT)) {
             throw new IllegalArgumentException("볼 던진 횟수의 값이 올바르지 않습니다.");
         }
     }
 
-    public BallThrowCount getBallThrowCount() {
+    BallThrowCount getBallThrowCount() {
         return this.ballThrowCount;
     }
 
-    public int getNextBallCount() {
+    int getNextBallCount() {
         return this.ballThrowCount.getNextBallCount();
     }
 
-    public Score getFirstScore() {
+    Score getFirstScore() {
         return this.scores.getFirstScore();
     }
 
-    public boolean isSecondBallThrowing() {
+    boolean isSecondBallThrowing() {
         return this.ballThrowCount.isSecondBallThrowing();
     }
 

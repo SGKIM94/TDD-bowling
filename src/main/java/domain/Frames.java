@@ -8,27 +8,27 @@ public class Frames {
 
     private List<Frame> frames;
 
-    public Frames() {
+    Frames() {
         this.frames = new ArrayList<>();
     }
 
-    public boolean add(Frame frame) {
+    boolean add(Frame frame) {
         return this.frames.add(frame);
     }
 
-    public int getFramesSize() {
+    private int getFramesSize() {
         return this.frames.size();
     }
 
-    public Frame get(int index) {
+    Frame get(int index) {
         return this.frames.get(index);
     }
 
-    public Frame getBeforeFrame() {
+    Frame getBeforeFrame() {
         return this.frames.get(getFramesSize() - BEFORE_FRAME);
     }
 
-    public String makeScoreDisplayForm(Score score) {
+    String makeScoreDisplayForm(Score score) {
         int beforeFrameIndex = getFramesSize() - 1;
 
         if (this.frames.get(beforeFrameIndex).getBallThrowCount().equals(new BallThrowCount(1))
