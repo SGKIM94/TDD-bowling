@@ -8,7 +8,7 @@ public class Player {
         this.player = player;
     }
 
-    public void checkName() {
+    void checkName() {
         checkPlayerIsNull();
 
         checkPlayerNameLengthLongerThanThree();
