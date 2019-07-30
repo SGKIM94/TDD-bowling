@@ -4,10 +4,12 @@ import domain.*;
 import view.BallingFrame;
 import view.NameFrame;
 
-public class BawlingGame {
-    public static void main() {
+class BawlingGame {
+    static void main() {
         System.out.println("플레이어 이름은(3 english letters)?: ");
         Player player = new Player("KSG");
+
+        Frames frames = new Frames();
 
         BallingFrame.printNameFrame();
         NameFrame.printNameFrame(player);
@@ -21,21 +23,21 @@ public class BawlingGame {
 
         Score firstScore = new Score(10);
         scores.add(firstScore);
-        bawlingGame.setFramesScore(scores);
+        frames.add(bawlingGame.setFramesScore(scores));
 
-        makeFramesFormat(firstScore, player, ballThrowCount, "1");
+        makeFramesFormat(firstScore, player, frames, "1");
 
         Score secondScore = new Score(8);
         scores.add(secondScore);
-        bawlingGame.setFramesScore(scores);
-        makeFramesFormat(secondScore, player, ballThrowCount, "2");
+        frames.add(bawlingGame.setFramesScore(scores));
 
-        // 만약 점수 조건을 성사하지 않는다면 이전 프레임을 가져와서 추가해주면됨
+        makeFramesFormat(secondScore, player, frames, "2");
 
         Score thirdScore = new Score(2);
-        bawlingGame.setFramesScore(scores);
+        frames.add(bawlingGame.setFramesScore(scores));
         scores.add(thirdScore);
-        makeFramesFormat(thirdScore, player, ballThrowCount, "3");
+
+        makeFramesFormat(thirdScore, player, frames, "3");
 
         //TODO : ballThrowCount List<Integer> 로 일급 콜렉션으로 만들기
         //TODO : controller 중복 제거하기 (함수형으로 변경)
@@ -49,14 +51,11 @@ public class BawlingGame {
 
     }
 
-    private static void makeFramesFormat(Score score, Player player, BallThrowCount ballThrowCount, String turnNumber) {
+    private static void makeFramesFormat(Score score, Player player, Frames frames, String turnNumber) {
         System.out.println(turnNumber + "프레임 투구 : " + score);
-
-        ScoreDisplays scoreDisplays = new ScoreDisplays();
-        scoreDisplays.add(score.getDisplayScore(ballThrowCount));
 
         BallingFrame.printNameFrame();
         NameFrame.printNameFrame(player);
-        BallingFrame.printFrames(10, scoreDisplays);
+        BallingFrame.printFrames(10, frames);
     }
 }
