@@ -8,19 +8,19 @@ public class Frames {
 
     private List<Frame> frames;
 
-    Frames() {
+    public Frames() {
         this.frames = new ArrayList<>();
     }
 
-    boolean add(Frame frame) {
+    public boolean add(Frame frame) {
         return this.frames.add(frame);
     }
 
-    private int getFramesSize() {
+    public int getFramesSize() {
         return this.frames.size();
     }
 
-    Frame get(int index) {
+    public Frame get(int index) {
         return this.frames.get(index);
     }
 
