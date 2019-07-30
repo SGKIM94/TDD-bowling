@@ -19,7 +19,7 @@ public class BawlingGameTest {
     public void 점수를_입력하여_Frame_을_셋팅한다() {
         Frame frame = bawlingGame.setFramesScore(scores);
 
-        assertThat(frame).isNotNull();
+        assertThat(frame.getDisplayScore()).isNotNull();
     }
 
     @Test

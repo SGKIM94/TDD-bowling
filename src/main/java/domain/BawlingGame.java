@@ -43,6 +43,7 @@ public class BawlingGame {
 
         this.frames.add(frame);
         addRound();
+
         return frame;
     }
 
