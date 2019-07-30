@@ -62,4 +62,7 @@ public class Frame {
         return this.ballThrowCount.isSecondBallThrowing();
     }
 
+    public String getDisplayScore() {
+        return this.scoreDisplay;
+    }
 }
