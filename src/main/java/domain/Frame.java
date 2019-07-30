@@ -17,6 +17,7 @@ public class Frame {
     Frame(Score score, BallThrowCount ballThrowCount) {
         this.scores = new Scores(score);
         this.ballThrowCount = ballThrowCount;
+        this.scoreDisplay = score.getDisplayScore(ballThrowCount);
     }
 
     Frame(Scores scores, BallThrowCount ballThrowCount) {
