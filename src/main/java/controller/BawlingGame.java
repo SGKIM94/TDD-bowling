@@ -16,7 +16,6 @@ class BawlingGame {
 
         BallingFrame.printEmptyFrames(10);
 
-        BallThrowCount ballThrowCount = new BallThrowCount(1);
         domain.BawlingGame bawlingGame = new domain.BawlingGame();
 
         Scores scores = new Scores();
