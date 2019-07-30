@@ -23,23 +23,23 @@ public class BallThrowCount {
         return this.ballThrowCount == (int)ballThrowCount;
     }
 
-    public boolean isBigger(int maxBallThrowCount) {
+    boolean isBigger(int maxBallThrowCount) {
         return this.ballThrowCount > maxBallThrowCount;
     }
 
-    public boolean isSmaller(int minimumBallThrowCount) {
+    boolean isSmaller(int minimumBallThrowCount) {
         return this.ballThrowCount < minimumBallThrowCount;
     }
 
-    public int getNextBallCount() {
+    int getNextBallCount() {
         return this.ballThrowCount + NEXT_STEP;
     }
 
-    public boolean isFirstBallThrowing() {
+    boolean isFirstBallThrowing() {
         return this.ballThrowCount == FIRST_BALL_THROWING;
     }
 
-    public boolean isSecondBallThrowing() {
+    boolean isSecondBallThrowing() {
         return this.ballThrowCount == SECOND_BALL_THROWING;
     }
 }
