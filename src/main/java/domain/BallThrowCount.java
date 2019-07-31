@@ -20,7 +20,12 @@ public class BallThrowCount {
             return false;
         }
 
-        return this.ballThrowCount == (int)ballThrowCount;
+        BallThrowCount otherBallThrowCount = (BallThrowCount)ballThrowCount;
+        return this.ballThrowCount == (otherBallThrowCount.getThrowCount());
+    }
+
+    int getThrowCount() {
+        return this.ballThrowCount;
     }
 
     boolean isBigger(int maxBallThrowCount) {
