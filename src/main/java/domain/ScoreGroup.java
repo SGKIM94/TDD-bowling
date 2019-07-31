@@ -27,7 +27,7 @@ public enum ScoreGroup {
     public static ScoreGroup findByScore(BallThrowCount ballThrowCount, Score score) {
         return Arrays.stream(ScoreGroup.values())
                 .filter(e -> score.equals(e.addedScore))
-                .filter(e -> ballThrowCount.equals(e.ballThrowCount))
+                .filter(e -> ballThrowCount.getThrowCount() == (e.ballThrowCount))
                 .findFirst()
                 .orElse(ELSE);
     }
