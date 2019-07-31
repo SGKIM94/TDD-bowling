@@ -28,7 +28,7 @@ public class Frames {
         return this.frames.get(getFramesSize() - BEFORE_FRAME);
     }
 
-    String makeScoreDisplayForm(Score score) {
+    public String makeScoreDisplayForm(Score score) {
         int beforeFrameIndex = getFramesSize() - 1;
 
         if (this.frames.get(beforeFrameIndex).getBallThrowCount().equals(new BallThrowCount(1))
