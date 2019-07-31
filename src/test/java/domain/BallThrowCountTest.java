@@ -29,4 +29,11 @@ public class BallThrowCountTest {
 
         assertThat(ballThrowCount.isFirstBallThrowing()).isEqualTo(true);
     }
+
+    @Test
+    public  void equals_정상_테스트() {
+        BallThrowCount ballThrowCount = new BallThrowCount(1);
+
+        assertThat(ballThrowCount.equals(new BallThrowCount(1))).isEqualTo(true);
+    }
 }
