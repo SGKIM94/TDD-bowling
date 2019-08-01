@@ -40,15 +40,11 @@ class BawlingGame {
 
         makeFramesFormat(thirdScore, player, scoreDisplays, "3");
 
-        //TODO : ballThrowCount List<Integer> 로 일급 콜렉션으로 만들기
         //TODO : controller 중복 제거하기 (함수형으로 변경)
         //TODO : 람다와 스트림으로 변경할 수 있는 것 변경하기
-        //TODO : Frame 에 몇 카운트 인지 넣기
-        //TODO : 점수를 입력할 때 넘어갈 수 있는지 계속 확인
-        // 넘어갈 수 있다면 넘기고 못넘어가면 넘기지 말기
-        // ballCount 를 수동으로 더해주지 않아도 자동으로 증가할 수 있도록 해야할듯
         // 람다와 스트림화 시키기
-        // 출력하기 전에 넘어갈 수 있는지 검사하고 출력할 때 라운드를 보고 출력해야할 듯
+        // Frames 의 canSkipFrame 으로 검사해서 넘어갈 수 있으면 새로운 Frame 을 생성하고
+        // 넘어가지 못하면 Frame 을 생성해서 기존의 정보에 점수를 더해서 더한 형태의 형태를 출력한다.
     }
 
     private static void makeFramesFormat(Score score, Player player, ScoreDisplays scoreDisplays, String turnNumber) {
