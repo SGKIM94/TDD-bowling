@@ -8,6 +8,11 @@ public class Frame {
     private BallThrowCount ballThrowCount;
     private String scoreDisplay;
 
+    Frame() {
+        this.scores = new Scores();
+        this.ballThrowCount = new BallThrowCount(0);
+        this.scoreDisplay = "";
+    }
     Frame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
         this.scores = new Scores(score);
         this.ballThrowCount = ballThrowCount;
@@ -65,5 +70,12 @@ public class Frame {
 
     public String getDisplayScore() {
         return this.scoreDisplay;
+    }
+
+    public void makeFrame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
+        this.scores = new Scores(score);
+        this.scoreDisplay = scoreDisplay;
+        this.ballThrowCount = ballThrowCount;
+
     }
 }
