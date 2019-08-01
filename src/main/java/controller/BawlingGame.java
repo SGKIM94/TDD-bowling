@@ -24,22 +24,19 @@ class BawlingGame {
 
         Score firstScore = new Score(10);
         scores.add(firstScore);
-        frames.add(bawlingGame.setFramesScore(scores));
-        frames.makeScoreDisplayForm(firstScore);
+        scoreDisplays.add(frames.makeScoreDisplayForm(firstScore));
 
         makeFramesFormat(firstScore, player, scoreDisplays, "1");
 
         Score secondScore = new Score(8);
         scores.add(secondScore);
-        frames.add(bawlingGame.setFramesScore(scores));
-        frames.makeScoreDisplayForm(secondScore);
+        scoreDisplays.add(frames.makeScoreDisplayForm(secondScore));
 
         makeFramesFormat(secondScore, player, scoreDisplays, "2");
 
         Score thirdScore = new Score(2);
-        frames.add(bawlingGame.setFramesScore(scores));
         scores.add(thirdScore);
-        frames.makeScoreDisplayForm(thirdScore);
+        scoreDisplays.add(frames.makeScoreDisplayForm(thirdScore));
 
         makeFramesFormat(thirdScore, player, scoreDisplays, "3");
 
