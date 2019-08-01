@@ -29,36 +29,57 @@ public class Frames {
     }
 
     public String makeScoreDisplayForm(Score score) {
+        if (this.frames.size() == 0) {
+            return getScoreDisplayAndAddFrames(score);
+        }
+
         int beforeFrameIndex = getFramesSize() - 1;
 
-        if (this.frames.get(beforeFrameIndex).getBallThrowCount().equals(new BallThrowCount(1))
-                && score.isStrike()) {
-            BallThrowCount ballThrowCount = new BallThrowCount(1);
-            this.frames.add(new Frame(score, ballThrowCount, score.getDisplayScore(ballThrowCount)));
+        BallThrowCount beforeFrameBallCount = this.frames.get(beforeFrameIndex).getBallThrowCount();
+        Score firstScore = this.frames.get(beforeFrameIndex).getFirstScore();
+
+        if (isBallCountOne(beforeFrameBallCount) && score.isStrike()) {
+            return getScoreDisplayAndAddFrames(score);
         }
 
-        if (this.frames.get(beforeFrameIndex).getBallThrowCount().equals(new BallThrowCount(2))
-            && score.sumScores(this.frames.get(beforeFrameIndex).getFirstScore()).isSmallerThanStrike()) {
+        if (isBallCountTwo(beforeFrameBallCount)
+                && score.sumScores(firstScore).isSmallerThanStrike()) {
 
-            String beforeScoreDisplay = this.frames.get(beforeFrameIndex).getFirstScore().getDisplayScore(new BallThrowCount(1));
+            String beforeScoreDisplay = firstScore.getDisplayScore(new BallThrowCount(1));
             return beforeScoreDisplay + score.getScore();
         }
 
-        if (this.frames.get(beforeFrameIndex).getBallThrowCount().equals(new BallThrowCount(2))
-                && score.sumScores(this.frames.get(beforeFrameIndex).getFirstScore()).isStrike()) {
+        if (isBallCountTwo(beforeFrameBallCount)
+                && score.sumScores(firstScore).isStrike()) {
 
-            String beforeScoreDisplay = this.frames.get(beforeFrameIndex).getFirstScore().getDisplayScore(new BallThrowCount(2));
+            String beforeScoreDisplay = firstScore.getDisplayScore(new BallThrowCount(2));
             return beforeScoreDisplay + score.getScore();
         }
 
-        if (this.frames.get(beforeFrameIndex).getBallThrowCount().equals(new BallThrowCount(2))
-                && score.sumScores(this.frames.get(beforeFrameIndex).getFirstScore()).isZero()) {
+        if (isBallCountTwo(beforeFrameBallCount)
+                && score.sumScores(firstScore).isZero()) {
 
-            String beforeScoreDisplay = this.frames.get(beforeFrameIndex).getFirstScore().getDisplayScore(new BallThrowCount(2));
+            String beforeScoreDisplay = firstScore.getDisplayScore(new BallThrowCount(2));
             return beforeScoreDisplay + score.getScore();
         }
 
-        throw new IllegalArgumentException("잘못된 점수 입력입니다.");
+        return score.getDisplayScore(new BallThrowCount(1));
+    }
+
+    private String getScoreDisplayAndAddFrames(Score score) {
+        BallThrowCount ballThrowCount = new BallThrowCount(1);
+        String scoreDisplay = score.getDisplayScore(ballThrowCount);
+
+        this.frames.add(new Frame(score, ballThrowCount, scoreDisplay));
+        return scoreDisplay;
+    }
+
+    private boolean isBallCountTwo(BallThrowCount beforeBallCount) {
+        return beforeBallCount.equals(new BallThrowCount(2));
+    }
+
+    private boolean isBallCountOne(BallThrowCount beforeBallCount) {
+        return beforeBallCount.equals(new BallThrowCount(1));
     }
 }
 
