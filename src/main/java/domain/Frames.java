@@ -120,13 +120,5 @@ public class Frames {
         this.frames.add(new Frame());
         return scoreDisplay;
     }
-
-    private boolean isBallCountTwo(BallThrowCount beforeBallCount) {
-        return beforeBallCount.equals(new BallThrowCount(2));
-    }
-
-    private boolean isBallCountOne(BallThrowCount beforeBallCount) {
-        return beforeBallCount.equals(new BallThrowCount(1));
-    }
 }
 
