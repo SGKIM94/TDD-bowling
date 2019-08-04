@@ -18,8 +18,6 @@ class BawlingGame {
 
         ScoreDisplays scoreDisplays = new ScoreDisplays();
 
-        domain.BawlingGame bawlingGame = new domain.BawlingGame();
-
         Scores scores = new Scores();
 
         Score firstScore = new Score(10);
