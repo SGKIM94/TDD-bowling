@@ -1,15 +1,14 @@
 package domain;
 
-public class BawlingGame {
+class BawlingGame {
     //TODO : ENUM 으로 만들어주는 것 필요
     private static final int START_ROUND = 0;
     private static final int FIRST_BALL_THROW_COUNT = 1;
-    private static final int BEFORE_FIRST_BALL_THROWING = 0;
 
     private final Frames frames;
     private final Round round;
 
-    public BawlingGame() {
+    BawlingGame() {
         this.frames = new Frames();
         this.round = new Round(START_ROUND);
     }
@@ -18,7 +17,7 @@ public class BawlingGame {
         return score == maxScore;
     }
 
-    public Frame setFramesScore(Scores scores) {
+    Frame setFramesScore(Scores scores) {
         Score firstScore = scores.getFirstScore();
 
         if (this.round.isFirstRound()) {
