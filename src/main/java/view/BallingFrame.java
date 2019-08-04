@@ -45,11 +45,11 @@ public class BallingFrame {
         printEdgeFrame();
     }
 
-    public static void printEmptyFrame() {
+    static void printEmptyFrame() {
         System.out.print("      |");
     }
 
-    public static void printEdgeFrame() {
+    static void printEdgeFrame() {
         System.out.println("      |");
     }
 }
