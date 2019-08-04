@@ -29,7 +29,7 @@ public class Score {
         }
     }
 
-    void checkScore() {
+    private void checkScore() {
         checkScoreIsWrong();
     }
 
@@ -43,7 +43,7 @@ public class Score {
         return this.score == STRIKE_SCORE;
     }
 
-    public String getDisplayScore(BallThrowCount ballThrowCount) {
+    String getDisplayScore(BallThrowCount ballThrowCount) {
         ScoreGroup scoreGroup = ScoreGroup.findByScore(ballThrowCount, this);
 
         if (isScoreGroupElse(scoreGroup)) {

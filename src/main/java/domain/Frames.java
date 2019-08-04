@@ -1,7 +1,5 @@
 package domain;
 
-import org.omg.CORBA.BAD_CONTEXT;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,15 +12,15 @@ public class Frames {
         this.frames = new ArrayList<>();
     }
 
-    public boolean add(Frame frame) {
+    boolean add(Frame frame) {
         return this.frames.add(frame);
     }
 
-    public int getFramesSize() {
+    int getFramesSize() {
         return this.frames.size();
     }
 
-    public Frame get(int index) {
+    Frame get(int index) {
         return this.frames.get(index);
     }
 
@@ -76,36 +74,6 @@ public class Frames {
 
         Score firstScore = this.frames.get(currentFrameIndex).getFirstScore();
         return firstScore + ScoreGroup.ELSE.getDisplay() + firstScore.sumScores(score).getDisplayScore(new BallThrowCount(2));
-//
-//        BallThrowCount beforeFrameBallCount = this.frames.get(currentFrameIndex).getBallThrowCount();
-//        Score firstScore = this.frames.get(currentFrameIndex).getFirstScore();
-//
-//        if (isBallCountOne(beforeFrameBallCount) && score.isStrike()) {
-//            return getScoreDisplayAndAddFrames(score);
-//        }
-//
-//        if (isBallCountTwo(beforeFrameBallCount)
-//                && score.sumScores(firstScore).isSmallerThanStrike()) {
-//
-//            String beforeScoreDisplay = firstScore.getDisplayScore(new BallThrowCount(1));
-//            return beforeScoreDisplay + score.getScore();
-//        }
-//
-//        if (isBallCountTwo(beforeFrameBallCount)
-//                && score.sumScores(firstScore).isStrike()) {
-//
-//            String beforeScoreDisplay = firstScore.getDisplayScore(new BallThrowCount(2));
-//            return beforeScoreDisplay + score.getScore();
-//        }
-//
-//        if (isBallCountTwo(beforeFrameBallCount)
-//                && score.sumScores(firstScore).isZero()) {
-//
-//            String beforeScoreDisplay = firstScore.getDisplayScore(new BallThrowCount(2));
-//            return beforeScoreDisplay + score.getScore();
-//        }
-//
-//        return score.getDisplayScore(new BallThrowCount(1));
     }
 
     private boolean isFramesSizeZero() {
