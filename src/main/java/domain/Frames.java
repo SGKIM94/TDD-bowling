@@ -28,9 +28,11 @@ public class Frames {
         return this.frames.get(getFramesSize() - BEFORE_FRAME);
     }
 
-    public String makeScoreDisplayForm(Score score) {
+    public ScoreDisplays makeScoreDisplayForm(Score score, ScoreDisplays scoreDisplays) {
         if (isFramesSizeZero() && score.isStrike()) {
-            return getScoreDisplayAndAddFrames(score);
+            scoreDisplays.add(getScoreDisplayAndAddFrames(score));
+
+            return scoreDisplays;
         }
 
         if (isFramesSizeZero() && score.isSmallerThanStrike()) {
@@ -39,7 +41,9 @@ public class Frames {
 
             this.frames.add(new Frame(score, ballThrowCount, scoreDisplay));
 
-            return scoreDisplay;
+            scoreDisplays.add(scoreDisplay);
+
+            return scoreDisplays;
         }
 
         int currentFrameIndex = getFramesSize() - 1;
@@ -52,7 +56,9 @@ public class Frames {
             frames.get(currentFrameIndex).makeFrame(score, new BallThrowCount(1), scoreDisplay);
             frames.add(new Frame());
 
-            return scoreDisplay;
+            scoreDisplays.add(scoreDisplay);
+
+            return scoreDisplays;
         }
 
 
@@ -63,17 +69,15 @@ public class Frames {
 
             currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
 
-            Score sumScore = currentFrame.getFirstScore().sumScores(score);
+            scoreDisplays.add(currentFrame.getDisplayScore());
 
-            if (sumScore.isStrike() || sumScore.isZero()) {
-                return sumScore.getDisplayScore(new BallThrowCount(2));
-            }
-
-            return currentFrame.getFirstScore() + ScoreGroup.ELSE.getDisplay() + score;
+            return scoreDisplays;
         }
 
         Score firstScore = this.frames.get(currentFrameIndex).getFirstScore();
-        return firstScore + ScoreGroup.ELSE.getDisplay() + firstScore.sumScores(score).getDisplayScore(new BallThrowCount(2));
+        scoreDisplays.setBeforeDisplay(firstScore.sumScores(score).getDisplayScore(new BallThrowCount(2)));
+
+        return scoreDisplays;
     }
 
     private boolean isFramesSizeZero() {
