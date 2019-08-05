@@ -37,9 +37,14 @@ public class FramesTest {
     @Test
     public void 조건에_따른_프레임들의_출력_형태를_만든다() {
         Score firstScore = new Score(4);
-        Frame frame = new Frame(firstScore, new BallThrowCount(0));
         Score secondScore = new Score(2);
+        ScoreDisplays scoreDisplays = new ScoreDisplays();
 
-        assertThat(frames.makeScoreDisplayForm(secondScore)).isEqualTo("4|2");
+        frames.makeScoreDisplayForm(firstScore, scoreDisplays);
+
+        scoreDisplays = frames.makeScoreDisplayForm(secondScore, scoreDisplays);
+
+        assertThat(scoreDisplays.displaysSize()).isEqualTo(2);
+        assertThat(scoreDisplays.get(0)).isEqualTo("4|6|");
     }
 }
