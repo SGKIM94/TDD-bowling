@@ -87,6 +87,11 @@ public class Score {
         return Objects.hash(score);
     }
 
+    @Override
+    public String toString() {
+        return " " + this.score + " ";
+    }
+
     boolean isZero() {
         return this.score == ZERO_SCORE;
     }
