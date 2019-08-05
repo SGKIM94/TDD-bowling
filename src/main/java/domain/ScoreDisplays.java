@@ -25,4 +25,12 @@ public class ScoreDisplays {
     public String get(int index) {
         return this.scoreDisplays.get(index);
     }
+
+    public void setBeforeDisplay(String scoreDisplay) {
+        int beforeIndex = displaysSize() - 1;
+
+        this.scoreDisplays.add(beforeIndex, this.scoreDisplays.get(beforeIndex)  + scoreDisplay);
+
+        this.scoreDisplays.remove(displaysSize() - 1);
+    }
 }
