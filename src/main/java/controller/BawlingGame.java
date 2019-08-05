@@ -22,19 +22,19 @@ class BawlingGame {
 
         Score firstScore = new Score(10);
         scores.add(firstScore);
-        scoreDisplays.add(frames.makeScoreDisplayForm(firstScore));
+        scoreDisplays = frames.makeScoreDisplayForm(firstScore, scoreDisplays);
 
         makeFramesFormat(firstScore, player, scoreDisplays, "1");
 
         Score secondScore = new Score(8);
         scores.add(secondScore);
-        scoreDisplays.add(frames.makeScoreDisplayForm(secondScore));
+        scoreDisplays = frames.makeScoreDisplayForm(secondScore, scoreDisplays);
 
         makeFramesFormat(secondScore, player, scoreDisplays, "2");
 
         Score thirdScore = new Score(2);
         scores.add(thirdScore);
-        scoreDisplays.add(frames.makeScoreDisplayForm(thirdScore));
+        scoreDisplays = frames.makeScoreDisplayForm(thirdScore, scoreDisplays);
 
         makeFramesFormat(thirdScore, player, scoreDisplays, "3");
 
@@ -46,7 +46,7 @@ class BawlingGame {
     }
 
     private static void makeFramesFormat(Score score, Player player, ScoreDisplays scoreDisplays, String turnNumber) {
-        System.out.println(turnNumber + "프레임 투구 : " + score);
+        System.out.println(turnNumber + "프레임 투구 : " + score.toString());
 
         BallingFrame.printNameFrame();
         NameFrame.printNameFrame(player);
