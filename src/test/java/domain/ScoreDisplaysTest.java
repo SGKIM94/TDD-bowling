@@ -24,5 +24,15 @@ public class ScoreDisplaysTest {
 
         assertThat(scoreDisplays.displaysSize()).isEqualTo(3);
     }
+
+    @Test
+    public void 이전_ScoreDisplay에_새로운_점수를_더하여_저장한다() {
+        ScoreDisplays scoreDisplays = new ScoreDisplays();
+        scoreDisplays.add("1|");
+
+        scoreDisplays.setBeforeDisplay("2");
+
+        assertThat(scoreDisplays.get(0)).isEqualTo("1|2");
+    }
 }
 
