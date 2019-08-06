@@ -34,5 +34,17 @@ public class ScoreDisplaysTest {
 
         assertThat(scoreDisplays.get(0)).isEqualTo("1|2");
     }
+
+    @Test
+    public void addAndRemoveAtAddedIndex_성공_테스트() {
+        ScoreDisplays scoreDisplays = new ScoreDisplays();
+        scoreDisplays.add("1");
+        scoreDisplays.add("2");
+        scoreDisplays.add("3");
+
+        scoreDisplays.addAndRemoveAtAddedIndex(2, "5");
+
+        assertThat(scoreDisplays.get(2)).isEqualTo("5");
+    }
 }
 
