@@ -18,7 +18,7 @@ public class ScoreDisplays {
         return this.scoreDisplays.size();
     }
 
-    public boolean add(String scoreDisplay) {
+    boolean add(String scoreDisplay) {
         return this.scoreDisplays.add(scoreDisplay);
     }
 
@@ -26,11 +26,15 @@ public class ScoreDisplays {
         return this.scoreDisplays.get(index);
     }
 
-    public void setBeforeDisplay(String scoreDisplay) {
+    void setBeforeDisplay(String scoreDisplay) {
         int beforeIndex = displaysSize() - 1;
 
-        this.scoreDisplays.add(beforeIndex, this.scoreDisplays.get(beforeIndex)  + scoreDisplay);
+        addAndRemoveAtAddedIndex(beforeIndex, this.scoreDisplays.get(beforeIndex)  + scoreDisplay);
+    }
 
-        this.scoreDisplays.remove(displaysSize() - 1);
+    void addAndRemoveAtAddedIndex(int index, String value) {
+        this.scoreDisplays.add(index, value);
+
+        this.scoreDisplays.remove(index + 1);
     }
 }
