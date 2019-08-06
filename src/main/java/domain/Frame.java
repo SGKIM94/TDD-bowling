@@ -14,10 +14,14 @@ package domain;
         this.scoreDisplay = "";
     }
     Frame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
-        this.scores = new Scores(score);
-        this.ballThrowCount = ballThrowCount;
-        this.scoreDisplay = scoreDisplay;
+        makeFrame(score, ballThrowCount, scoreDisplay);
     }
+
+     void makeFrame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
+         this.scores = new Scores(score);
+         this.scoreDisplay = scoreDisplay;
+         this.ballThrowCount = ballThrowCount;
+     }
 
     Frame(Score score, BallThrowCount ballThrowCount) {
         this.scores = new Scores(score);
@@ -30,8 +34,6 @@ package domain;
         this.ballThrowCount = ballThrowCount;
     }
 
-    //TODO : 넘어갈 수 있는지 없는지 체크해서 넘어 간다면 다음 프레임에 점수를 저장하고
-    // 넘어갈 수 없다면 한 프레임에 저장한다
     boolean canSkipThisFrame() {
         ScoreGroup scoreGroup;
 
@@ -70,12 +72,5 @@ package domain;
 
     String getDisplayScore() {
         return this.scoreDisplay;
-    }
-
-    void makeFrame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
-        this.scores = new Scores(score);
-        this.scoreDisplay = scoreDisplay;
-        this.ballThrowCount = ballThrowCount;
-
     }
 }
