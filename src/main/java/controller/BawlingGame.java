@@ -38,11 +38,17 @@ class BawlingGame {
 
         makeFramesFormat(thirdScore, player, scoreDisplays, "3");
 
-        //TODO : controller 중복 제거하기 (함수형으로 변경)
-        //TODO : 람다와 스트림으로 변경할 수 있는 것 변경하기
-        // 람다와 스트림화 시키기
-        // Frames 의 canSkipFrame 으로 검사해서 넘어갈 수 있으면 새로운 Frame 을 생성하고
-        // 넘어가지 못하면 Frame 을 생성해서 기존의 정보에 점수를 더해서 더한 형태의 형태를 출력한다.
+        Score fourthScore = new Score(5);
+        scores.add(fourthScore);
+        scoreDisplays = frames.makeScoreDisplayForm(fourthScore, scoreDisplays);
+
+        makeFramesFormat(thirdScore, player, scoreDisplays, "4");
+
+        Score fifthScore = new Score(3);
+        scores.add(fifthScore);
+        scoreDisplays = frames.makeScoreDisplayForm(fifthScore, scoreDisplays);
+
+        makeFramesFormat(thirdScore, player, scoreDisplays, "5");
     }
 
     private static void makeFramesFormat(Score score, Player player, ScoreDisplays scoreDisplays, String turnNumber) {
