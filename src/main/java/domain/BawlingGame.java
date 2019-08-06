@@ -1,7 +1,6 @@
 package domain;
 
 class BawlingGame {
-    //TODO : ENUM 으로 만들어주는 것 필요
     private static final int START_ROUND = 0;
     private static final int FIRST_BALL_THROW_COUNT = 1;
 
@@ -44,10 +43,6 @@ class BawlingGame {
         addRound();
 
         return frame;
-    }
-
-    boolean checkFrameStepOverNext() {
-        return this.frames.get(this.round.getRound()).canSkipThisFrame();
     }
 
     int addRound() {

@@ -23,13 +23,6 @@ public class BawlingGameTest {
     }
 
     @Test
-    public void 프레임이_넘어가도디는지_확인해서_넘어갈_수_있다면_Fame_라운드를_늘린다() {
-        bawlingGame.setFramesScore(scores);
-
-        assertThat(bawlingGame.checkFrameStepOverNext()).isEqualTo(true);
-    }
-
-    @Test
     public void 라운드를_추가한다() {
         assertThat(bawlingGame.addRound()).isEqualTo(1);
     }
