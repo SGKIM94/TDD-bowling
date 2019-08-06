@@ -16,7 +16,7 @@ public class Frames {
         return this.frames.add(frame);
     }
 
-    int getFramesSize() {
+    private int getFramesSize() {
         return this.frames.size();
     }
 
@@ -29,6 +29,9 @@ public class Frames {
     }
 
     public ScoreDisplays makeScoreDisplayForm(Score score, ScoreDisplays scoreDisplays) {
+        BallThrowCount ballThrowCount = new BallThrowCount(1);
+        String scoreDisplay = score.getDisplayScore(ballThrowCount);
+
         if (isFramesSizeZero() && score.isStrike()) {
             scoreDisplays.add(getScoreDisplayAndAddFrames(score));
 
@@ -36,9 +39,6 @@ public class Frames {
         }
 
         if (isFramesSizeZero() && score.isSmallerThanStrike()) {
-            BallThrowCount ballThrowCount = new BallThrowCount(1);
-            String scoreDisplay = score.getDisplayScore(ballThrowCount);
-
             this.frames.add(new Frame(score, ballThrowCount, scoreDisplay));
 
             scoreDisplays.add(scoreDisplay);
@@ -47,13 +47,11 @@ public class Frames {
         }
 
         int currentFrameIndex = getFramesSize() - 1;
+        Frame currentFrame = frames.get(currentFrameIndex);
         BallThrowCount currentFrameBallCount = frames.get(currentFrameIndex).getBallThrowCount();
-        // zero ball count 면 이전에 canSkipFrame 조건에 성립하지 못한 것이다.
-        if (currentFrameBallCount.isZeroBallThrowing() && score.isStrike()) {
-            BallThrowCount ballThrowCount = new BallThrowCount(1);
-            String scoreDisplay = score.getDisplayScore(ballThrowCount);
 
-            frames.get(currentFrameIndex).makeFrame(score, new BallThrowCount(1), scoreDisplay);
+        if (currentFrameBallCount.isZeroBallThrowing() && score.isStrike()) {
+            currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
             frames.add(new Frame());
 
             scoreDisplays.add(scoreDisplay);
@@ -63,10 +61,6 @@ public class Frames {
 
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isSmallerThanStrike()) {
-            BallThrowCount ballThrowCount = new BallThrowCount(1);
-            String scoreDisplay = score.getDisplayScore(ballThrowCount);
-            Frame currentFrame = frames.get(currentFrameIndex);
-
             currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
 
             scoreDisplays.add(currentFrame.getDisplayScore());
@@ -92,6 +86,7 @@ public class Frames {
 
         this.frames.add(new Frame(score, ballThrowCount, scoreDisplay));
         this.frames.add(new Frame());
+
         return scoreDisplay;
     }
 }

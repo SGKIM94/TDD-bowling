@@ -6,7 +6,7 @@ public class Score {
     private static final int MINIMUM_SCORE = 0;
     private static final int MAX_SCORE = 10;
     private static final int STRIKE_SCORE = 10;
-    private static final int ZERO_SCORE = 0;
+
     private int score;
 
     public Score(int score) {
@@ -90,9 +90,5 @@ public class Score {
     @Override
     public String toString() {
         return " " + this.score + " ";
-    }
-
-    boolean isZero() {
-        return this.score == ZERO_SCORE;
     }
 }
