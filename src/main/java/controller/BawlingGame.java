@@ -24,34 +24,40 @@ class BawlingGame {
         scores.add(firstScore);
         scoreDisplays = frames.makeScoreDisplayForm(firstScore, scoreDisplays);
 
-        makeFramesFormat(firstScore, player, scoreDisplays, "1");
+        printCurrentFrames(firstScore, player, scoreDisplays, "1");
 
         Score secondScore = new Score(8);
         scores.add(secondScore);
         scoreDisplays = frames.makeScoreDisplayForm(secondScore, scoreDisplays);
 
-        makeFramesFormat(secondScore, player, scoreDisplays, "2");
+        printCurrentFrames(secondScore, player, scoreDisplays, "2");
 
         Score thirdScore = new Score(2);
         scores.add(thirdScore);
         scoreDisplays = frames.makeScoreDisplayForm(thirdScore, scoreDisplays);
 
-        makeFramesFormat(thirdScore, player, scoreDisplays, "3");
+        printCurrentFrames(thirdScore, player, scoreDisplays, "3");
 
         Score fourthScore = new Score(5);
         scores.add(fourthScore);
         scoreDisplays = frames.makeScoreDisplayForm(fourthScore, scoreDisplays);
 
-        makeFramesFormat(thirdScore, player, scoreDisplays, "4");
+        printCurrentFrames(fourthScore, player, scoreDisplays, "4");
 
         Score fifthScore = new Score(3);
         scores.add(fifthScore);
         scoreDisplays = frames.makeScoreDisplayForm(fifthScore, scoreDisplays);
 
-        makeFramesFormat(thirdScore, player, scoreDisplays, "5");
+        printCurrentFrames(fifthScore, player, scoreDisplays, "5");
+
+        Score sixScore = new Score(10);
+        scores.add(sixScore);
+        scoreDisplays = frames.makeScoreDisplayForm(sixScore, scoreDisplays);
+
+        printCurrentFrames(sixScore, player, scoreDisplays, "6");
     }
 
-    private static void makeFramesFormat(Score score, Player player, ScoreDisplays scoreDisplays, String turnNumber) {
+    private static void printCurrentFrames(Score score, Player player, ScoreDisplays scoreDisplays, String turnNumber) {
         System.out.println(turnNumber + "프레임 투구 : " + score.toString());
 
         BallingFrame.printNameFrame();
