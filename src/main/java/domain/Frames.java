@@ -77,6 +77,8 @@ public class Frames {
         Score firstScore = this.frames.get(currentFrameIndex).getFirstScore();
         scoreDisplays.setBeforeDisplay(firstScore.sumScores(score).getDisplayScore(new BallThrowCount(2)));
 
+        this.frames.add(new Frame());
+
         return scoreDisplays;
     }
 
