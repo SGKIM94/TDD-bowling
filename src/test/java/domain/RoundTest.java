@@ -17,7 +17,7 @@ public class RoundTest {
 
     @Test
     public void 첫번째_라운드_인가() {
-        assertThat(new Round(1).isFirstRound()).isEqualTo(true);
+        assertThat(new Round(0).isFirstRound()).isEqualTo(true);
     }
 
     @Test
