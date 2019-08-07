@@ -11,6 +11,7 @@ public class ScoreDisplaysTest {
     private final Score strikeScore = new Score(10);
     private final Score spareScore = new Score(10);
     private final Score missScore = new Score(5);
+    private final ScoreDisplays scoreDisplays = new ScoreDisplays();
 
     private final ScoreGroup STRIKE = ScoreGroup.findByScore(new BallThrowCount(1),  strikeScore);
     private final ScoreGroup MISS = ScoreGroup.findByScore(new BallThrowCount(2),  missScore);
@@ -27,7 +28,6 @@ public class ScoreDisplaysTest {
 
     @Test
     public void 이전_ScoreDisplay에_새로운_점수를_더하여_저장한다() {
-        ScoreDisplays scoreDisplays = new ScoreDisplays();
         scoreDisplays.add("1|");
 
         scoreDisplays.setBeforeDisplay("2");
@@ -37,7 +37,6 @@ public class ScoreDisplaysTest {
 
     @Test
     public void addAndRemoveAtAddedIndex_성공_테스트() {
-        ScoreDisplays scoreDisplays = new ScoreDisplays();
         scoreDisplays.add("1");
         scoreDisplays.add("2");
         scoreDisplays.add("3");
@@ -45,6 +44,13 @@ public class ScoreDisplaysTest {
         scoreDisplays.addAndRemoveAtAddedIndex(2, "5");
 
         assertThat(scoreDisplays.get(2)).isEqualTo("5");
+    }
+
+    @Test
+    public void ScoreDisplay가_또는을_상징하는_문자인경우_자르는_테스트() {
+        String scoreDisplay = "5|9|";
+
+        assertThat(scoreDisplays.removeLastOrChar(scoreDisplay)).isEqualTo("5|9");
     }
 }
 
