@@ -5,6 +5,7 @@ public class Round {
     private static final int MAX_ROUND = 10;
     private static final int FIRST_ROUND = 0;
     private static final int NEXT_ROUND = 1;
+
     private final int round;
 
     Round(int round) {
@@ -14,7 +15,7 @@ public class Round {
 
     private void checkRound(int round) {
         if (isSmallerThanMinimumRound(round) || isBiggerThanMaxRound(round)) {
-            throw new IllegalArgumentException("잘못된 라운드를 입력하였습니다..");
+            throw new IllegalArgumentException("잘못된 라운드를 입력하였습니다.");
         }
     }
 
@@ -24,10 +25,6 @@ public class Round {
 
     private boolean isBiggerThanMaxRound(int round) {
         return round > MAX_ROUND;
-    }
-
-    int getRound() {
-        return this.round;
     }
 
     boolean isFirstRound() {
