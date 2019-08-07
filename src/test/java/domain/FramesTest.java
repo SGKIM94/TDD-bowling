@@ -44,7 +44,7 @@ public class FramesTest {
 
         scoreDisplays = frames.makeScoreDisplayForm(secondScore, scoreDisplays);
 
-        assertThat(scoreDisplays.displaysSize()).isEqualTo(2);
-        assertThat(scoreDisplays.get(0)).isEqualTo("4|6|");
+        assertThat(scoreDisplays.displaysSize()).isEqualTo(1);
+        assertThat(scoreDisplays.get(0)).isEqualTo("4|6");
     }
 }
