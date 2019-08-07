@@ -29,7 +29,19 @@ public class ScoreDisplays {
     void setBeforeDisplay(String scoreDisplay) {
         int beforeIndex = displaysSize() - 1;
 
-        addAndRemoveAtAddedIndex(beforeIndex, this.scoreDisplays.get(beforeIndex)  + scoreDisplay);
+        scoreDisplay = removeLastOrChar(scoreDisplay);
+
+        addAndRemoveAtAddedIndex(beforeIndex, this.scoreDisplays.get(beforeIndex) + scoreDisplay);
+    }
+
+    public String removeLastOrChar(String scoreDisplay) {
+        int displaySize = scoreDisplay.length();
+
+        if (scoreDisplay.charAt(displaySize - 1) == '|') {
+            return scoreDisplay.substring(0, displaySize - 1);
+        }
+
+        return scoreDisplay;
     }
 
     void addAndRemoveAtAddedIndex(int index, String value) {
