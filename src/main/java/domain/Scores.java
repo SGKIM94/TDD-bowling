@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Scores {
+    private static final int FIRST_INDEX = 0;
+
     private List<Score> scores;
 
     public Scores() {
@@ -16,14 +18,16 @@ public class Scores {
     }
 
     Score getFirstScore() {
-        return this.scores.get(0);
+        return this.scores.get(FIRST_INDEX);
     }
 
     Score getSecondScore() {
         return this.scores.get(1);
     }
 
-    public void add(Score score) {
+    public Scores add(Score score) {
         this.scores.add(score);
+
+        return this;
     }
 }
