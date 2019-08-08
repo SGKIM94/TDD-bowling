@@ -11,6 +11,7 @@ public class ScoreDisplaysTest {
     private final Score strikeScore = new Score(10);
     private final Score spareScore = new Score(10);
     private final Score missScore = new Score(5);
+
     private final ScoreDisplays scoreDisplays = new ScoreDisplays();
 
     private final ScoreGroup STRIKE = ScoreGroup.findByScore(new BallThrowCount(1),  strikeScore);
@@ -37,9 +38,9 @@ public class ScoreDisplaysTest {
 
     @Test
     public void addAndRemoveAtAddedIndex_성공_테스트() {
-        scoreDisplays.add("1");
-        scoreDisplays.add("2");
-        scoreDisplays.add("3");
+        scoreDisplays.add("1")
+                .add("2")
+                .add("3");
 
         scoreDisplays.addAndRemoveAtAddedIndex(2, "5");
 
@@ -52,5 +53,11 @@ public class ScoreDisplaysTest {
 
         assertThat(scoreDisplays.removeLastOrChar(scoreDisplay)).isEqualTo("5|9");
     }
+
+    @Test
+    public void removeLastOrChar_정상_테스트() {
+        assertThat(scoreDisplays.removeLastOrChar("5|8|")).isEqualTo("5|8");
+    }
+
 }
 
