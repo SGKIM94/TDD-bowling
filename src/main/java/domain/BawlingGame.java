@@ -28,10 +28,8 @@ class BawlingGame {
             return frame;
         }
 
-
         Frame beforeFrame = this.frames.getBeforeFrame();
         Frame frame = new Frame(scores, new BallThrowCount(beforeFrame.getNextBallCount()));
-
 
         if (!frame.canSkipThisFrame()) {
             this.frames.add(new Frame(firstScore.sumScores(beforeFrame.getFirstScore()), beforeFrame.getBallThrowCount()));

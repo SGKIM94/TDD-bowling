@@ -3,6 +3,7 @@ package domain;
  class Frame {
     private static final int MAX_BALL_THROW_COUNT = 2;
     private static final int MINIMUM_BALL_THROW_COUNT = 0;
+    private static final int START_BALL_THROW_COUNT = 0;
 
     private Scores scores;
     private BallThrowCount ballThrowCount;
@@ -10,9 +11,10 @@ package domain;
 
     Frame() {
         this.scores = new Scores();
-        this.ballThrowCount = new BallThrowCount(0);
+        this.ballThrowCount = new BallThrowCount(START_BALL_THROW_COUNT);
         this.scoreDisplay = "";
     }
+
     Frame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
         makeFrame(score, ballThrowCount, scoreDisplay);
     }
@@ -49,7 +51,8 @@ package domain;
     }
 
     void checkBallThrowCount() {
-        if (this.ballThrowCount.isBigger(MAX_BALL_THROW_COUNT) || this.ballThrowCount.isSmaller(MINIMUM_BALL_THROW_COUNT)) {
+        if (this.ballThrowCount.isBigger(MAX_BALL_THROW_COUNT)
+                || this.ballThrowCount.isSmaller(MINIMUM_BALL_THROW_COUNT)) {
             throw new IllegalArgumentException("볼 던진 횟수의 값이 올바르지 않습니다.");
         }
     }
