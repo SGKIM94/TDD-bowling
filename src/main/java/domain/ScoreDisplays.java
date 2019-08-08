@@ -18,8 +18,10 @@ public class ScoreDisplays {
         return this.scoreDisplays.size();
     }
 
-    boolean add(String scoreDisplay) {
-        return this.scoreDisplays.add(scoreDisplay);
+    ScoreDisplays add(String scoreDisplay) {
+        this.scoreDisplays.add(scoreDisplay);
+
+        return this;
     }
 
     public String get(int index) {
@@ -34,7 +36,7 @@ public class ScoreDisplays {
         addAndRemoveAtAddedIndex(beforeIndex, this.scoreDisplays.get(beforeIndex) + scoreDisplay);
     }
 
-    public String removeLastOrChar(String scoreDisplay) {
+    String removeLastOrChar(String scoreDisplay) {
         int displaySize = scoreDisplay.length();
 
         if (scoreDisplay.charAt(displaySize - 1) == '|') {

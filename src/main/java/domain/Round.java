@@ -31,7 +31,7 @@ public class Round {
         return this.round == FIRST_ROUND;
     }
 
-    public int addRound() {
+    int addRound() {
         return this.round + NEXT_ROUND;
     }
 }
