@@ -34,9 +34,17 @@ public class Score {
     }
 
     private void checkScoreIsWrong() {
-        if (this.score < MINIMUM_SCORE || this.score > MAX_SCORE) {
+        if (isScoreSmallerThanMinimumScore() || isScoreBiggerThanMaxScore()) {
             throw new IllegalArgumentException("잘못된 점수를 입력하셨습니다.");
         }
+    }
+
+    private boolean isScoreBiggerThanMaxScore() {
+        return this.score > MAX_SCORE;
+    }
+
+    private boolean isScoreSmallerThanMinimumScore() {
+        return this.score < MINIMUM_SCORE;
     }
 
     boolean isStrike() {
