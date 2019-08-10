@@ -16,9 +16,13 @@ public class Player {
     }
 
     private void checkPlayerNameLengthLongerThanThree() {
-        if (this.player.length() > MINIMUM_PLAYER_LENGTH) {
+        if (isPlayerNameLengthTooLong()) {
             throw new IllegalArgumentException("참가자 이름이 너무 깁니다.");
         }
+    }
+
+    private boolean isPlayerNameLengthTooLong() {
+        return this.player.length() > MINIMUM_PLAYER_LENGTH;
     }
 
     private void checkPlayerIsNull() {
