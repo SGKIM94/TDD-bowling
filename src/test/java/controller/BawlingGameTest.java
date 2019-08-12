@@ -5,6 +5,8 @@ import org.junit.Test;
 public class BawlingGameTest {
     @Test
     public void mainTest() {
-        BawlingGame.main();
+        BawlingGame bawlingGame = new BawlingGame("kim");
+
+        bawlingGame.start();
     }
 }
