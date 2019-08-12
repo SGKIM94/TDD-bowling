@@ -12,12 +12,16 @@ class BawlingGame {
 
 
     BawlingGame(String playerNmae) {
-        System.out.println("플레이어 이름은(3 english letters)?: ");
+        scanfPlayerName();
 
         this.player = new Player(playerNmae);
         this.frames = new Frames();
         this.scoreDisplays = new ScoreDisplays();
         this.scores = new Scores();
+    }
+
+    private void scanfPlayerName() {
+        System.out.println("플레이어 이름은(3 english letters)?: ");
     }
 
     void start() {
