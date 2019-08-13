@@ -4,12 +4,14 @@ import domain.*;
 import view.BallingFrame;
 import view.NameFrame;
 
+import static view.ScoreFrame.printScoreFrames;
+
 class BawlingGame {
+    public static final int FRAME_TOTAL_COUNT = 10;
     private ScoreDisplays scoreDisplays;
     private Player player;
     private Frames frames;
     private Scores scores;
-
 
     BawlingGame(String playerName) {
         inputPlayerName();
@@ -43,7 +45,12 @@ class BawlingGame {
         this.scoreDisplays = frames.makeScoreDisplayForm(firstScore, scoreDisplays);
 
         printCurrentFrames(firstScore, scoreDisplays, turnNumber);
+        printCurrentFrameScore();
         return this;
+    }
+
+    private void printCurrentFrameScore() {
+        printScoreFrames(FRAME_TOTAL_COUNT, this.frames);
     }
 
     private void printCurrentFrames(Score score, ScoreDisplays scoreDisplays, String turnNumber) {
@@ -51,6 +58,6 @@ class BawlingGame {
 
         BallingFrame.printNameFrame();
         NameFrame.printNameFrame(this.player);
-        BallingFrame.printFrames(10, scoreDisplays);
+        BallingFrame.printFrames(FRAME_TOTAL_COUNT, scoreDisplays);
     }
 }
