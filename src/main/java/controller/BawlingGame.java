@@ -11,16 +11,16 @@ class BawlingGame {
     private Scores scores;
 
 
-    BawlingGame(String playerNmae) {
-        scanfPlayerName();
+    BawlingGame(String playerName) {
+        inputPlayerName();
 
-        this.player = new Player(playerNmae);
+        this.player = new Player(playerName);
         this.frames = new Frames();
         this.scoreDisplays = new ScoreDisplays();
         this.scores = new Scores();
     }
 
-    private void scanfPlayerName() {
+    private void inputPlayerName() {
         System.out.println("플레이어 이름은(3 english letters)?: ");
     }
 
@@ -43,7 +43,6 @@ class BawlingGame {
         this.scoreDisplays = frames.makeScoreDisplayForm(firstScore, scoreDisplays);
 
         printCurrentFrames(firstScore, scoreDisplays, turnNumber);
-
         return this;
     }
 
