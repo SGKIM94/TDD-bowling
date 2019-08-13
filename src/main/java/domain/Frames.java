@@ -16,11 +16,11 @@ public class Frames {
         return this.frames.add(frame);
     }
 
-    private int getFramesSize() {
+    public int getFramesSize() {
         return this.frames.size();
     }
 
-    Frame get(int index) {
+    public Frame get(int index) {
         return this.frames.get(index);
     }
 
