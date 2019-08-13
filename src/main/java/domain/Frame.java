@@ -1,6 +1,6 @@
 package domain;
 
- class Frame {
+ public class Frame {
     private static final int MAX_BALL_THROW_COUNT = 2;
     private static final int MINIMUM_BALL_THROW_COUNT = 0;
     private static final int START_BALL_THROW_COUNT = 0;
@@ -75,5 +75,13 @@ package domain;
 
     String getDisplayScore() {
         return this.scoreDisplay;
+    }
+
+    public Score getSumScore() {
+        return this.scores.getSumScores();
+    }
+
+    public int getScoreSize() {
+        return this.scores.getScoresSize();
     }
 }
