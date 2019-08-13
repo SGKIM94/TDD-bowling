@@ -30,4 +30,16 @@ public class Scores {
 
         return this;
     }
+
+    Score getSumScores() {
+        if (this.scores.size() == 1) {
+            return this.scores.get(0);
+        }
+
+        return this.scores.get(0).sumScores(this.scores.get(1));
+    }
+
+    int getScoresSize() {
+        return this.scores.size();
+    }
 }
