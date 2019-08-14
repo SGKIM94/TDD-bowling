@@ -16,7 +16,7 @@ public class ScoreFrame {
             printEmptyFrame();
         }
 
-        printEdgeFrame();
+        printEmptyFrame();
     }
 
     private static void makeFrameWhenExistScores(Frame frame) {
@@ -30,9 +30,5 @@ public class ScoreFrame {
 
     private static void printEmptyFrame() {
         System.out.print("      |");
-    }
-
-    private static void printEdgeFrame() {
-        System.out.println("      |");
     }
 }
