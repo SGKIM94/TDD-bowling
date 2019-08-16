@@ -4,6 +4,9 @@ import domain.Frame;
 import domain.Frames;
 
 public class ScoreFrame {
+
+    public static final int START_FRAME_INDEX = 0;
+
     public static void printScoreFrames(int frameTotalCount, Frames frames) {
         int framesSize = frames.getFramesSize();
         for (int i = 0; i < framesSize; i++) {
@@ -20,7 +23,7 @@ public class ScoreFrame {
     }
 
     private static void makeFrameWhenExistScores(Frame frame) {
-        if (frame.getScoreSize() == 0) {
+        if (frame.getScoreSize() == START_FRAME_INDEX) {
             System.out.print("|    |");
             return;
         }
