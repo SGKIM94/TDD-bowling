@@ -84,4 +84,8 @@ package domain;
     public int getScoreSize() {
         return this.scores.getScoresSize();
     }
-}
+
+     public boolean isEmptyFrame() {
+        return this.scoreDisplay.isEmpty();
+     }
+ }
