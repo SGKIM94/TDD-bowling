@@ -5,7 +5,6 @@ import org.junit.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class ScoreTest {
-
     @Test(expected = IllegalArgumentException.class)
     public void 잘못된_점수입력시_오류리턴() {
         new Score("");
@@ -46,5 +45,19 @@ public class ScoreTest {
         int ballThrowCount = 2;
 
         assertThat(score.getDisplayScore(new BallThrowCount(ballThrowCount))).isEqualTo("/");
+    }
+
+    @Test
+    public void 두자리_숫자_출력될_경우_사이즈가_몇인지_테스트() {
+        Score score = new Score(10);
+
+        assertThat(score.toStringSize()).isEqualTo(2);
+    }
+
+    @Test
+    public void 한자리_숫자_출력될_경우_사이즈가_몇인지_테스트() {
+        Score score = new Score(9);
+
+        assertThat(score.toStringSize()).isEqualTo(1);
     }
 }
