@@ -47,4 +47,13 @@ public class FramesTest {
         assertThat(scoreDisplays.displaysSize()).isEqualTo(1);
         assertThat(scoreDisplays.get(0)).isEqualTo("4|6");
     }
+
+    @Test
+    public void 마지막_인덱스의_Frame을_가져오는_테스트() {
+        frames.add(new Frame(new Score(10), new BallThrowCount(1)))
+              .add(new Frame(new Score(9), new BallThrowCount(2)));
+
+        Frame frame = frames.getLastIndex();
+        assertThat(frame.getBallThrowCount()).isEqualTo(2);
+    }
 }
