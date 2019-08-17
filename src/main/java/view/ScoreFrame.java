@@ -2,36 +2,65 @@ package view;
 
 import domain.Frame;
 import domain.Frames;
+import domain.Score;
+
+import static view.BallingFrame.printRemainEmptyFrame;
 
 public class ScoreFrame {
+    private static final int START_FRAME_INDEX = 0;
+    static final int FRAME_TOTAL_SIZE = 10;
 
-    public static final int START_FRAME_INDEX = 0;
+    public static void printScoreFrames(Frames frames) {
+        int framesSize = reduceOneSizeWhenLastFrameEmpty(frames);
 
-    public static void printScoreFrames(int frameTotalCount, Frames frames) {
-        int framesSize = frames.getFramesSize();
+        printStartFrame();
+
         for (int i = 0; i < framesSize; i++) {
             Frame frame = frames.get(i);
             makeFrameWhenExistScores(frame);
         }
 
-        int remainFrameCount = frameTotalCount - framesSize;
-        for (int i = framesSize; i < remainFrameCount; i++) {
-            printEmptyFrame();
+        printRemainEmptyFrame(framesSize);
+        printEdgeFrame();
+    }
+
+    private static int reduceOneSizeWhenLastFrameEmpty(Frames frames) {
+        int framesSize = frames.getFramesSize();
+        if (isLastFrameEmpty(frames.getLastIndex())) {
+            return framesSize - 1;
         }
 
-        printEmptyFrame();
+        return framesSize;
+    }
+
+    private static boolean isLastFrameEmpty(Frame lastFrame) {
+        return lastFrame.isEmptyFrame();
     }
 
     private static void makeFrameWhenExistScores(Frame frame) {
         if (frame.getScoreSize() == START_FRAME_INDEX) {
-            System.out.print("|    |");
+            return;
+        }
+
+        if (isTwoDigits(frame.getSumScore())) {
+            System.out.print("  " + frame.getSumScore().toString() + "  |");
             return;
         }
 
         System.out.print("   " + frame.getSumScore().toString() + "  |");
     }
 
-    private static void printEmptyFrame() {
-        System.out.print("      |");
+    private static boolean isTwoDigits(Score score) {
+        return score.toStringSize()  == 2;
+    }
+
+    private static void printStartFrame() {
+        System.out.print("|      |");
+    }
+
+    private static void printEdgeFrame() {
+        System.out.println("      |");
     }
 }
+
+
