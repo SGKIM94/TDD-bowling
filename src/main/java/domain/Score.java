@@ -77,6 +77,10 @@ public class Score {
         return this.score < STRIKE_SCORE;
     }
 
+    public int toStringSize() {
+        return this.toString().length();
+    }
+
     @Override
     public boolean equals(Object score) {
         if (this == score) {
@@ -97,6 +101,6 @@ public class Score {
 
     @Override
     public String toString() {
-        return " " + this.score + " ";
+        return String.valueOf(this.score);
     }
 }
