@@ -33,4 +33,11 @@ public class FrameTest {
 
         assertThat(frame.isSecondBallThrowing()).isEqualTo(true);
     }
+
+    @Test
+    public void 비어있는_frame_인가() {
+        Frame frame = new Frame();
+
+        assertThat(frame.isEmptyFrame()).isEqualTo(true);
+    }
 }
