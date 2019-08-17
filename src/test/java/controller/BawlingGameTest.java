@@ -7,6 +7,6 @@ public class BawlingGameTest {
     public void mainTest() {
         BawlingGame bawlingGame = new BawlingGame("kim");
 
-        bawlingGame.start();
+        bawlingGame.bowlingGameStart();
     }
 }
