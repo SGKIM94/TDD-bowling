@@ -7,7 +7,6 @@ import view.NameFrame;
 import static view.ScoreFrame.printScoreFrames;
 
 class BawlingGame {
-    public static final int FRAME_TOTAL_COUNT = 10;
     private ScoreDisplays scoreDisplays;
     private Player player;
     private Frames frames;
@@ -26,14 +25,14 @@ class BawlingGame {
         System.out.println("플레이어 이름은(3 english letters)?: ");
     }
 
-    void start() {
+    void bowlingGameStart() {
         BallingFrame.printNameFrame();
         NameFrame.printNameFrame(this.player);
         BallingFrame.printEmptyFrames(10);
 
         bowl(10, "1")
                 .bowl(8, "2")
-                .bowl(2, "2")
+                .bowl(2, "3")
                 .bowl(5, "4")
                 .bowl(3, "5")
                 .bowl(10, "6");
@@ -49,15 +48,15 @@ class BawlingGame {
         return this;
     }
 
-    private void printCurrentFrameScore() {
-        printScoreFrames(FRAME_TOTAL_COUNT, this.frames);
-    }
-
     private void printCurrentFrames(Score score, ScoreDisplays scoreDisplays, String turnNumber) {
         System.out.println(turnNumber + "프레임 투구 : " + score.toString());
 
         BallingFrame.printNameFrame();
         NameFrame.printNameFrame(this.player);
-        BallingFrame.printFrames(FRAME_TOTAL_COUNT, scoreDisplays);
+        BallingFrame.printFrames(scoreDisplays);
+    }
+
+    private void printCurrentFrameScore() {
+        printScoreFrames(this.frames);
     }
 }
