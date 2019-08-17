@@ -21,6 +21,10 @@ public class BallThrowCount {
             return false;
         }
 
+        if (ballThrowCount instanceof  Integer) {
+            return this.ballThrowCount == (int)ballThrowCount;
+        }
+
         BallThrowCount otherBallThrowCount = (BallThrowCount)ballThrowCount;
         return this.ballThrowCount == (otherBallThrowCount.getThrowCount());
     }
