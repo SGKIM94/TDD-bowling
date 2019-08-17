@@ -12,8 +12,9 @@ public class Frames {
         this.frames = new ArrayList<>();
     }
 
-    boolean add(Frame frame) {
-        return this.frames.add(frame);
+    Frames add(Frame frame) {
+        this.frames.add(frame);
+        return this;
     }
 
     public int getFramesSize() {
@@ -88,6 +89,10 @@ public class Frames {
         this.frames.add(new Frame());
 
         return scoreDisplay;
+    }
+
+    public Frame getLastIndex() {
+        return this.get(getFramesSize() - 1);
     }
 }
 
