@@ -6,6 +6,8 @@ import static view.ScoreFrame.FRAME_TOTAL_SIZE;
 
 public class BallingFrame {
 
+    public static final int EXCEPT_START_INDEX = 1;
+
     public static void printNameFrame() {
         System.out.println("| NAME |  01  |  02  |  03  |  04  |  05  |  06  |  07  |  08  |  09  |  10  |");
     }
@@ -57,7 +59,7 @@ public class BallingFrame {
     }
 
     private static void makeEmptyFrameFormat(int emptyFrameCount) {
-        for (int i = 0; i < emptyFrameCount - 1; i++) {
+        for (int i = 0; i < emptyFrameCount - EXCEPT_START_INDEX; i++) {
             printEmptyFrame();
         }
 
