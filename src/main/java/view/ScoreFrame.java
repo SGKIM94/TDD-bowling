@@ -9,6 +9,7 @@ import static view.BallingFrame.printRemainEmptyFrame;
 public class ScoreFrame {
     private static final int START_FRAME_INDEX = 0;
     static final int FRAME_TOTAL_SIZE = 10;
+    private static final int TWO_DIGITS = 2;
 
     public static void printScoreFrames(Frames frames) {
         int framesSize = reduceOneSizeWhenLastFrameEmpty(frames);
@@ -51,7 +52,7 @@ public class ScoreFrame {
     }
 
     private static boolean isTwoDigits(Score score) {
-        return score.toStringSize()  == 2;
+        return score.toStringSize()  == TWO_DIGITS;
     }
 
     private static void printStartFrame() {
