@@ -1,49 +1,15 @@
 package domain;
 
 class BawlingGame {
-    private static final int START_ROUND = 0;
-    private static final int FIRST_BALL_THROW_COUNT = 1;
-
     private final Frames frames;
-    private final Round round;
+    private int totalScore;
 
-    BawlingGame() {
+    BawlingGame(Score score) {
         this.frames = new Frames();
-        this.round = new Round(START_ROUND);
+        this.totalScore = score.getScore();
     }
 
-    boolean isEqualMaxValue(int score, int maxScore) {
-        return score == maxScore;
-    }
-
-    Frame setFramesScore(Scores scores) {
-        Score firstScore = scores.getFirstScore();
-
-        if (this.round.isFirstRound()) {
-            Frame frame = new Frame(firstScore, new BallThrowCount(FIRST_BALL_THROW_COUNT));
-
-            this.frames.add(frame);
-            this.round.addRound();
-
-            return frame;
-        }
-
-        Frame beforeFrame = this.frames.getBeforeFrame();
-        Frame frame = new Frame(scores, new BallThrowCount(beforeFrame.getNextBallCount()));
-
-        if (!frame.canSkipThisFrame()) {
-            this.frames.add(new Frame(firstScore.sumScores(beforeFrame.getFirstScore()), beforeFrame.getBallThrowCount()));
-
-            return frame;
-        }
-
-        this.frames.add(frame);
-        addRound();
-
-        return frame;
-    }
-
-    int addRound() {
-        return this.round.addRound();
+    int getTotalScore(Score score) {
+        return score.getScore() + this.totalScore;
     }
 }
