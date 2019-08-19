@@ -5,8 +5,7 @@ import domain.ScoreDisplays;
 import static view.ScoreFrame.FRAME_TOTAL_SIZE;
 
 public class BallingFrame {
-
-    public static final int EXCEPT_START_INDEX = 1;
+    private static final int EXCEPT_START_INDEX = 1;
 
     public static void printNameFrame() {
         System.out.println("| NAME |  01  |  02  |  03  |  04  |  05  |  06  |  07  |  08  |  09  |  10  |");
