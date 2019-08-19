@@ -44,11 +44,11 @@ public class ScoreFrame {
         }
 
         if (isTwoDigits(frame.getSumScore())) {
-            System.out.print("  " + frame.getSumScore().toString() + "  |");
+            System.out.print("  " + frame.getTotalScore() + "  |");
             return;
         }
 
-        System.out.print("   " + frame.getSumScore().toString() + "  |");
+        System.out.print("   " + frame.getTotalScore() + "  |");
     }
 
     private static boolean isTwoDigits(Score score) {
