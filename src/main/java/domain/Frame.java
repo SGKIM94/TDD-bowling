@@ -8,6 +8,7 @@ package domain;
     private Scores scores;
     private BallThrowCount ballThrowCount;
     private String scoreDisplay;
+    private int totalScore;
 
     Frame() {
         this.scores = new Scores();
@@ -17,6 +18,7 @@ package domain;
 
     Frame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
         makeFrame(score, ballThrowCount, scoreDisplay);
+        this.totalScore += score.getScore();
     }
 
      void makeFrame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
@@ -29,11 +31,6 @@ package domain;
         this.scores = new Scores(score);
         this.ballThrowCount = ballThrowCount;
         this.scoreDisplay = score.getDisplayScore(ballThrowCount);
-    }
-
-    Frame(Scores scores, BallThrowCount ballThrowCount) {
-        this.scores = scores;
-        this.ballThrowCount = ballThrowCount;
     }
 
     boolean canSkipThisFrame() {
@@ -61,10 +58,6 @@ package domain;
         return this.ballThrowCount;
     }
 
-    int getNextBallCount() {
-        return this.ballThrowCount.getNextBallCount();
-    }
-
     Score getFirstScore() {
         return this.scores.getFirstScore();
     }
@@ -87,5 +80,9 @@ package domain;
 
      public boolean isEmptyFrame() {
         return this.scoreDisplay.isEmpty();
+     }
+
+     public int getTotalScore() {
+        return this.totalScore;
      }
  }
