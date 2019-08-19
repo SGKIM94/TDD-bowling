@@ -7,23 +7,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class BawlingGameTest {
     private static final int SCORE = 10;
     private static final int MAX_SCORE = 10;
-    final BawlingGame bawlingGame = new BawlingGame();
     final Scores scores = new Scores(new Score(SCORE));
 
     @Test
-    public void 한_프레임의_최대점수와_점수가_일치하는지_테스트() {
-        assertThat(bawlingGame.isEqualMaxValue(SCORE, MAX_SCORE)).isEqualTo(true);
-    }
+    public void 이전의_점수와_새로운_점수를_더해_총_쩜수를_구한다() {
+        BawlingGame bawlingGame = new BawlingGame(new Score(10));
 
-    @Test
-    public void 점수를_입력하여_Frame_을_셋팅한다() {
-        Frame frame = bawlingGame.setFramesScore(scores);
-
-        assertThat(frame.getDisplayScore()).isNotNull();
-    }
-
-    @Test
-    public void 라운드를_추가한다() {
-        assertThat(bawlingGame.addRound()).isEqualTo(1);
+        assertThat(bawlingGame.getTotalScore(new Score(9))).isEqualTo(19);
     }
 }
