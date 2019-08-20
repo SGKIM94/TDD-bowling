@@ -25,12 +25,14 @@ package domain;
          this.scores = new Scores(score);
          this.scoreDisplay = scoreDisplay;
          this.ballThrowCount = ballThrowCount;
+         this.totalScore += score.getScore();
      }
 
     Frame(Score score, BallThrowCount ballThrowCount) {
         this.scores = new Scores(score);
         this.ballThrowCount = ballThrowCount;
         this.scoreDisplay = score.getDisplayScore(ballThrowCount);
+        this.totalScore += score.getScore();
     }
 
     boolean canSkipThisFrame() {
@@ -83,6 +85,12 @@ package domain;
      }
 
      public int getTotalScore() {
+        return this.totalScore;
+     }
+
+     int sumTotalScore(Score score) {
+        this.totalScore += score.getScore();
+
         return this.totalScore;
      }
  }
