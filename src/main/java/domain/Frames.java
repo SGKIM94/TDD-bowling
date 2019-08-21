@@ -77,6 +77,9 @@ public class Frames {
         return scoreDisplays;
     }
 
+    private void calculateTotalScore() {
+
+    }
     private boolean isFramesSizeZero() {
         return this.frames.isEmpty();
     }
