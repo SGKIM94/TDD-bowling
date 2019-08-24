@@ -14,11 +14,11 @@ package domain;
         this.scores = new Scores();
         this.ballThrowCount = new BallThrowCount(START_BALL_THROW_COUNT);
         this.scoreDisplay = "";
+        this.totalScore = 0;
     }
 
     Frame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
         makeFrame(score, ballThrowCount, scoreDisplay);
-        this.totalScore += score.getScore();
     }
 
      void makeFrame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
@@ -58,10 +58,6 @@ package domain;
 
     BallThrowCount getBallThrowCount() {
         return this.ballThrowCount;
-    }
-
-    Score getFirstScore() {
-        return this.scores.getFirstScore();
     }
 
     boolean isSecondBallThrowing() {
