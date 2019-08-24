@@ -1,6 +1,6 @@
 package domain;
 
- public class Frame {
+public class Frame {
     private static final int MAX_BALL_THROW_COUNT = 2;
     private static final int MINIMUM_BALL_THROW_COUNT = 0;
     private static final int START_BALL_THROW_COUNT = 0;
@@ -8,13 +8,13 @@ package domain;
     private Scores scores;
     private BallThrowCount ballThrowCount;
     private String scoreDisplay;
-    private int totalScore;
+    private TotalScore totalScore;
 
     Frame() {
         this.scores = new Scores();
         this.ballThrowCount = new BallThrowCount(START_BALL_THROW_COUNT);
         this.scoreDisplay = "";
-        this.totalScore = 0;
+        this.totalScore = new TotalScore(new Score(0));
     }
 
     Frame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
@@ -25,14 +25,22 @@ package domain;
          this.scores = new Scores(score);
          this.scoreDisplay = scoreDisplay;
          this.ballThrowCount = ballThrowCount;
-         this.totalScore += score.getScore();
+         this.totalScore = initializeTotalScore(score);
      }
 
     Frame(Score score, BallThrowCount ballThrowCount) {
         this.scores = new Scores(score);
         this.ballThrowCount = ballThrowCount;
         this.scoreDisplay = score.getDisplayScore(ballThrowCount);
-        this.totalScore += score.getScore();
+        this.totalScore = initializeTotalScore(score);
+    }
+
+    private TotalScore initializeTotalScore(Score score) {
+        if (this.totalScore == null) {
+            return new TotalScore(this.scores.getSumScores());
+        }
+
+        return new TotalScore(this.scores.getSumScores()).addInputScore(score);
     }
 
     boolean canSkipThisFrame() {
@@ -80,12 +88,12 @@ package domain;
         return this.scoreDisplay.isEmpty();
      }
 
-     public int getTotalScore() {
+     public TotalScore getTotalScore() {
         return this.totalScore;
      }
 
-     int sumTotalScore(Score score) {
-        this.totalScore += score.getScore();
+     TotalScore sumTotalScore(Score score) {
+        this.totalScore.addInputScore(score);
 
         return this.totalScore;
      }
