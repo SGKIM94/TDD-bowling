@@ -24,8 +24,9 @@ public class FramesTest {
     public void 이전의_프레임을_가져오는지_테스트() {
         Frames frames = new Frames();
         Frame frame = new Frame();
+        Frame secondFrame = new Frame();
 
-        frames.add(frame);
+        frames.add(frame).add(secondFrame);
 
         assertThat(frames.getBeforeFrame()).isEqualTo(frame);
     }
@@ -51,5 +52,15 @@ public class FramesTest {
 
         Frame frame = frames.getLastIndex();
         assertThat(frame.getBallThrowCount()).isEqualTo(2);
+    }
+
+    @Test
+    public void 라운드가_2번_실행되었을때_totalScore_가_이전_라운드와_더해져서_저장되는가() {
+        Frames frames = new Frames();
+        frames.add(new Frame(new Score(10), new BallThrowCount(1)));
+        frames.add(new Frame(new Score(5), new BallThrowCount(1)));
+        frames.add(new Frame(new Score(3), new BallThrowCount(2)));
+
+        assertThat(frames.get(2).getTotalScore()).isEqualTo(18);
     }
 }
