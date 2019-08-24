@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Frames {
-    private static final int BEFORE_FRAME = 1;
+    private static final int BEFORE_FRAME = 2;
+    private static final int MINIMUM_CALCULATE_FRAMES_SIZE = 0;
 
     private List<Frame> frames;
 
@@ -15,6 +16,12 @@ public class Frames {
     Frames add(Frame frame) {
         this.frames.add(frame);
         return this;
+    }
+
+    private void calculateTotalScore(Frame frame) {
+        if (getFramesSize() > MINIMUM_CALCULATE_FRAMES_SIZE) {
+            frame.sumTotalScore(this.frames.get(getFramesSize() - 1).getSumScore());
+        }
     }
 
     public int getFramesSize() {
@@ -40,7 +47,7 @@ public class Frames {
         }
 
         if (isFramesSizeZero() && score.isSmallerThanStrike()) {
-            this.frames.add(new Frame(score, ballThrowCount, scoreDisplay));
+            add(new Frame(score, ballThrowCount, scoreDisplay));
 
             scoreDisplays.add(scoreDisplay);
 
@@ -48,12 +55,13 @@ public class Frames {
         }
 
         int currentFrameIndex = getFramesSize() - 1;
-        Frame currentFrame = frames.get(currentFrameIndex);
+        Frame currentFrame = get(currentFrameIndex);
         BallThrowCount currentFrameBallCount = currentFrame.getBallThrowCount();
+        Frame beforeFrame = getBeforeFrame();
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isStrike()) {
-            currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
-            frames.add(new Frame());
+            currentFrame.makeFrame(score.sumScores(beforeFrame.getSumScore()), new BallThrowCount(1), scoreDisplay);
+            add(new Frame());
 
             scoreDisplays.add(scoreDisplay);
 
@@ -62,7 +70,7 @@ public class Frames {
 
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isSmallerThanStrike()) {
-            currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
+            currentFrame.makeFrame(score.sumScores(beforeFrame.getSumScore()), new BallThrowCount(1), scoreDisplay);
 
             scoreDisplays.add(currentFrame.getDisplayScore());
 
@@ -70,16 +78,13 @@ public class Frames {
         }
 
         scoreDisplays.setBeforeDisplay(score.getDisplayScore(new BallThrowCount(2)));
-        currentFrame.sumTotalScore(score);
+        currentFrame.sumTotalScore(score.sumScores(getBeforeFrame().getSumScore()));
 
-        this.frames.add(new Frame());
+        add(new Frame());
 
         return scoreDisplays;
     }
 
-    private void calculateTotalScore() {
-
-    }
     private boolean isFramesSizeZero() {
         return this.frames.isEmpty();
     }
