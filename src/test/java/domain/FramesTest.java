@@ -61,6 +61,6 @@ public class FramesTest {
         frames.add(new Frame(new Score(5), new BallThrowCount(1)));
         frames.add(new Frame(new Score(3), new BallThrowCount(2)));
 
-        assertThat(frames.get(2).getTotalScore()).isEqualTo(18);
+        assertThat(frames.get(2).getTotalScore().getTotalScore()).isEqualTo(18);
     }
 }

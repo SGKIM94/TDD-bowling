@@ -47,4 +47,14 @@ public class FrameTest {
 
         assertThat(frame.sumTotalScore(new Score(2))).isEqualTo(10);
     }
+
+    @Test
+    public void Frame_을_생성할때_저장되었던_점수들이_총점에_더해져야한다() {
+        Frame frame = new Frame(new Score(5), new BallThrowCount(1));
+        Frame secondFrame = new Frame(new Score(3), new BallThrowCount(2));
+        Frames frames = new Frames();
+        frames.add(frame).add(secondFrame);
+
+        assertThat(frame.getTotalScore().getTotalScore()).isEqualTo(8);
+    }
 }
