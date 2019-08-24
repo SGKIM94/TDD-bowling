@@ -60,7 +60,7 @@ public class Frames {
         Frame beforeFrame = getBeforeFrame();
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isStrike()) {
-            currentFrame.makeFrame(score.sumScores(beforeFrame.getSumScore()), new BallThrowCount(1), scoreDisplay);
+            currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
             add(new Frame());
 
             scoreDisplays.add(scoreDisplay);
@@ -70,7 +70,7 @@ public class Frames {
 
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isSmallerThanStrike()) {
-            currentFrame.makeFrame(score.sumScores(beforeFrame.getSumScore()), new BallThrowCount(1), scoreDisplay);
+            currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
 
             scoreDisplays.add(currentFrame.getDisplayScore());
 
@@ -78,7 +78,7 @@ public class Frames {
         }
 
         scoreDisplays.setBeforeDisplay(score.getDisplayScore(new BallThrowCount(2)));
-        currentFrame.sumTotalScore(score.sumScores(getBeforeFrame().getSumScore()));
+        currentFrame.sumTotalScore(getBeforeFrame().getSumScore());
 
         add(new Frame());
 
