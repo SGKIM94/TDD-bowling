@@ -7,7 +7,7 @@ public class TotalScore {
         this.totalScore = score.getScore();
     }
 
-    TotalScore inputScore(Score score) {
+    TotalScore addInputScore(Score score) {
         this.totalScore += score.getScore();
 
         return this;
