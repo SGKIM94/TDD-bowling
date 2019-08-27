@@ -19,4 +19,11 @@ public class TotalScoreTest {
 
         assertThat(totalScore.getTotalScore()).isEqualTo(24);
     }
+
+    @Test
+    public void 총점이_0점인가() {
+        TotalScore totalScore = new TotalScore(new Score(0));
+
+        assertThat(totalScore.isZeroTotalScore()).isEqualTo(true);
+    }
 }
