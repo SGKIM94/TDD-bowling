@@ -31,7 +31,7 @@ public class ScoreDisplays {
     }
 
     void setBeforeDisplay(String scoreDisplay) {
-        int beforeIndex = displaysSize() - 1;
+        int beforeIndex = displaysSize() - LAST_INDEX;
 
         scoreDisplay = removeLastOrChar(scoreDisplay);
 
