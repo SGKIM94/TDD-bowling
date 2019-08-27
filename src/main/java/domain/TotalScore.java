@@ -1,6 +1,7 @@
 package domain;
 
 public class TotalScore {
+    public static final int ZERO_SCORE = 0;
     private int totalScore;
 
     TotalScore(Score score) {
@@ -15,5 +16,14 @@ public class TotalScore {
 
     int getTotalScore() {
         return this.totalScore;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.totalScore);
+    }
+
+    boolean isZeroTotalScore() {
+        return this.totalScore == ZERO_SCORE;
     }
 }
