@@ -57,7 +57,6 @@ public class Frames {
         int currentFrameIndex = getFramesSize() - 1;
         Frame currentFrame = get(currentFrameIndex);
         BallThrowCount currentFrameBallCount = currentFrame.getBallThrowCount();
-        Frame beforeFrame = getBeforeFrame();
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isStrike()) {
             currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
