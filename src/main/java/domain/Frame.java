@@ -36,7 +36,7 @@ public class Frame {
     }
 
     private TotalScore initializeTotalScore(Score score) {
-        if (this.totalScore == null) {
+        if (this.totalScore == null || this.totalScore.isZeroTotalScore()) {
             return new TotalScore(this.scores.getSumScores());
         }
 
