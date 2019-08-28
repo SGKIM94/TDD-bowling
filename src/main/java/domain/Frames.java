@@ -54,6 +54,7 @@ public class Frames {
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isStrike()) {
             currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
+            currentFrame.getTotalScore().addTotalScoreWithBefore(getBeforeFrame().getTotalScore());
             add(new Frame());
 
             scoreDisplays.add(scoreDisplay);
@@ -64,7 +65,7 @@ public class Frames {
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isSmallerThanStrike()) {
             currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
-
+            currentFrame.getTotalScore().addTotalScoreWithBefore(getBeforeFrame().getTotalScore());
             scoreDisplays.add(currentFrame.getDisplayScore());
 
             return scoreDisplays;
