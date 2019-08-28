@@ -18,6 +18,10 @@ public class TotalScore {
         return this.totalScore;
     }
 
+    public void addTotalScoreWithBefore(TotalScore beforeTotal) {
+        this.totalScore = beforeTotal.getTotalScore() + getTotalScore();
+    }
+
     @Override
     public String toString() {
         return String.valueOf(this.totalScore);
