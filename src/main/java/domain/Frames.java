@@ -18,12 +18,6 @@ public class Frames {
         return this;
     }
 
-    private void calculateTotalScore(Frame frame) {
-        if (getFramesSize() > MINIMUM_CALCULATE_FRAMES_SIZE) {
-            frame.sumTotalScore(this.frames.get(getFramesSize() - 1).getSumScore());
-        }
-    }
-
     public int getFramesSize() {
         return this.frames.size();
     }
