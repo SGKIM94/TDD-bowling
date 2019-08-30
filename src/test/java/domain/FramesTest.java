@@ -63,4 +63,17 @@ public class FramesTest {
 
         assertThat(frames.get(2).getTotalScore().getTotalScore()).isEqualTo(18);
     }
+
+    @Test
+    public void bowl_을_3번실행했을때_총점이_더해져서_리턴하는가() {
+        ScoreDisplays scoreDisplays = new ScoreDisplays();
+        Frames frames = new Frames();
+
+        scoreDisplays = frames.makeScoreDisplayForm(new Score(5), scoreDisplays);
+        scoreDisplays = frames.makeScoreDisplayForm(new Score(3), scoreDisplays);
+        scoreDisplays = frames.makeScoreDisplayForm(new Score(10), scoreDisplays);
+        frames.makeScoreDisplayForm(new Score(5), scoreDisplays);
+
+        assertThat(frames.getLsatIndexTotalScore().getTotalScore()).isEqualTo(23);
+    }
 }
