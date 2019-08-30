@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Frames {
     private static final int BEFORE_FRAME = 2;
-    private static final int MINIMUM_CALCULATE_FRAMES_SIZE = 0;
 
     private List<Frame> frames;
 
@@ -72,7 +71,7 @@ public class Frames {
         }
 
         scoreDisplays.setBeforeDisplay(score.getDisplayScore(new BallThrowCount(2)));
-        currentFrame.sumTotalScore(getBeforeFrame().getSumScore());
+        currentFrame.sumTotalScore(score);
 
         add(new Frame());
 
@@ -95,6 +94,10 @@ public class Frames {
 
     public Frame getLastIndex() {
         return this.get(getFramesSize() - 1);
+    }
+
+    TotalScore getLsatIndexTotalScore() {
+        return this.frames.get(getFramesSize() - 1).getTotalScore();
     }
 }
 
