@@ -11,6 +11,7 @@ class BawlingGame {
     private Player player;
     private Frames frames;
     private Scores scores;
+    private int turnNumber;
 
     BawlingGame(String playerName) {
         inputPlayerName();
@@ -19,6 +20,7 @@ class BawlingGame {
         this.frames = new Frames();
         this.scoreDisplays = new ScoreDisplays();
         this.scores = new Scores();
+        this.turnNumber = 0;
     }
 
     private void inputPlayerName() {
@@ -30,26 +32,26 @@ class BawlingGame {
         NameFrame.printNameFrame(this.player);
         BallingFrame.printEmptyFrames(10);
 
-        bowl(10, "1")
-                .bowl(8, "2")
-                .bowl(2, "3")
-                .bowl(5, "4")
-                .bowl(3, "5")
-                .bowl(10, "6");
+        bowl(10)
+                .bowl(8)
+                .bowl(2)
+                .bowl(5)
+                .bowl(3)
+                .bowl(10);
     }
 
-    private BawlingGame bowl(int score, String turnNumber) {
-        Score firstScore = new Score(score);
-        scores.add(firstScore);
-        this.scoreDisplays = frames.makeScoreDisplayForm(firstScore, scoreDisplays);
+    private BawlingGame bowl(int inputScore) {
+        Score score = new Score(inputScore);
+        scores.add(score);
+        this.scoreDisplays = frames.makeScoreDisplayForm(score, scoreDisplays);
 
-        printCurrentFrames(firstScore, scoreDisplays, turnNumber);
+        printCurrentFrames(score, scoreDisplays);
         printCurrentFrameScore();
         return this;
     }
 
-    private void printCurrentFrames(Score score, ScoreDisplays scoreDisplays, String turnNumber) {
-        System.out.println(turnNumber + "프레임 투구 : " + score.toString());
+    private void printCurrentFrames(Score score, ScoreDisplays scoreDisplays) {
+        System.out.println(turnNumber++ + "프레임 투구 : " + score.toString());
 
         BallingFrame.printNameFrame();
         NameFrame.printNameFrame(this.player);
