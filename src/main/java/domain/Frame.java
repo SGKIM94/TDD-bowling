@@ -76,10 +76,6 @@ public class Frame {
         return this.scoreDisplay;
     }
 
-    public Score getSumScore() {
-        return this.scores.getSumScores();
-    }
-
     public int getScoreSize() {
         return this.scores.getScoresSize();
     }
