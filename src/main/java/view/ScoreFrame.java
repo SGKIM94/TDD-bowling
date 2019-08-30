@@ -2,7 +2,7 @@ package view;
 
 import domain.Frame;
 import domain.Frames;
-import domain.Score;
+import domain.TotalScore;
 
 import static view.BallingFrame.printRemainEmptyFrame;
 
@@ -43,7 +43,7 @@ public class ScoreFrame {
             return;
         }
 
-        if (isTwoDigits(frame.getSumScore())) {
+        if (isTwoDigits(frame.getTotalScore())) {
             System.out.print("  " + frame.getTotalScore() + "  |");
             return;
         }
@@ -51,8 +51,8 @@ public class ScoreFrame {
         System.out.print("   " + frame.getTotalScore() + "  |");
     }
 
-    private static boolean isTwoDigits(Score score) {
-        return score.toStringSize()  == TWO_DIGITS;
+    private static boolean isTwoDigits(TotalScore totalScore) {
+        return totalScore.toStringSize()  == TWO_DIGITS;
     }
 
     private static void printStartFrame() {
