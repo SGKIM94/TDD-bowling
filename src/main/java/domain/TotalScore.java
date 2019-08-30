@@ -1,7 +1,7 @@
 package domain;
 
 public class TotalScore {
-    public static final int ZERO_SCORE = 0;
+    private static final int ZERO_SCORE = 0;
     private int totalScore;
 
     TotalScore(Score score) {
@@ -18,8 +18,12 @@ public class TotalScore {
         return this.totalScore;
     }
 
-    public void addTotalScoreWithBefore(TotalScore beforeTotal) {
+    void addTotalScoreWithBefore(TotalScore beforeTotal) {
         this.totalScore = beforeTotal.getTotalScore() + getTotalScore();
+    }
+
+    public int toStringSize() {
+        return toString().length();
     }
 
     @Override
