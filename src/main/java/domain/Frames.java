@@ -30,8 +30,8 @@ public class Frames {
     }
 
     public ScoreDisplays makeScoreDisplayForm(Score score, ScoreDisplays scoreDisplays) {
-        BallThrowCount ballThrowCount = new BallThrowCount(1);
-        String scoreDisplay = score.getDisplayScore(ballThrowCount);
+        BallThrowCount firstBallThrowCount = new BallThrowCount(1);
+        String scoreDisplay = score.getDisplayScore(firstBallThrowCount);
 
         if (isFramesSizeZero() && score.isStrike()) {
             scoreDisplays.add(getScoreDisplayAndAddFrames(score));
@@ -40,21 +40,19 @@ public class Frames {
         }
 
         if (isFramesSizeZero() && score.isSmallerThanStrike()) {
-            add(new Frame(score, ballThrowCount, scoreDisplay));
-
+            add(new Frame(score, firstBallThrowCount, scoreDisplay));
             scoreDisplays.add(scoreDisplay);
 
             return scoreDisplays;
         }
 
-        int currentFrameIndex = getFramesSize() - 1;
-        Frame currentFrame = get(currentFrameIndex);
+        Frame currentFrame = get(getFramesSize() - 1);
         BallThrowCount currentFrameBallCount = currentFrame.getBallThrowCount();
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isStrike()) {
-            currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
-            currentFrame.getTotalScore().addTotalScoreWithBefore(getBeforeFrame().getTotalScore());
-            add(new Frame());
+            makeCurrentFrame(score, scoreDisplay, currentFrame);
+            calculateTotalScore(currentFrame);
+            addEmptyNextFrame();
 
             scoreDisplays.add(scoreDisplay);
 
@@ -63,8 +61,8 @@ public class Frames {
 
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isSmallerThanStrike()) {
-            currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
-            currentFrame.getTotalScore().addTotalScoreWithBefore(getBeforeFrame().getTotalScore());
+            makeCurrentFrame(score, scoreDisplay, currentFrame);
+            calculateTotalScore(currentFrame);
             scoreDisplays.add(currentFrame.getDisplayScore());
 
             return scoreDisplays;
@@ -72,10 +70,18 @@ public class Frames {
 
         scoreDisplays.setBeforeDisplay(score.getDisplayScore(new BallThrowCount(2)));
         currentFrame.sumTotalScore(score);
-
-        add(new Frame());
+        addEmptyNextFrame();
 
         return scoreDisplays;
+    }
+
+    private void makeCurrentFrame(Score score, String scoreDisplay, Frame currentFrame) {
+        currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
+    }
+
+    private void calculateTotalScore(Frame currentFrame) {
+        TotalScore beforeTotalScore = getTotalScore(getBeforeFrame());
+        getTotalScore(currentFrame).addTotalScoreWithBefore(beforeTotalScore);
     }
 
     private boolean isFramesSizeZero() {
@@ -87,9 +93,13 @@ public class Frames {
         String scoreDisplay = score.getDisplayScore(ballThrowCount);
 
         this.frames.add(new Frame(score, ballThrowCount, scoreDisplay));
-        this.frames.add(new Frame());
+        addEmptyNextFrame();
 
         return scoreDisplay;
+    }
+
+    private void addEmptyNextFrame() {
+        this.frames.add(new Frame());
     }
 
     public Frame getLastIndex() {
@@ -97,7 +107,11 @@ public class Frames {
     }
 
     TotalScore getLsatIndexTotalScore() {
-        return this.frames.get(getFramesSize() - 1).getTotalScore();
+        return getTotalScore(this.frames.get(getFramesSize() - 1));
+    }
+
+    private TotalScore getTotalScore(Frame currentFrame) {
+        return currentFrame.getTotalScore();
     }
 }
 
