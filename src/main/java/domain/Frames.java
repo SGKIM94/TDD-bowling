@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Frames {
     private static final int BEFORE_FRAME = 2;
+    private static final int SUBTRACT_ARRAY_LENGTH_WITH_INDEX = 1;
 
     private List<Frame> frames;
 
@@ -46,7 +47,7 @@ public class Frames {
             return scoreDisplays;
         }
 
-        Frame currentFrame = get(getFramesSize() - 1);
+        Frame currentFrame = get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX);
         BallThrowCount currentFrameBallCount = currentFrame.getBallThrowCount();
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isStrike()) {
