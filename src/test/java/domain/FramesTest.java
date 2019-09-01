@@ -37,9 +37,9 @@ public class FramesTest {
         Score secondScore = new Score(2);
         ScoreDisplays scoreDisplays = new ScoreDisplays();
 
-        frames.makeScoreDisplayForm(firstScore, scoreDisplays);
+        frames.makeScoreDisplayAndAddFrame(firstScore, scoreDisplays);
 
-        scoreDisplays = frames.makeScoreDisplayForm(secondScore, scoreDisplays);
+        scoreDisplays = frames.makeScoreDisplayAndAddFrame(secondScore, scoreDisplays);
 
         assertThat(scoreDisplays.displaysSize()).isEqualTo(1);
         assertThat(scoreDisplays.get(0)).isEqualTo("4|6");
@@ -69,10 +69,10 @@ public class FramesTest {
         ScoreDisplays scoreDisplays = new ScoreDisplays();
         Frames frames = new Frames();
 
-        scoreDisplays = frames.makeScoreDisplayForm(new Score(5), scoreDisplays);
-        scoreDisplays = frames.makeScoreDisplayForm(new Score(3), scoreDisplays);
-        scoreDisplays = frames.makeScoreDisplayForm(new Score(10), scoreDisplays);
-        frames.makeScoreDisplayForm(new Score(5), scoreDisplays);
+        scoreDisplays = frames.makeScoreDisplayAndAddFrame(new Score(5), scoreDisplays);
+        scoreDisplays = frames.makeScoreDisplayAndAddFrame(new Score(3), scoreDisplays);
+        scoreDisplays = frames.makeScoreDisplayAndAddFrame(new Score(10), scoreDisplays);
+        frames.makeScoreDisplayAndAddFrame(new Score(5), scoreDisplays);
 
         assertThat(frames.getLsatIndexTotalScore().getTotalScore()).isEqualTo(23);
     }

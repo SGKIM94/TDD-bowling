@@ -43,7 +43,7 @@ class BawlingGame {
     private BawlingGame bowl(int inputScore) {
         Score score = new Score(inputScore);
         scores.add(score);
-        this.scoreDisplays = frames.makeScoreDisplayForm(score, scoreDisplays);
+        this.scoreDisplays = frames.makeScoreDisplayAndAddFrame(score, scoreDisplays);
 
         printCurrentFrames(score, scoreDisplays);
         printCurrentFrameScore();

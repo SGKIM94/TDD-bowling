@@ -30,7 +30,7 @@ public class Frames {
         return this.frames.get(getFramesSize() - BEFORE_FRAME);
     }
 
-    public ScoreDisplays makeScoreDisplayForm(Score score, ScoreDisplays scoreDisplays) {
+    public ScoreDisplays makeScoreDisplayAndAddFrame(Score score, ScoreDisplays scoreDisplays) {
         BallThrowCount firstBallThrowCount = new BallThrowCount(1);
         String scoreDisplay = score.getDisplayScore(firstBallThrowCount);
 
