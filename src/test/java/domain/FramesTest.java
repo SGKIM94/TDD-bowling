@@ -32,7 +32,7 @@ public class FramesTest {
     }
 
     @Test
-    public void 조건에_따른_프레임들의_출력_형태를_만든다() {
+    public void 첫_점수가_4이고_다음_숫자가_2인경우_42_형태를만든다() {
         Score firstScore = new Score(4);
         Score secondScore = new Score(2);
         ScoreDisplays scoreDisplays = new ScoreDisplays();
@@ -42,7 +42,21 @@ public class FramesTest {
         scoreDisplays = frames.makeScoreDisplayAndAddFrame(secondScore, scoreDisplays);
 
         assertThat(scoreDisplays.displaysSize()).isEqualTo(1);
-        assertThat(scoreDisplays.get(0)).isEqualTo("4|6");
+        assertThat(scoreDisplays.get(0)).isEqualTo("4|2");
+    }
+
+    @Test
+    public void 첫_점수가_4_이고_다음_숫자가_6_인경우_스페어_형태를_만든다() {
+        Score firstScore = new Score(4);
+        Score secondScore = new Score(6);
+        ScoreDisplays scoreDisplays = new ScoreDisplays();
+
+        frames.makeScoreDisplayAndAddFrame(firstScore, scoreDisplays);
+
+        scoreDisplays = frames.makeScoreDisplayAndAddFrame(secondScore, scoreDisplays);
+
+        assertThat(scoreDisplays.displaysSize()).isEqualTo(1);
+        assertThat(scoreDisplays.get(0)).isEqualTo("4|/");
     }
 
     @Test
