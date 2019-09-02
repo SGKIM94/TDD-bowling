@@ -77,7 +77,7 @@ public class Score {
         return this.score < STRIKE_SCORE;
     }
 
-    public int toStringSize() {
+    int toStringSize() {
         return this.toString().length();
     }
 
