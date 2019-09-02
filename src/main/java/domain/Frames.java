@@ -48,6 +48,7 @@ public class Frames {
         }
 
         Frame currentFrame = get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX);
+        currentFrame.setSecondFrameScore(score);
         BallThrowCount currentFrameBallCount = currentFrame.getBallThrowCount();
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isStrike()) {
@@ -69,7 +70,7 @@ public class Frames {
             return scoreDisplays;
         }
 
-        scoreDisplays.setBeforeDisplay(score.getDisplayScore(new BallThrowCount(2)));
+        scoreDisplays.setBeforeDisplay(currentFrame.getSumScores().getDisplayScore(new BallThrowCount(2)));
         currentFrame.sumTotalScore(score);
         addEmptyNextFrame();
 
