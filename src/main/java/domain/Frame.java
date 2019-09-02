@@ -93,4 +93,13 @@ public class Frame {
 
         return this.totalScore;
      }
+
+     Score getSumScores() {
+        return this.scores.getSumScores();
+     }
+
+     void setSecondFrameScore(Score score) {
+         this.scores.add(score);
+         this.ballThrowCount = new BallThrowCount(2);
+     }
  }
