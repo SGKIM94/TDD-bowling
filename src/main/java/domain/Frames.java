@@ -105,11 +105,11 @@ public class Frames {
     }
 
     public Frame getLastIndex() {
-        return this.get(getFramesSize() - 1);
+        return this.get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX);
     }
 
     TotalScore getLsatIndexTotalScore() {
-        return getTotalScore(this.frames.get(getFramesSize() - 1));
+        return getTotalScore(this.frames.get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX));
     }
 
     private TotalScore getTotalScore(Frame currentFrame) {
