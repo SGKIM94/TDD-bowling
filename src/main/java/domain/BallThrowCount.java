@@ -41,10 +41,6 @@ public class BallThrowCount {
         return this.ballThrowCount < minimumBallThrowCount;
     }
 
-    int getNextBallCount() {
-        return this.ballThrowCount + NEXT_STEP;
-    }
-
     boolean isFirstBallThrowing() {
         return this.ballThrowCount == FIRST_BALL_THROWING;
     }
