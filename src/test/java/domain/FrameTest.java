@@ -24,7 +24,7 @@ public class FrameTest {
     public void 볼던지는_횟수가_옳바른_값이_아니면_예외를_처리한다() {
         Frame frame = new Frame(score, new BallThrowCount(3));
 
-        frame.checkBallThrowCount();
+        frame.checkBallThrowCount(new BallThrowCount(3));
     }
 
     @Test
@@ -56,5 +56,12 @@ public class FrameTest {
         frames.add(frame).add(secondFrame);
 
         assertThat(frame.getTotalScore().getTotalScore()).isEqualTo(8);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 볼_던진_횟수가_올바르지_않을때_에외를던지는가() {
+        Frame frame = new Frame();
+
+        frame.checkBallThrowCount(new BallThrowCount(3));
     }
 }
