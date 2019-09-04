@@ -60,4 +60,10 @@ public class ScoreTest {
 
         assertThat(score.toStringSize()).isEqualTo(1);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 올바르지_않은_점수입력시_예외처리를_하는가() {
+        Score score = new Score(10);
+        score.checkScoreIsWrong(20);
+    }
 }
