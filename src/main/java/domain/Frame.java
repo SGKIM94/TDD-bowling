@@ -57,9 +57,9 @@ public class Frame {
         return !ScoreGroup.ELSE.equals(scoreGroup);
     }
 
-    void checkBallThrowCount() {
-        if (this.ballThrowCount.isBigger(MAX_BALL_THROW_COUNT)
-                || this.ballThrowCount.isSmaller(MINIMUM_BALL_THROW_COUNT)) {
+    void checkBallThrowCount(BallThrowCount ballThrowCount) {
+        if (ballThrowCount.isBigger(MAX_BALL_THROW_COUNT)
+                || ballThrowCount.isSmaller(MINIMUM_BALL_THROW_COUNT)) {
             throw new IllegalArgumentException("볼 던진 횟수의 값이 올바르지 않습니다.");
         }
     }
