@@ -19,32 +19,32 @@ public class Score {
     }
 
     private void inputScore() {
-        checkScoreIsNull();
+        checkScoreIsNull(this.score);
         checkScore();
     }
 
-    private void checkScoreIsNull() {
-        if (String.valueOf(this.score).isEmpty()) {
+    void checkScoreIsNull(int score) {
+        if (String.valueOf(score).isEmpty()) {
             throw new IllegalArgumentException("점수를 입력해주세요.");
         }
     }
 
     private void checkScore() {
-        checkScoreIsWrong();
+        checkScoreIsWrong(this.score);
     }
 
-    private void checkScoreIsWrong() {
-        if (isScoreSmallerThanMinimumScore() || isScoreBiggerThanMaxScore()) {
+    void checkScoreIsWrong(int score) {
+        if (isScoreSmallerThanMinimumScore(score) || isScoreBiggerThanMaxScore(score)) {
             throw new IllegalArgumentException("잘못된 점수를 입력하셨습니다.");
         }
     }
 
-    private boolean isScoreBiggerThanMaxScore() {
-        return this.score > MAX_SCORE;
+    private boolean isScoreBiggerThanMaxScore(int score) {
+        return score > MAX_SCORE;
     }
 
-    private boolean isScoreSmallerThanMinimumScore() {
-        return this.score < MINIMUM_SCORE;
+    private boolean isScoreSmallerThanMinimumScore(int score) {
+        return score < MINIMUM_SCORE;
     }
 
     boolean isStrike() {
