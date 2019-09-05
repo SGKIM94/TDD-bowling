@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScoreDisplays {
-    public static final int BEGIN_INDEX = 0;
-    public static final int LAST_INDEX = 1;
+    private static final int BEGIN_INDEX = 0;
+    private static final int LAST_INDEX = 1;
     private List<String> scoreDisplays;
 
     public ScoreDisplays() {
@@ -41,7 +41,7 @@ public class ScoreDisplays {
     String removeLastOrChar(String scoreDisplay) {
         int displaySize = scoreDisplay.length();
 
-        if (scoreDisplay.charAt(displaySize - 1) == '|') {
+        if (scoreDisplay.charAt(displaySize - LAST_INDEX) == '|') {
             return scoreDisplay.substring(BEGIN_INDEX, displaySize - LAST_INDEX);
         }
 
