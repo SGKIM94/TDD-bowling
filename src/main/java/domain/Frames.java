@@ -71,7 +71,6 @@ public class Frames {
 
         currentFrame.setSecondFrameScore(score);
         scoreDisplays.setBeforeDisplay(currentFrame.getSumScores().getDisplayScore(new BallThrowCount(2)));
-        currentFrame.sumTotalScore(score);
         addEmptyNextFrame();
 
         return scoreDisplays;
