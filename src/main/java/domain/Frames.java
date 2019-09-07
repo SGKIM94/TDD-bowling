@@ -60,7 +60,6 @@ public class Frames {
             return scoreDisplays;
         }
 
-
         if (currentFrameBallCount.isZeroBallThrowing() && score.isSmallerThanStrike()) {
             makeCurrentFrame(score, scoreDisplay, currentFrame);
             calculateTotalScore(currentFrame);
@@ -69,8 +68,15 @@ public class Frames {
             return scoreDisplays;
         }
 
+        currentFrame.sumTotalScore(score);
         currentFrame.setSecondFrameScore(score);
-        scoreDisplays.setBeforeDisplay(currentFrame.getSumScores().getDisplayScore(new BallThrowCount(2)));
+
+        if (currentFrame.getSumScores().isSmallerThanStrike()) {
+            scoreDisplays.setBeforeDisplay(score.getDisplayScore(new BallThrowCount(2)));
+        } else {
+            scoreDisplays.setBeforeDisplay(currentFrame.getSumScores().getDisplayScore(new BallThrowCount(2)));
+        }
+
         addEmptyNextFrame();
 
         return scoreDisplays;
