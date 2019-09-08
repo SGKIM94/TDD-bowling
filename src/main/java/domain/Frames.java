@@ -71,15 +71,23 @@ public class Frames {
         currentFrame.sumTotalScore(score);
         currentFrame.setSecondFrameScore(score);
 
-        if (currentFrame.getSumScores().isSmallerThanStrike()) {
-            scoreDisplays.setBeforeDisplay(score.getDisplayScore(new BallThrowCount(2)));
-        } else {
-            scoreDisplays.setBeforeDisplay(currentFrame.getSumScores().getDisplayScore(new BallThrowCount(2)));
-        }
+        scoreDisplays.setBeforeDisplay(setScoreDisplayWhenSecondBallThrow(score, currentFrame));
 
         addEmptyNextFrame();
 
         return scoreDisplays;
+    }
+
+    private String setScoreDisplayWhenSecondBallThrow(Score score, Frame currentFrame) {
+        if (currentFrame.getSumScores().isSmallerThanStrike()) {
+            return score.getDisplayScore(new BallThrowCount(2));
+        }
+
+        if (currentFrame.getSumScores().isStrike()) {
+            return currentFrame.getSumScores().getDisplayScore(new BallThrowCount(2));
+        }
+
+        throw new IllegalArgumentException();
     }
 
     private void makeCurrentFrame(Score score, String scoreDisplay, Frame currentFrame) {
