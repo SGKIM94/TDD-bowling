@@ -78,6 +78,11 @@ public class Frames {
         return scoreDisplays;
     }
 
+    private void addCurrentScoreWhenSpareScore() {
+
+    }
+
+    // TODO: 테스트코드 작성 필요
     private String setScoreDisplayWhenSecondBallThrow(Score score, Frame currentFrame) {
         if (currentFrame.getSumScores().isSmallerThanStrike()) {
             return score.getDisplayScore(new BallThrowCount(2));
