@@ -78,8 +78,10 @@ public class Frames {
         return scoreDisplays;
     }
 
-    private void addCurrentScoreWhenSpareScore() {
+    private void addCurrentScoreWhenSpareScore(Score score) {
+        if (score.isStrike()) {
 
+        }
     }
 
     // TODO: 테스트코드 작성 필요
