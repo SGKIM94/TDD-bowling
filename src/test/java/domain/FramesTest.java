@@ -90,4 +90,10 @@ public class FramesTest {
 
         assertThat(frames.getLsatIndexTotalScore().getTotalScore()).isEqualTo(23);
     }
+
+    @Test
+    public void 점수가_스페어일때_총합에_다음점수첫점이_더해지는가() {
+
+
+    }
 }
