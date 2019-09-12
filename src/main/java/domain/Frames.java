@@ -78,8 +78,8 @@ public class Frames {
         return scoreDisplays;
     }
 
-    private void addCurrentScoreWhenSpareScore(Score score) {
-        if (score.isStrike()) {
+    private void addCurrentScoreWhenSpareScore(String scoreDispalay) {
+        if ("|".equals(scoreDispalay)) {
 
         }
     }
