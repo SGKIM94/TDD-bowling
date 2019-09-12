@@ -93,7 +93,14 @@ public class FramesTest {
 
     @Test
     public void 점수가_스페어일때_총합에_다음점수첫점이_더해지는가() {
+        ScoreDisplays scoreDisplays = new ScoreDisplays();
+        Frames frames = new Frames();
 
+        scoreDisplays = frames.makeScoreDisplayAndAddFrame(new Score(5), scoreDisplays);
+        scoreDisplays = frames.makeScoreDisplayAndAddFrame(new Score(5), scoreDisplays);
+        scoreDisplays = frames.makeScoreDisplayAndAddFrame(new Score(3), scoreDisplays);
+        frames.makeScoreDisplayAndAddFrame(new Score(5), scoreDisplays);
 
+        assertThat(frames.getLsatIndexTotalScore().getTotalScore()).isEqualTo(16);
     }
 }
