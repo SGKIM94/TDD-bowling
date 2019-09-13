@@ -55,6 +55,8 @@ public class Frames {
             calculateTotalScore(currentFrame);
             addEmptyNextFrame();
 
+            addCurrentScoreWhenSpareScore(getBeforeFrame().getDisplayScore(), currentFrame, score);
+
             scoreDisplays.add(scoreDisplay);
 
             return scoreDisplays;
@@ -63,6 +65,9 @@ public class Frames {
         if (currentFrameBallCount.isZeroBallThrowing() && score.isSmallerThanStrike()) {
             makeCurrentFrame(score, scoreDisplay, currentFrame);
             calculateTotalScore(currentFrame);
+
+            addCurrentScoreWhenSpareScore(getBeforeFrame().getDisplayScore(), currentFrame, score);
+
             scoreDisplays.add(currentFrame.getDisplayScore());
 
             return scoreDisplays;
@@ -78,9 +83,9 @@ public class Frames {
         return scoreDisplays;
     }
 
-    private void addCurrentScoreWhenSpareScore(String scoreDispalay) {
-        if ("|".equals(scoreDispalay)) {
-
+    private void addCurrentScoreWhenSpareScore(String beforeScoreDisplay, Frame currentFrame, Score score) {
+        if ("|".equals(beforeScoreDisplay)) {
+            currentFrame.sumTotalScore(score);
         }
     }
 
