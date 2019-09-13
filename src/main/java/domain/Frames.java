@@ -34,6 +34,8 @@ public class Frames {
         BallThrowCount firstBallThrowCount = new BallThrowCount(1);
         String scoreDisplay = score.getDisplayScore(firstBallThrowCount);
 
+        System.out.println(scoreDisplay);
+
         if (isFramesSizeZero() && score.isStrike()) {
             scoreDisplays.add(getScoreDisplayAndAddFrames(score));
 
@@ -55,8 +57,6 @@ public class Frames {
             calculateTotalScore(currentFrame);
             addEmptyNextFrame();
 
-            addCurrentScoreWhenSpareScore(getBeforeFrame().getDisplayScore(), currentFrame, score);
-
             scoreDisplays.add(scoreDisplay);
 
             return scoreDisplays;
@@ -66,8 +66,6 @@ public class Frames {
             makeCurrentFrame(score, scoreDisplay, currentFrame);
             calculateTotalScore(currentFrame);
 
-            addCurrentScoreWhenSpareScore(getBeforeFrame().getDisplayScore(), currentFrame, score);
-
             scoreDisplays.add(currentFrame.getDisplayScore());
 
             return scoreDisplays;
@@ -76,7 +74,10 @@ public class Frames {
         currentFrame.sumTotalScore(score);
         currentFrame.setSecondFrameScore(score);
 
-        scoreDisplays.setBeforeDisplay(setScoreDisplayWhenSecondBallThrow(score, currentFrame));
+        String secondScoreDisplay = getScoreDisplayWhenSecondBallThrow(score, currentFrame);
+        addCurrentScoreWhenSpareScore(secondScoreDisplay, currentFrame, score);
+
+        scoreDisplays.setBeforeDisplay(secondScoreDisplay);
 
         addEmptyNextFrame();
 
@@ -84,13 +85,14 @@ public class Frames {
     }
 
     private void addCurrentScoreWhenSpareScore(String beforeScoreDisplay, Frame currentFrame, Score score) {
-        if ("|".equals(beforeScoreDisplay)) {
+        System.out.println("Frames.beforeScoreDisplay + " + beforeScoreDisplay);
+        if ("/".equals(beforeScoreDisplay)) {
             currentFrame.sumTotalScore(score);
         }
     }
 
     // TODO: 테스트코드 작성 필요
-    private String setScoreDisplayWhenSecondBallThrow(Score score, Frame currentFrame) {
+    private String getScoreDisplayWhenSecondBallThrow(Score score, Frame currentFrame) {
         if (currentFrame.getSumScores().isSmallerThanStrike()) {
             return score.getDisplayScore(new BallThrowCount(2));
         }
