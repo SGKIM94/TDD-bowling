@@ -112,6 +112,6 @@ public class FramesTest {
         frames.makeScoreDisplayAndAddFrame(new Score(5), scoreDisplays);
         String scoreDisplay = frames.getScoreDisplayWhenSecondBallThrow(new Score(3), frames.getLastIndex());
 
-        assertThat(scoreDisplay).isEqualTo("5|3");
+        assertThat(scoreDisplay).isEqualTo("3|");
     }
 }
