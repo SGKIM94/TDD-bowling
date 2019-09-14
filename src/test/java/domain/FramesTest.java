@@ -103,4 +103,15 @@ public class FramesTest {
 
         assertThat(frames.getLsatIndexTotalScore().getTotalScore()).isEqualTo(16);
     }
+
+    @Test
+    public void 두번째_공을던진경우_합한점수의_점수표시가_나오는가() {
+        ScoreDisplays scoreDisplays = new ScoreDisplays();
+        Frames frames = new Frames();
+
+        frames.makeScoreDisplayAndAddFrame(new Score(5), scoreDisplays);
+        String scoreDisplay = frames.getScoreDisplayWhenSecondBallThrow(new Score(3), frames.getLastIndex());
+
+        assertThat(scoreDisplay).isEqualTo("5|3");
+    }
 }
