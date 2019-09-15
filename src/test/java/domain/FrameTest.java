@@ -55,7 +55,7 @@ public class FrameTest {
         Frames frames = new Frames();
         frames.add(frame).add(secondFrame);
 
-        assertThat(frame.getTotalScore().getTotalScore()).isEqualTo(8);
+        assertThat(frame.getTotalScore().getTotalScore()).isEqualTo(5);
     }
 
     @Test(expected = IllegalArgumentException.class)
