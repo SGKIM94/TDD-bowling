@@ -45,6 +45,7 @@ public class FrameTest {
     public void sumTotalScore_정상구동_테스트() {
         Frame frame = new Frame(new Score(8), new BallThrowCount(1));
 
+        //TODO: equals 오버라이드 필요
         assertThat(frame.sumTotalScore(new Score(2)).getTotalScore()).isEqualTo(10);
     }
 
