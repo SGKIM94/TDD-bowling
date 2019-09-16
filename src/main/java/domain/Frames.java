@@ -75,7 +75,7 @@ public class Frames {
         currentFrame.setSecondFrameScore(score);
 
         String secondScoreDisplay = getScoreDisplayWhenSecondBallThrow(score, currentFrame);
-        addCurrentScoreWhenSpareScore(secondScoreDisplay, currentFrame, score);
+        addCurrentScoreWhenSpareScore(getBeforeFrame(), currentFrame, score);
 
         scoreDisplays.setBeforeDisplay(secondScoreDisplay);
 
@@ -84,9 +84,15 @@ public class Frames {
         return scoreDisplays;
     }
 
-    private void addCurrentScoreWhenSpareScore(String beforeScoreDisplay, Frame currentFrame, Score score) {
+    private void addCurrentScoreWhenSpareScore(Frame beforeFrame, Frame currentFrame, Score score) {
+        String beforeScoreDisplay = beforeFrame.getDisplayScore();
+
         if ("/".equals(beforeScoreDisplay)) {
             currentFrame.sumTotalScore(score);
+        }
+
+        if ("X".equals(beforeScoreDisplay)) {
+            currentFrame.sumTotalScore(new Score(beforeFrame.getTotalScore().getTotalScore()));
         }
     }
 
