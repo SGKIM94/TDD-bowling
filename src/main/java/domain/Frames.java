@@ -34,8 +34,6 @@ public class Frames {
         BallThrowCount firstBallThrowCount = new BallThrowCount(1);
         String scoreDisplay = score.getDisplayScore(firstBallThrowCount);
 
-        System.out.println(scoreDisplay);
-
         if (isFramesSizeZero() && score.isStrike()) {
             scoreDisplays.add(getScoreDisplayAndAddFrames(score));
 
