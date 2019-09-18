@@ -85,8 +85,12 @@ public class Frames {
     private void addCurrentScoreWhenSpareScore(Frame beforeFrame, Frame currentFrame, Score score) {
         String beforeScoreDisplay = beforeFrame.getDisplayScore();
 
+        System.out.println(score.getScore());
+        System.out.println(beforeScoreDisplay);
+
         if ("/".equals(beforeScoreDisplay)) {
             currentFrame.sumTotalScore(score);
+            return;
         }
 
         if ("X".equals(beforeScoreDisplay)) {
