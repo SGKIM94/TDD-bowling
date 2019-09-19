@@ -14,7 +14,7 @@ public class Frame {
         this.scores = new Scores();
         this.ballThrowCount = new BallThrowCount(START_BALL_THROW_COUNT);
         this.scoreDisplay = "";
-        this.totalScore = new TotalScore(new Score(0));
+        this.totalScore = new TotalScore(0);
     }
 
     Frame(Score score, BallThrowCount ballThrowCount, String scoreDisplay) {
@@ -40,7 +40,7 @@ public class Frame {
             return new TotalScore(this.scores.getSumScores());
         }
 
-        return new TotalScore(this.scores.getSumScores()).addInputScore(score);
+        return new TotalScore(this.totalScore.getTotalScore()).addInputScore(score);
     }
 
     boolean canSkipThisFrame() {
