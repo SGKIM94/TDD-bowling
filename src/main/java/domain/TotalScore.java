@@ -8,6 +8,10 @@ public class TotalScore {
         this.totalScore = score.getScore();
     }
 
+    TotalScore(int score) {
+        this.totalScore = score;
+    }
+
     TotalScore addInputScore(Score score) {
         this.totalScore += score.getScore();
 
