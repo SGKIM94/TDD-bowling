@@ -19,4 +19,11 @@ public class ScoreGroupTest {
     public void ScoreGroup_STRIKE_display_정상_리턴() {
         assertThat(ScoreGroup.STRIKE.getDisplay()).isEqualTo("X");
     }
+
+    @Test
+    public void 입력받은_scoreDisplay_와_같은_scoreDisplay_인가() {
+        assertThat(ScoreGroup.STRIKE.isEqualScoreDisplayWithInputScoreDisplay("X")).isEqualTo(true);
+    }
+
+
 }
