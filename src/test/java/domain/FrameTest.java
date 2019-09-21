@@ -52,7 +52,7 @@ public class FrameTest {
         Frames frames = new Frames();
         frames.add(frame).add(secondFrame);
 
-        assertThat(frame.getTotalScore().getTotalScore()).isEqualTo(5);
+        assertThat(frame.getPrimaryTotalScore()).isEqualTo(5);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -72,5 +72,36 @@ public class FrameTest {
 
         //then
         assertThat(frame.getDisplayScore()).isEqualTo("5|3");
+    }
+
+    @Test
+    public void 이전_scoreDisplay_가_스패어인경우_첫점수를_한번더_더해주는가() {
+        //given
+        Frames frames = new Frames();
+        ScoreDisplays scoreDisplays;
+
+        scoreDisplays = frames.makeScoreDisplayAndAddFrame(new Score(5), new ScoreDisplays());
+        frames.makeScoreDisplayAndAddFrame(new Score(5), scoreDisplays);
+
+        //when
+        frames.addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike
+                        (frames.getBeforeFrame(), new Score(3));
+
+        //then
+        assertThat(frames.get(0).getPrimaryTotalScore()).isEqualTo(13);
+    }
+
+    @Test
+    public void 이전_scoreDisplay_가_스트라이크인경우_첫점수를_한번더_더해주는가() {
+        //given
+        Frames frames = new Frames();
+        frames.makeScoreDisplayAndAddFrame(new Score(10), new ScoreDisplays());
+
+        //when
+        frames.addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike
+                        (frames.getBeforeFrame(), new Score(3));
+
+        //then
+        assertThat(frames.get(0).getPrimaryTotalScore()).isEqualTo(20);
     }
 }

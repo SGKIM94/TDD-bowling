@@ -55,7 +55,7 @@ public class Frames {
         if (currentFrameBallCount.isZeroBallThrowing()) {
             // 가져오는 이전 display 가 더해지고 나서가 아닌 그전의 형태임
             // 예를 들어 8| 가 나옴
-            addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareScoreAndStrike(getBeforeFrame(), score);
+            addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(getBeforeFrame(), score);
         }
 
         if (currentFrameBallCount.isZeroBallThrowing() && score.isStrike()) {
@@ -90,7 +90,7 @@ public class Frames {
         return scoreDisplays;
     }
 
-    void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareScoreAndStrike(Frame beforeFrame, Score score) {
+    void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(Frame beforeFrame, Score score) {
         addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(beforeFrame);
         addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(beforeFrame, score);
     }
