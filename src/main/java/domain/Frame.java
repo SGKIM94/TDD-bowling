@@ -101,5 +101,12 @@ public class Frame {
      void setSecondFrameScore(Score score) {
          this.scores.add(score);
          this.ballThrowCount = new BallThrowCount(2);
+
      }
- }
+
+    Frame appendScoreDisplay(String scoreDisplay) {
+        this.scoreDisplay += scoreDisplay;
+
+        return this;
+    }
+}
