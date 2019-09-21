@@ -6,7 +6,7 @@ import java.util.List;
 public class Frames {
     private static final int BEFORE_FRAME = 2;
     private static final int SUBTRACT_ARRAY_LENGTH_WITH_INDEX = 1;
-    public static final int INDEX_OF_SECOND_SCOREDISPLAY = 2;
+    private static final int INDEX_OF_SECOND_SCORE_DISPLAY = 2;
 
     private List<Frame> frames;
 
@@ -93,18 +93,22 @@ public class Frames {
     private void addCurrentScoreWhenSpareScore(Frame beforeFrame, Score score) {
         String beforeScoreDisplay = beforeFrame.getDisplayScore();
 
-        if ("X".equals(beforeScoreDisplay)) {
+        if (ScoreGroup.STRIKE
+                .isEqualScoreDisplayWithInputScoreDisplay
+                        (beforeScoreDisplay)) {
             beforeFrame.sumTotalScore(new Score(beforeFrame.getTotalScore().getTotalScore()));
             return;
         }
 
-        if ("/".equals(getSecondScoreDisplayWhenNotStrike(beforeScoreDisplay))) {
+        if (ScoreGroup.SPARE
+                .isEqualScoreDisplayWithInputScoreDisplay
+                        (getSecondScoreDisplayWhenNotStrike(beforeScoreDisplay))) {
             beforeFrame.sumTotalScore(score);
         }
     }
 
     String getSecondScoreDisplayWhenNotStrike(String beforeScoreDisplay) {
-        return beforeScoreDisplay.substring(INDEX_OF_SECOND_SCOREDISPLAY);
+        return beforeScoreDisplay.substring(INDEX_OF_SECOND_SCORE_DISPLAY);
     }
 
     String getScoreDisplayWhenSecondBallThrow(Score score, Frame currentFrame) {
