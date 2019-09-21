@@ -88,6 +88,10 @@ public class Frame {
         return this.totalScore;
      }
 
+     public int getPrimaryTotalScore() {
+        return this.totalScore.getTotalScore();
+     }
+
      TotalScore sumTotalScore(Score score) {
         this.totalScore.addInputScore(score);
 
