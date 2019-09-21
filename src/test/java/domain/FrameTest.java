@@ -2,17 +2,13 @@ package domain;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class FrameTest {
     private final Score score = new Score(10);
 
     @Test
-    public void 볼을_떤진_횟수와_점수를_계산한다() {
+    public void 볼을_던진_횟수와_점수를_계산한다() {
         int ballThrowCount = 1;
 
         Frame frame = new Frame(score, new BallThrowCount(ballThrowCount));
@@ -64,5 +60,17 @@ public class FrameTest {
         Frame frame = new Frame();
 
         frame.checkBallThrowCount(new BallThrowCount(3));
+    }
+
+    @Test
+    public void scoreDisplay_를_더해주는가() {
+        //given
+        Frame frame = new Frame(new Score(5), new BallThrowCount(1));
+
+        //when
+        frame.appendScoreDisplay("3");
+
+        //then
+        assertThat(frame.getDisplayScore()).isEqualTo("5|3");
     }
 }
