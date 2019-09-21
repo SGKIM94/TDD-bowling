@@ -114,4 +114,16 @@ public class FramesTest {
 
         assertThat(scoreDisplay).isEqualTo("3|");
     }
+
+    @Test
+    public void 스트라이크가_아닌경우_두번째_scoreDisplay_를_가져오는가() {
+        //given
+        Frames frames = new Frames();
+
+        //when
+        String scoreDisplay = "5|/";
+
+        //then
+        assertThat(frames.getSecondScoreDisplayWhenNotStrike(scoreDisplay)).isEqualTo("/");
+    }
 }
