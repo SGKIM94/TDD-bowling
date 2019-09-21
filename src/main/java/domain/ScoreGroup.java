@@ -30,4 +30,9 @@ public enum ScoreGroup {
     public String getDisplay() {
         return display;
     }
+
+    public boolean isEqualScoreDisplayWithInputScoreDisplay(String scoreDisplay) {
+        return this.display.equals(scoreDisplay);
+
+    }
 }
