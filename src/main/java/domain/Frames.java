@@ -6,6 +6,7 @@ import java.util.List;
 public class Frames {
     private static final int BEFORE_FRAME = 2;
     private static final int SUBTRACT_ARRAY_LENGTH_WITH_INDEX = 1;
+    public static final int INDEX_OF_SECOND_SCOREDISPLAY = 2;
 
     private List<Frame> frames;
 
@@ -51,6 +52,8 @@ public class Frames {
         BallThrowCount currentFrameBallCount = currentFrame.getBallThrowCount();
 
         if (currentFrameBallCount.isZeroBallThrowing()) {
+            // 가져오는 이전 display 가 더해지고 나서가 아닌 그전의 형태임
+            // 예를 들어 8| 가 나옴
             addCurrentScoreWhenSpareScore(getBeforeFrame(), score);
         }
 
@@ -77,6 +80,7 @@ public class Frames {
         currentFrame.setSecondFrameScore(score);
 
         String secondScoreDisplay = getScoreDisplayWhenSecondBallThrow(score, currentFrame);
+        currentFrame.appendScoreDisplay(secondScoreDisplay);
 
         scoreDisplays.setBeforeDisplay(secondScoreDisplay);
 
@@ -85,17 +89,22 @@ public class Frames {
         return scoreDisplays;
     }
 
+    // TODO : 테스트코드 작성 필요
     private void addCurrentScoreWhenSpareScore(Frame beforeFrame, Score score) {
         String beforeScoreDisplay = beforeFrame.getDisplayScore();
 
-        if ("/".equals(beforeScoreDisplay)) {
-            beforeFrame.sumTotalScore(score);
+        if ("X".equals(beforeScoreDisplay)) {
+            beforeFrame.sumTotalScore(new Score(beforeFrame.getTotalScore().getTotalScore()));
             return;
         }
 
-        if ("X".equals(beforeScoreDisplay)) {
-            beforeFrame.sumTotalScore(new Score(beforeFrame.getTotalScore().getTotalScore()));
+        if ("/".equals(getSecondScoreDisplayWhenNotStrike(beforeScoreDisplay))) {
+            beforeFrame.sumTotalScore(score);
         }
+    }
+
+    String getSecondScoreDisplayWhenNotStrike(String beforeScoreDisplay) {
+        return beforeScoreDisplay.substring(INDEX_OF_SECOND_SCOREDISPLAY);
     }
 
     String getScoreDisplayWhenSecondBallThrow(Score score, Frame currentFrame) {
