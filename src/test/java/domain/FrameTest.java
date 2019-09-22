@@ -81,11 +81,12 @@ public class FrameTest {
         ScoreDisplays scoreDisplays;
 
         scoreDisplays = frames.makeScoreDisplayAndAddFrame(new Score(5), new ScoreDisplays());
-        frames.makeScoreDisplayAndAddFrame(new Score(5), scoreDisplays);
+        scoreDisplays = frames.makeScoreDisplayAndAddFrame(new Score(5), scoreDisplays);
+        frames.makeScoreDisplayAndAddFrame(new Score(3), scoreDisplays);
 
         //when
-        frames.addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike
-                        (frames.getBeforeFrame(), new Score(3));
+        frames.addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare
+                        (frames.getBeforeFrame(), new Frame(new Score(3), new BallThrowCount(2)));
 
         //then
         assertThat(frames.get(0).getPrimaryTotalScore()).isEqualTo(13);
@@ -98,8 +99,8 @@ public class FrameTest {
         frames.makeScoreDisplayAndAddFrame(new Score(10), new ScoreDisplays());
 
         //when
-        frames.addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike
-                        (frames.getBeforeFrame(), new Score(3));
+        frames.addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike
+                        (frames.getBeforeFrame(), new Frame(new Score(10), new BallThrowCount(2)));
 
         //then
         assertThat(frames.get(0).getPrimaryTotalScore()).isEqualTo(20);
