@@ -3,7 +3,7 @@ package domain;
 public class Frame {
     private static final int MAX_BALL_THROW_COUNT = 2;
     private static final int MINIMUM_BALL_THROW_COUNT = 0;
-    private static final int START_BALL_THROW_COUNT = 0;
+    private static final int START_BALL_THROW_COUNT = 1;
 
     private Scores scores;
     private BallThrowCount ballThrowCount;
