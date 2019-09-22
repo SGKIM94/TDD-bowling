@@ -33,17 +33,17 @@ public class Frames {
     }
 
     public ScoreDisplays makeScoreDisplayAndAddFrame(Score score, ScoreDisplays scoreDisplays) {
-        BallThrowCount firstBallThrowCount = new BallThrowCount(1);
-        String scoreDisplay = score.getDisplayScore(firstBallThrowCount);
+        String scoreDisplay = score.getDisplayScore(new BallThrowCount(1));
 
         if (isFramesSizeZero() && score.isStrike()) {
-            scoreDisplays.add(getScoreDisplayAndAddFrames(score));
+            addFirstBallThrowFrame(score, scoreDisplay);
+            addEmptyNextFrame();
 
             return scoreDisplays;
         }
 
         if (isFramesSizeZero() && score.isSmallerThanStrike()) {
-            add(new Frame(score, firstBallThrowCount, scoreDisplay));
+            addFirstBallThrowFrame(score, scoreDisplay);
             scoreDisplays.add(scoreDisplay);
 
             return scoreDisplays;
@@ -88,11 +88,16 @@ public class Frames {
         return scoreDisplays;
     }
 
+    private void addFirstBallThrowFrame(Score score, String scoreDisplay) {
+        add(new Frame(score, new BallThrowCount(1), scoreDisplay));
+    }
+
     void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(Frame beforeFrame, Score score) {
         addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(beforeFrame, score);
         addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(beforeFrame, score);
     }
 
+    //TODO : 스트라이크일때는 10점을 더하는게 아니라 현재 점수의 총점을 다시한번 더해줘야함.
     private void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(Frame beforeFrame, Score currentFrameTotalScore) {
         String beforeScoreDisplay = beforeFrame.getDisplayScore();
 
@@ -148,16 +153,6 @@ public class Frames {
 
     private boolean isFramesSizeZero() {
         return this.frames.isEmpty();
-    }
-
-    private String getScoreDisplayAndAddFrames(Score score) {
-        BallThrowCount ballThrowCount = new BallThrowCount(1);
-        String scoreDisplay = score.getDisplayScore(ballThrowCount);
-
-        this.frames.add(new Frame(score, ballThrowCount, scoreDisplay));
-        addEmptyNextFrame();
-
-        return scoreDisplay;
     }
 
     private void addEmptyNextFrame() {
