@@ -113,4 +113,8 @@ public class Frame {
 
         return this;
     }
+
+    Score getFirstScore() {
+        return this.scores.getFirstScore();
+    }
 }
