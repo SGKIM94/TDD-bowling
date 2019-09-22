@@ -52,13 +52,11 @@ public class Frames {
         Frame currentFrame = get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX);
         BallThrowCount currentFrameBallCount = currentFrame.getBallThrowCount();
 
-        if (currentFrameBallCount.isZeroBallThrowing()) {
-            // 가져오는 이전 display 가 더해지고 나서가 아닌 그전의 형태임
-            // 예를 들어 8| 가 나옴
+        if (currentFrameBallCount.isSecondBallThrowing()) {
             addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(getBeforeFrame(), score);
         }
 
-        if (currentFrameBallCount.isZeroBallThrowing() && score.isStrike()) {
+        if (currentFrameBallCount.isFirstBallThrowing() && score.isStrike()) {
             makeCurrentFrame(score, scoreDisplay, currentFrame);
             calculateTotalScore(currentFrame);
             addEmptyNextFrame();
@@ -68,7 +66,7 @@ public class Frames {
             return scoreDisplays;
         }
 
-        if (currentFrameBallCount.isZeroBallThrowing() && score.isSmallerThanStrike()) {
+        if (currentFrameBallCount.isFirstBallThrowing() && score.isSmallerThanStrike()) {
             makeCurrentFrame(score, scoreDisplay, currentFrame);
             calculateTotalScore(currentFrame);
 
@@ -91,21 +89,21 @@ public class Frames {
     }
 
     void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(Frame beforeFrame, Score score) {
-        addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(beforeFrame);
+        addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(beforeFrame, score);
         addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(beforeFrame, score);
     }
 
-    private void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(Frame beforeFrame) {
+    private void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(Frame beforeFrame, Score currentFrameTotalScore) {
         String beforeScoreDisplay = beforeFrame.getDisplayScore();
 
         if (ScoreGroup.STRIKE
                 .isEqualScoreDisplayWithInputScoreDisplay
                         (beforeScoreDisplay)) {
-            beforeFrame.sumTotalScore(new Score(beforeFrame.getPrimaryTotalScore()));
+            beforeFrame.sumTotalScore(currentFrameTotalScore);
         }
     }
 
-    private void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(Frame beforeFrame, Score score) {
+    private void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(Frame beforeFrame, Score currentFrameFirstScore) {
         String beforeScoreDisplay = beforeFrame.getDisplayScore();
 
         if (isStrikeScoreDisplay(beforeScoreDisplay)){
@@ -115,7 +113,7 @@ public class Frames {
         if (ScoreGroup.SPARE
                 .isEqualScoreDisplayWithInputScoreDisplay
                         (getSecondScoreDisplayWhenNotStrike(beforeScoreDisplay))) {
-            beforeFrame.sumTotalScore(score);
+            beforeFrame.sumTotalScore(currentFrameFirstScore);
         }
     }
 
