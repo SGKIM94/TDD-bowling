@@ -47,8 +47,4 @@ public class BallThrowCount {
     boolean isSecondBallThrowing() {
         return this.ballThrowCount == SECOND_BALL_THROWING;
     }
-
-    boolean isZeroBallThrowing() {
-        return this.ballThrowCount == 0;
-    }
 }
