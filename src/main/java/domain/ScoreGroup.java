@@ -7,7 +7,7 @@ public enum ScoreGroup {
     SPARE(2, 10, "/"),
     GUTTER(2, 0, "-"),
     MISS(2, 0, ""),
-    ELSE(0, 0, "|");
+    ELSE(1, 0, "|");
 
     ScoreGroup(int frameCount, int addedScore, String display) {
         this.ballThrowCount = frameCount;
