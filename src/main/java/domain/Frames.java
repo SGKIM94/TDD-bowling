@@ -7,7 +7,8 @@ public class Frames {
     private static final int BEFORE_FRAME = 2;
     private static final int SUBTRACT_ARRAY_LENGTH_WITH_INDEX = 1;
     private static final int INDEX_OF_SECOND_SCORE_DISPLAY = 2;
-    public static final int STRIKE_SCORE_DISPLAY_SIZE = 1;
+    private static final int STRIKE_SCORE_DISPLAY_SIZE = 1;
+    private static final int FIRST_FRAME_SIZE = 1;
 
     private List<Frame> frames;
 
@@ -36,15 +37,14 @@ public class Frames {
         String scoreDisplay = score.getDisplayScore(new BallThrowCount(1));
 
         if (isFramesSizeZero() && score.isStrike()) {
-            addFirstBallThrowFrame(score, scoreDisplay);
+            addFrameSecondBallThrowCountAndScoreDisplay(score, scoreDisplay, scoreDisplays);
             addEmptyNextFrame();
 
             return scoreDisplays;
         }
 
         if (isFramesSizeZero() && score.isSmallerThanStrike()) {
-            addFirstBallThrowFrame(score, scoreDisplay);
-            scoreDisplays.add(scoreDisplay);
+            addFrameSecondBallThrowCountAndScoreDisplay(score, scoreDisplay, scoreDisplays);
 
             return scoreDisplays;
         }
@@ -52,14 +52,12 @@ public class Frames {
         Frame currentFrame = get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX);
         BallThrowCount currentFrameBallCount = currentFrame.getBallThrowCount();
 
-        if (currentFrameBallCount.isSecondBallThrowing()) {
-            addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(getBeforeFrame(), score);
-        }
-
         if (currentFrameBallCount.isFirstBallThrowing() && score.isStrike()) {
             makeCurrentFrame(score, scoreDisplay, currentFrame);
             calculateTotalScore(currentFrame);
             addEmptyNextFrame();
+            addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike
+                    (getBeforeFrame(), currentFrame);
 
             scoreDisplays.add(scoreDisplay);
 
@@ -75,12 +73,16 @@ public class Frames {
             return scoreDisplays;
         }
 
-        currentFrame.sumTotalScore(score);
         currentFrame.setSecondFrameScore(score);
+        currentFrame.sumTotalScore(score);
+
+        if (isNotFirstFrame()) {
+            addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike
+                    (getBeforeFrame(), currentFrame);
+        }
 
         String secondScoreDisplay = getScoreDisplayWhenSecondBallThrow(score, currentFrame);
         currentFrame.appendScoreDisplay(secondScoreDisplay);
-
         scoreDisplays.setBeforeDisplay(secondScoreDisplay);
 
         addEmptyNextFrame();
@@ -88,37 +90,46 @@ public class Frames {
         return scoreDisplays;
     }
 
-    private void addFirstBallThrowFrame(Score score, String scoreDisplay) {
-        add(new Frame(score, new BallThrowCount(1), scoreDisplay));
+    private boolean isNotFirstFrame() {
+        return frames.size() > FIRST_FRAME_SIZE;
     }
 
-    void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(Frame beforeFrame, Score score) {
-        addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(beforeFrame, score);
-        addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(beforeFrame, score);
+    private void addFrameSecondBallThrowCountAndScoreDisplay(Score score, String scoreDisplay, ScoreDisplays scoreDisplays) {
+        add(new Frame(score, new BallThrowCount(2), scoreDisplay));
+        scoreDisplays.add(scoreDisplay);
     }
 
-    //TODO : 스트라이크일때는 10점을 더하는게 아니라 현재 점수의 총점을 다시한번 더해줘야함.
-    private void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(Frame beforeFrame, Score currentFrameTotalScore) {
+    private void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(Frame beforeFrame, Frame currentFrame) {
+        addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(beforeFrame, currentFrame);
+        addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(beforeFrame, currentFrame);
+    }
+
+    void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(Frame beforeFrame, Frame currentFrame) {
         String beforeScoreDisplay = beforeFrame.getDisplayScore();
+        Score sumScore = currentFrame.getSumScores();
 
         if (ScoreGroup.STRIKE
                 .isEqualScoreDisplayWithInputScoreDisplay
                         (beforeScoreDisplay)) {
-            beforeFrame.sumTotalScore(currentFrameTotalScore);
+            beforeFrame.sumTotalScore(sumScore);
+            currentFrame.sumTotalScore(sumScore);
         }
     }
 
-    private void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(Frame beforeFrame, Score currentFrameFirstScore) {
+    void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(Frame beforeFrame, Frame currentFrame) {
         String beforeScoreDisplay = beforeFrame.getDisplayScore();
 
         if (isStrikeScoreDisplay(beforeScoreDisplay)){
             return;
         }
 
+        Score firstScore = currentFrame.getFirstScore();
+
         if (ScoreGroup.SPARE
                 .isEqualScoreDisplayWithInputScoreDisplay
                         (getSecondScoreDisplayWhenNotStrike(beforeScoreDisplay))) {
-            beforeFrame.sumTotalScore(currentFrameFirstScore);
+            beforeFrame.sumTotalScore(firstScore);
+            currentFrame.sumTotalScore(firstScore);
         }
     }
 
@@ -143,7 +154,7 @@ public class Frames {
     }
 
     private void makeCurrentFrame(Score score, String scoreDisplay, Frame currentFrame) {
-        currentFrame.makeFrame(score, new BallThrowCount(1), scoreDisplay);
+        currentFrame.makeFrame(score, new BallThrowCount(2), scoreDisplay);
     }
 
     private void calculateTotalScore(Frame currentFrame) {
