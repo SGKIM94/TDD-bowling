@@ -106,11 +106,19 @@ public class Frames {
 
     void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(Frame beforeFrame, Frame currentFrame) {
         String beforeScoreDisplay = beforeFrame.getDisplayScore();
+        String currentScoreDisplay = currentFrame.getDisplayScore();
         Score sumScore = currentFrame.getSumScores();
 
         if (ScoreGroup.STRIKE
                 .isEqualScoreDisplayWithInputScoreDisplay
                         (beforeScoreDisplay)) {
+            beforeFrame.sumTotalScore(sumScore);
+            currentFrame.sumTotalScore(sumScore);
+        }
+
+        if (ScoreGroup.STRIKE
+                .isEqualScoreDisplayWithInputScoreDisplay
+                        (currentScoreDisplay)) {
             beforeFrame.sumTotalScore(sumScore);
             currentFrame.sumTotalScore(sumScore);
         }
