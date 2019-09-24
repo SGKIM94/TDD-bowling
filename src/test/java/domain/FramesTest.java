@@ -64,7 +64,7 @@ public class FramesTest {
         frames.add(new Frame(new Score(10), new BallThrowCount(1)))
               .add(new Frame(new Score(9), new BallThrowCount(2)));
 
-        Frame frame = frames.getLastIndex();
+        Frame frame = frames.getLastFrame();
         assertThat(frame.getBallThrowCount()).isEqualTo(2);
     }
 
@@ -110,7 +110,7 @@ public class FramesTest {
         Frames frames = new Frames();
 
         frames.makeScoreDisplayAndAddFrame(new Score(5), scoreDisplays);
-        String scoreDisplay = frames.getScoreDisplayWhenSecondBallThrow(new Score(3), frames.getLastIndex());
+        String scoreDisplay = frames.getScoreDisplayWhenSecondBallThrow(new Score(3), frames.getLastFrame());
 
         assertThat(scoreDisplay).isEqualTo("3|");
     }
