@@ -27,7 +27,7 @@ public class ScoreFrame {
 
     private static int reduceOneSizeWhenLastFrameEmpty(Frames frames) {
         int framesSize = frames.getFramesSize();
-        if (isLastFrameEmpty(frames.getLastIndex())) {
+        if (isLastFrameEmpty(frames.getLastFrame())) {
             return framesSize - 1;
         }
 
