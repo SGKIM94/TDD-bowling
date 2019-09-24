@@ -29,10 +29,6 @@ public class Frames {
         return this.frames.get(index);
     }
 
-    Frame getBeforeFrame() {
-        return this.frames.get(getFramesSize() - BEFORE_FRAME);
-    }
-
     public ScoreDisplays makeScoreDisplayAndAddFrame(Score score, ScoreDisplays scoreDisplays) {
         String scoreDisplay = score.getDisplayScore(new BallThrowCount(1));
 
@@ -100,28 +96,72 @@ public class Frames {
     }
 
     private void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(Frame beforeFrame, Frame currentFrame) {
-        addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(beforeFrame, currentFrame);
+        addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike();
         addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(beforeFrame, currentFrame);
     }
 
-    void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike(Frame beforeFrame, Frame currentFrame) {
-        String beforeScoreDisplay = beforeFrame.getDisplayScore();
-        String currentScoreDisplay = currentFrame.getDisplayScore();
+    void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike() {
+        Frame currentFrame = getLastFrame();
+        Frame firstToLastFrame = getBeforeFrame();
+
+        String beforeScoreDisplay = firstToLastFrame.getDisplayScore();
         Score sumScore = currentFrame.getSumScores();
 
-        if (ScoreGroup.STRIKE
-                .isEqualScoreDisplayWithInputScoreDisplay
-                        (beforeScoreDisplay)) {
-            beforeFrame.sumTotalScore(sumScore);
+        if (isNotEmpty(beforeScoreDisplay)
+                &&isEqualDisplayStrikeWithInputDisplay(beforeScoreDisplay)) {
+            firstToLastFrame.sumTotalScore(sumScore);
             currentFrame.sumTotalScore(sumScore);
         }
 
-        if (ScoreGroup.STRIKE
-                .isEqualScoreDisplayWithInputScoreDisplay
-                        (currentScoreDisplay)) {
-            beforeFrame.sumTotalScore(sumScore);
+        if (getFramesSize() > 2) {
+            addSecondToLastTotalScoreThatCurrentScoreWhenSecondToLastDisplayIsStrike(sumScore);
+        }
+
+        if (getFramesSize() > 3) {
+            addThirdToLastTotalScoreThatCurrentScoreWhenThirdToLastDisplayIsStrike(sumScore);
+        }
+    }
+
+    private void addSecondToLastTotalScoreThatCurrentScoreWhenSecondToLastDisplayIsStrike(Score sumScore) {
+        Frame firstToLastFrame = getBeforeFrame();
+        Frame secondToLastFrame = getSecondToLastFrame();
+        Frame currentFrame = getLastFrame();
+
+        String secondToLastDisplay = secondToLastFrame.getDisplayScore();
+        String beforeScoreDisplay = firstToLastFrame.getDisplayScore();
+
+        if (isNotEmpty(beforeScoreDisplay)
+                && isEqualDisplayStrikeWithInputDisplay(beforeScoreDisplay)
+                &&isEqualDisplayStrikeWithInputDisplay(secondToLastDisplay)
+                ) {
+            firstToLastFrame.sumTotalScore(sumScore);
             currentFrame.sumTotalScore(sumScore);
         }
+    }
+
+    private void addThirdToLastTotalScoreThatCurrentScoreWhenThirdToLastDisplayIsStrike(Score sumScore) {
+        Frame firstToLastFrame = getBeforeFrame();
+        Frame secondToLastFrame = getSecondToLastFrame();
+        Frame currentFrame = getLastFrame();
+        Frame thirdToLastFrame = getThirdToLastFrame();
+
+        String thirdToLastDisplay = thirdToLastFrame.getDisplayScore();
+        String secondToLastDisplay = secondToLastFrame.getDisplayScore();
+        String beforeScoreDisplay = firstToLastFrame.getDisplayScore();
+
+        if (isEqualDisplayStrikeWithInputDisplay(thirdToLastDisplay)
+                && isEqualDisplayStrikeWithInputDisplay(beforeScoreDisplay)
+                && isEqualDisplayStrikeWithInputDisplay(secondToLastDisplay)
+                && isEqualDisplayStrikeWithInputDisplay(thirdToLastDisplay)) {
+            firstToLastFrame.sumTotalScore(sumScore);
+            currentFrame.sumTotalScore(sumScore);
+        }
+    }
+
+    private boolean isEqualDisplayStrikeWithInputDisplay(String scoreDisplay) {
+        return ScoreGroup.STRIKE
+                .isEqualScoreDisplayWithInputScoreDisplay
+                        (scoreDisplay);
     }
 
     void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(Frame beforeFrame, Frame currentFrame) {
@@ -178,8 +218,20 @@ public class Frames {
         this.frames.add(new Frame());
     }
 
-    public Frame getLastIndex() {
-        return this.get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX);
+    public Frame getLastFrame() {
+        return get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX);
+    }
+
+    Frame getBeforeFrame() {
+        return this.frames.get(getFramesSize() - BEFORE_FRAME);
+    }
+
+    Frame getSecondToLastFrame() {
+        return this.frames.get(getFramesSize() - 3);
+    }
+
+    Frame getThirdToLastFrame() {
+        return this.frames.get(getFramesSize() - 4);
     }
 
     TotalScore getLsatIndexTotalScore() {
@@ -188,6 +240,10 @@ public class Frames {
 
     private TotalScore getTotalScore(Frame currentFrame) {
         return currentFrame.getTotalScore();
+    }
+
+    private boolean isNotEmpty(String value) {
+        return !value.isEmpty();
     }
 }
 
