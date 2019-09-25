@@ -9,6 +9,8 @@ public class Frames {
     private static final int INDEX_OF_SECOND_SCORE_DISPLAY = 2;
     private static final int STRIKE_SCORE_DISPLAY_SIZE = 1;
     private static final int FIRST_FRAME_SIZE = 1;
+    public static final int MORETHANTWOFRAMES = 2;
+    public static final int MORETHANTHREEFRAMES = 3;
 
     private List<Frame> frames;
 
@@ -113,11 +115,11 @@ public class Frames {
             currentFrame.sumTotalScore(sumScore);
         }
 
-        if (getFramesSize() > 2) {
+        if (getFramesSize() > MORETHANTWOFRAMES) {
             addSecondToLastTotalScoreThatCurrentScoreWhenSecondToLastDisplayIsStrike(sumScore);
         }
 
-        if (getFramesSize() > 3) {
+        if (getFramesSize() > MORETHANTHREEFRAMES) {
             addThirdToLastTotalScoreThatCurrentScoreWhenThirdToLastDisplayIsStrike(sumScore);
         }
     }
