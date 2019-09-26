@@ -9,6 +9,7 @@ public class Scores {
     private static final int ONE_BALL_THROW_COUNT = 1;
     private static final int FIRST_BAWL_SCORE = 0;
     private static final int SECOND_BAWL_SCORE = 1;
+    public static final int ZERO_SIZE = 0;
 
     private List<Score> scores;
 
@@ -34,11 +35,19 @@ public class Scores {
     }
 
     Score getSumScores() {
+        if (isZeroScoresSize()) {
+            return new Score(ZERO_SIZE);
+        }
+
         if (isOneBallThrowCount()) {
             return this.scores.get(FIRST_BAWL_SCORE);
         }
 
         return this.scores.get(FIRST_BAWL_SCORE).sumScores(this.scores.get(SECOND_BAWL_SCORE));
+    }
+
+    private boolean isZeroScoresSize() {
+        return this.scores.size() == 0;
     }
 
     private boolean isOneBallThrowCount() {
