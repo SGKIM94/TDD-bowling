@@ -99,8 +99,7 @@ public class FrameTest {
         frames.makeScoreDisplayAndAddFrame(new Score(10), new ScoreDisplays());
 
         //when
-        frames.addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike
-                        (frames.getBeforeFrame(), new Frame(new Score(10), new BallThrowCount(2)));
+        frames.addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike();
 
         //then
         assertThat(frames.get(0).getPrimaryTotalScore()).isEqualTo(20);
