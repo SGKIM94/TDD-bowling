@@ -9,8 +9,10 @@ public class Frames {
     private static final int INDEX_OF_SECOND_SCORE_DISPLAY = 2;
     private static final int STRIKE_SCORE_DISPLAY_SIZE = 1;
     private static final int FIRST_FRAME_SIZE = 1;
-    public static final int MORETHANTWOFRAMES = 2;
-    public static final int MORETHANTHREEFRAMES = 3;
+    private static final int MORE_THAN_TWO_FRAMES = 2;
+    private static final int MORE_THAN_THREE_FRAMES = 3;
+    public static final int BEFORE_SECOND_TO_LAST_INDEX = 3;
+    public static final int BEFORE_THIRD_TO_LAST_INDEX = 4;
 
     private List<Frame> frames;
 
@@ -115,11 +117,11 @@ public class Frames {
             currentFrame.sumTotalScore(sumScore);
         }
 
-        if (getFramesSize() > MORETHANTWOFRAMES) {
+        if (getFramesSize() > MORE_THAN_TWO_FRAMES) {
             addSecondToLastTotalScoreThatCurrentScoreWhenSecondToLastDisplayIsStrike(sumScore);
         }
 
-        if (getFramesSize() > MORETHANTHREEFRAMES) {
+        if (getFramesSize() > MORE_THAN_THREE_FRAMES) {
             addThirdToLastTotalScoreThatCurrentScoreWhenThirdToLastDisplayIsStrike(sumScore);
         }
     }
@@ -229,11 +231,11 @@ public class Frames {
     }
 
     Frame getSecondToLastFrame() {
-        return this.frames.get(getFramesSize() - 3);
+        return this.frames.get(getFramesSize() - BEFORE_SECOND_TO_LAST_INDEX);
     }
 
     Frame getThirdToLastFrame() {
-        return this.frames.get(getFramesSize() - 4);
+        return this.frames.get(getFramesSize() - BEFORE_THIRD_TO_LAST_INDEX);
     }
 
     TotalScore getLsatIndexTotalScore() {
