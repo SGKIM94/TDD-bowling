@@ -37,6 +37,9 @@ class BawlingGame {
                 .bowl(2)
                 .bowl(5)
                 .bowl(3)
+                .bowl(10)
+                .bowl(10)
+                .bowl(10)
                 .bowl(10);
     }
 
