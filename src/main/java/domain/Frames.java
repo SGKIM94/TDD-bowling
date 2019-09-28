@@ -117,12 +117,14 @@ public class Frames {
             currentFrame.sumTotalScore(sumScore);
         }
 
+        Score firstToLastFrameSumScores = firstToLastFrame.getSumScores();
+
         if (getFramesSize() > MORE_THAN_TWO_FRAMES) {
-            addSecondToLastTotalScoreThatCurrentScoreWhenSecondToLastDisplayIsStrike(sumScore);
+            addSecondToLastTotalScoreThatCurrentScoreWhenSecondToLastDisplayIsStrike(firstToLastFrameSumScores);
         }
 
         if (getFramesSize() > MORE_THAN_THREE_FRAMES) {
-            addThirdToLastTotalScoreThatCurrentScoreWhenThirdToLastDisplayIsStrike(sumScore);
+            addThirdToLastTotalScoreThatCurrentScoreWhenThirdToLastDisplayIsStrike(firstToLastFrameSumScores);
         }
     }
 
@@ -136,7 +138,7 @@ public class Frames {
 
         if (isNotEmpty(beforeScoreDisplay)
                 && isEqualDisplayStrikeWithInputDisplay(beforeScoreDisplay)
-                &&isEqualDisplayStrikeWithInputDisplay(secondToLastDisplay)
+                && isEqualDisplayStrikeWithInputDisplay(secondToLastDisplay)
                 ) {
             firstToLastFrame.sumTotalScore(sumScore);
             currentFrame.sumTotalScore(sumScore);
