@@ -11,8 +11,8 @@ public class Frames {
     private static final int FIRST_FRAME_SIZE = 1;
     private static final int MORE_THAN_TWO_FRAMES = 2;
     private static final int MORE_THAN_THREE_FRAMES = 3;
-    public static final int BEFORE_SECOND_TO_LAST_INDEX = 3;
-    public static final int BEFORE_THIRD_TO_LAST_INDEX = 4;
+    private static final int BEFORE_SECOND_TO_LAST_INDEX = 3;
+    private static final int BEFORE_THIRD_TO_LAST_INDEX = 4;
 
     private List<Frame> frames;
 
@@ -105,64 +105,88 @@ public class Frames {
     }
 
     void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike() {
-        Frame currentFrame = getLastFrame();
-        Frame firstToLastFrame = getBeforeFrame();
-
-        String beforeScoreDisplay = firstToLastFrame.getDisplayScore();
-        Score sumScore = currentFrame.getSumScores();
-
-        if (isNotEmpty(beforeScoreDisplay)
-                &&isEqualDisplayStrikeWithInputDisplay(beforeScoreDisplay)) {
-            firstToLastFrame.sumTotalScore(sumScore);
-            currentFrame.sumTotalScore(sumScore);
+        if (isNotEmpty(getBeforeFrameDisplayScore())) {
+            addBeforeTotalScoreThatCurrentScoreWhenBeforeDisplayIsStrike(getLastFrameSumScores());
         }
 
-        Score firstToLastFrameSumScores = firstToLastFrame.getSumScores();
+        Score beforeFrameSumScores = getBeforeFrameSumScores();
 
-        if (getFramesSize() > MORE_THAN_TWO_FRAMES) {
-            addSecondToLastTotalScoreThatCurrentScoreWhenSecondToLastDisplayIsStrike(firstToLastFrameSumScores);
+        if (isFrameSizeMoreThanTwo()) {
+            addSecondToLastTotalScoreThatCurrentScoreWhenSecondToLastDisplayIsStrike(beforeFrameSumScores);
         }
 
-        if (getFramesSize() > MORE_THAN_THREE_FRAMES) {
-            addThirdToLastTotalScoreThatCurrentScoreWhenThirdToLastDisplayIsStrike(firstToLastFrameSumScores);
+        if (isFrameSizeMoreThanThree()) {
+            addThirdToLastTotalScoreThatCurrentScoreWhenThirdToLastDisplayIsStrike(beforeFrameSumScores);
+        }
+    }
+
+    private Score getBeforeFrameSumScores() {
+        return getBeforeFrame().getSumScores();
+    }
+
+    private String getBeforeFrameDisplayScore() {
+        return getBeforeFrame().getDisplayScore();
+    }
+
+    private Score getLastFrameSumScores() {
+        return getLastFrame().getSumScores();
+    }
+
+    private boolean isFrameSizeMoreThanThree() {
+        return getFramesSize() > MORE_THAN_THREE_FRAMES;
+    }
+
+    private boolean isFrameSizeMoreThanTwo() {
+        return getFramesSize() > MORE_THAN_TWO_FRAMES;
+    }
+
+    private void addBeforeTotalScoreThatCurrentScoreWhenBeforeDisplayIsStrike(Score sumScore) {
+        if (isEqualDisplayStrikeWithBeforeDisplay()) {
+            addBeforeAndCurrentFrameTotalScore(sumScore);
         }
     }
 
     private void addSecondToLastTotalScoreThatCurrentScoreWhenSecondToLastDisplayIsStrike(Score sumScore) {
-        Frame firstToLastFrame = getBeforeFrame();
-        Frame secondToLastFrame = getSecondToLastFrame();
-        Frame currentFrame = getLastFrame();
-
-        String secondToLastDisplay = secondToLastFrame.getDisplayScore();
-        String beforeScoreDisplay = firstToLastFrame.getDisplayScore();
-
-        if (isNotEmpty(beforeScoreDisplay)
-                && isEqualDisplayStrikeWithInputDisplay(beforeScoreDisplay)
-                && isEqualDisplayStrikeWithInputDisplay(secondToLastDisplay)
-                ) {
-            firstToLastFrame.sumTotalScore(sumScore);
-            currentFrame.sumTotalScore(sumScore);
+        if (isEqualDisplayStrikeWithBeforeDisplay()
+                && isEqualDisplayStrikeWithSecondDisplay()) {
+            addBeforeAndCurrentFrameTotalScore(sumScore);
         }
     }
 
     private void addThirdToLastTotalScoreThatCurrentScoreWhenThirdToLastDisplayIsStrike(Score sumScore) {
-        Frame firstToLastFrame = getBeforeFrame();
-        Frame secondToLastFrame = getSecondToLastFrame();
-        Frame currentFrame = getLastFrame();
-        Frame thirdToLastFrame = getThirdToLastFrame();
-
-        String thirdToLastDisplay = thirdToLastFrame.getDisplayScore();
-        String secondToLastDisplay = secondToLastFrame.getDisplayScore();
-        String beforeScoreDisplay = firstToLastFrame.getDisplayScore();
-
-        if (isEqualDisplayStrikeWithInputDisplay(thirdToLastDisplay)
-                && isEqualDisplayStrikeWithInputDisplay(beforeScoreDisplay)
-                && isEqualDisplayStrikeWithInputDisplay(secondToLastDisplay)
-                && isEqualDisplayStrikeWithInputDisplay(thirdToLastDisplay)) {
-            firstToLastFrame.sumTotalScore(sumScore);
-            currentFrame.sumTotalScore(sumScore);
+        if (isEqualDisplayStrikeWithBeforeDisplay()
+                && isEqualDisplayStrikeWithSecondDisplay()
+                && isEqualDisplayStrikeWithThirdDisplay()) {
+            addBeforeAndCurrentFrameTotalScore(sumScore);
         }
     }
+
+    private void addBeforeAndCurrentFrameTotalScore(Score sumScore) {
+        Frame firstToLastFrame = getBeforeFrame();
+        Frame currentFrame = getLastFrame();
+
+        firstToLastFrame.sumTotalScore(sumScore);
+        currentFrame.sumTotalScore(sumScore);
+    }
+
+    private boolean isEqualDisplayStrikeWithBeforeDisplay() {
+        String BeforeDisplay = getBeforeFrameDisplayScore();
+
+        return isEqualDisplayStrikeWithInputDisplay(BeforeDisplay);
+    }
+
+    private boolean isEqualDisplayStrikeWithSecondDisplay() {
+        String secondToLastDisplay = getSecondToLastFrame().getDisplayScore();
+
+        return isEqualDisplayStrikeWithInputDisplay(secondToLastDisplay);
+    }
+
+    private boolean isEqualDisplayStrikeWithThirdDisplay() {
+        String ThirdToLastDisplay = getThirdToLastFrame().getDisplayScore();
+
+        return isEqualDisplayStrikeWithInputDisplay(ThirdToLastDisplay);
+    }
+
 
     private boolean isEqualDisplayStrikeWithInputDisplay(String scoreDisplay) {
         return ScoreGroup.STRIKE
