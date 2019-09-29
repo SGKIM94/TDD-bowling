@@ -3,16 +3,17 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static domain.FrameIndexGroup.*;
+
 public class Frames {
-    private static final int BEFORE_FRAME = 2;
-    private static final int SUBTRACT_ARRAY_LENGTH_WITH_INDEX = 1;
     private static final int INDEX_OF_SECOND_SCORE_DISPLAY = 2;
+
     private static final int STRIKE_SCORE_DISPLAY_SIZE = 1;
     private static final int FIRST_FRAME_SIZE = 1;
+
     private static final int MORE_THAN_TWO_FRAMES = 2;
     private static final int MORE_THAN_THREE_FRAMES = 3;
-    private static final int BEFORE_SECOND_TO_LAST_INDEX = 3;
-    private static final int BEFORE_THIRD_TO_LAST_INDEX = 4;
+
 
     private List<Frame> frames;
 
@@ -49,7 +50,7 @@ public class Frames {
             return scoreDisplays;
         }
 
-        Frame currentFrame = get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX);
+        Frame currentFrame = get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX.getIndex());
         BallThrowCount currentFrameBallCount = currentFrame.getBallThrowCount();
 
         if (currentFrameBallCount.isFirstBallThrowing() && score.isStrike()) {
@@ -249,23 +250,23 @@ public class Frames {
     }
 
     public Frame getLastFrame() {
-        return get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX);
+        return get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX.getIndex());
     }
 
     Frame getBeforeFrame() {
-        return this.frames.get(getFramesSize() - BEFORE_FRAME);
+        return this.frames.get(getFramesSize() - BEFORE_FRAME_INDEX.getIndex());
     }
 
     Frame getSecondToLastFrame() {
-        return this.frames.get(getFramesSize() - BEFORE_SECOND_TO_LAST_INDEX);
+        return this.frames.get(getFramesSize() - BEFORE_SECOND_TO_LAST_INDEX.getIndex());
     }
 
     Frame getThirdToLastFrame() {
-        return this.frames.get(getFramesSize() - BEFORE_THIRD_TO_LAST_INDEX);
+        return this.frames.get(getFramesSize() - BEFORE_THIRD_TO_LAST_INDEX.getIndex());
     }
 
     TotalScore getLsatIndexTotalScore() {
-        return getTotalScore(this.frames.get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX));
+        return getTotalScore(this.frames.get(getFramesSize() - SUBTRACT_ARRAY_LENGTH_WITH_INDEX.getIndex()));
     }
 
     private TotalScore getTotalScore(Frame currentFrame) {
