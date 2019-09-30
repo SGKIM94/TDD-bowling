@@ -7,10 +7,8 @@ import static domain.FrameIndexGroup.*;
 
 public class Frames {
     private static final int INDEX_OF_SECOND_SCORE_DISPLAY = 2;
-
     private static final int STRIKE_SCORE_DISPLAY_SIZE = 1;
     private static final int FIRST_FRAME_SIZE = 1;
-
     private static final int MORE_THAN_TWO_FRAMES = 2;
     private static final int MORE_THAN_THREE_FRAMES = 3;
 
@@ -57,8 +55,7 @@ public class Frames {
             makeCurrentFrame(score, scoreDisplay, currentFrame);
             calculateTotalScore(currentFrame);
             addEmptyNextFrame();
-            addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike
-                    (getBeforeFrame(), currentFrame);
+            addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(getBeforeFrame(), currentFrame);
 
             scoreDisplays.add(scoreDisplay);
 
@@ -77,10 +74,7 @@ public class Frames {
         currentFrame.setSecondFrameScore(score);
         currentFrame.sumTotalScore(score);
 
-        if (isNotFirstFrame()) {
-            addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike
-                    (getBeforeFrame(), currentFrame);
-        }
+        addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(getBeforeFrame(), currentFrame);
 
         String secondScoreDisplay = getScoreDisplayWhenSecondBallThrow(score, currentFrame);
         currentFrame.appendScoreDisplay(secondScoreDisplay);
@@ -91,8 +85,8 @@ public class Frames {
         return scoreDisplays;
     }
 
-    private boolean isNotFirstFrame() {
-        return frames.size() > FIRST_FRAME_SIZE;
+    private boolean isFirstFrame() {
+        return frames.size() == FIRST_FRAME_SIZE;
     }
 
     private void addFrameSecondBallThrowCountAndScoreDisplay(Score score, String scoreDisplay, ScoreDisplays scoreDisplays) {
@@ -101,6 +95,10 @@ public class Frames {
     }
 
     private void addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpareAndStrike(Frame beforeFrame, Frame currentFrame) {
+        if (isFirstFrame()) {
+            return;
+        }
+
         addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsStrike();
         addBeforeTotalScoreThatCurrentScoreWhenBeforeScoreDisplayIsSpare(beforeFrame, currentFrame);
     }
@@ -187,7 +185,6 @@ public class Frames {
 
         return isEqualDisplayStrikeWithInputDisplay(ThirdToLastDisplay);
     }
-
 
     private boolean isEqualDisplayStrikeWithInputDisplay(String scoreDisplay) {
         return ScoreGroup.STRIKE
@@ -277,4 +274,3 @@ public class Frames {
         return !value.isEmpty();
     }
 }
-
