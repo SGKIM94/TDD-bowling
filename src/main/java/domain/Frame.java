@@ -1,9 +1,9 @@
 package domain;
 
+import static domain.BallThrowCountGroup.*;
+
 public class Frame {
-    private static final int MAX_BALL_THROW_COUNT = 2;
-    private static final int MINIMUM_BALL_THROW_COUNT = 0;
-    private static final int START_BALL_THROW_COUNT = 1;
+
 
     private Scores scores;
     private BallThrowCount ballThrowCount;
@@ -12,7 +12,7 @@ public class Frame {
 
     Frame() {
         this.scores = new Scores();
-        this.ballThrowCount = new BallThrowCount(START_BALL_THROW_COUNT);
+        this.ballThrowCount = new BallThrowCount(START_BALL_THROW_COUNT.getCount());
         this.scoreDisplay = "";
         this.totalScore = new TotalScore(0);
     }
@@ -58,8 +58,8 @@ public class Frame {
     }
 
     void checkBallThrowCount(BallThrowCount ballThrowCount) {
-        if (ballThrowCount.isBigger(MAX_BALL_THROW_COUNT)
-                || ballThrowCount.isSmaller(MINIMUM_BALL_THROW_COUNT)) {
+        if (ballThrowCount.isBigger(MAX_BALL_THROW_COUNT.getCount())
+                || ballThrowCount.isSmaller(MINIMUM_BALL_THROW_COUNT.getCount())) {
             throw new IllegalArgumentException("볼 던진 횟수의 값이 올바르지 않습니다.");
         }
     }

@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static domain.BallThrowCountGroup.ONE_BALL_THROW_COUNT;
+
 public class Scores {
     private static final int FIRST_INDEX = 0;
-    private static final int ONE_BALL_THROW_COUNT = 1;
     private static final int FIRST_BAWL_SCORE = 0;
     private static final int SECOND_BAWL_SCORE = 1;
-    public static final int ZERO_SIZE = 0;
+    private static final int ZERO_SIZE = 0;
 
     private List<Score> scores;
 
@@ -51,7 +52,7 @@ public class Scores {
     }
 
     private boolean isOneBallThrowCount() {
-        return this.scores.size() == ONE_BALL_THROW_COUNT;
+        return this.scores.size() == ONE_BALL_THROW_COUNT.getCount();
     }
 
     int getScoresSize() {
