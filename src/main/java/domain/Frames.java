@@ -254,11 +254,11 @@ public class Frames {
         return this.frames.get(getFramesSize() - BEFORE_FRAME_INDEX.getIndex());
     }
 
-    Frame getSecondToLastFrame() {
+    private Frame getSecondToLastFrame() {
         return this.frames.get(getFramesSize() - BEFORE_SECOND_TO_LAST_INDEX.getIndex());
     }
 
-    Frame getThirdToLastFrame() {
+    private Frame getThirdToLastFrame() {
         return this.frames.get(getFramesSize() - BEFORE_THIRD_TO_LAST_INDEX.getIndex());
     }
 
